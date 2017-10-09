@@ -1,0 +1,6 @@
+framework module Pods_ChompersUITests {
+  umbrella header "Pods-ChompersUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

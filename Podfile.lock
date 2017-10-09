@@ -1,0 +1,56 @@
+PODS:
+  - Alamofire (4.5.1)
+  - Bond (6.3.0):
+    - Diff (~> 0.5.3)
+    - ReactiveKit (~> 3.6.2)
+  - Diff (0.5.3)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - Moya (9.0.0):
+    - Moya/Core (= 9.0.0)
+  - Moya/Core (9.0.0):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - PromiseKit (4.4.0):
+    - PromiseKit/Foundation (= 4.4.0)
+    - PromiseKit/QuartzCore (= 4.4.0)
+    - PromiseKit/UIKit (= 4.4.0)
+  - PromiseKit/CorePromise (4.4.0)
+  - PromiseKit/Foundation (4.4.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.4.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.4.0):
+    - PromiseKit/CorePromise
+  - ReactiveKit (3.6.2)
+  - Result (3.2.3)
+  - SnapKit (4.0.0)
+  - StreamingKit (0.1.29)
+
+DEPENDENCIES:
+  - Bond
+  - FBSnapshotTestCase
+  - Moya
+  - PromiseKit
+  - ReactiveKit
+  - SnapKit
+  - StreamingKit
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Bond: 6a15b0635bbaae915d91b4c4ffa1396807530ef3
+  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
+  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
+  ReactiveKit: 59813e52505065d14fa77b453d8be5981eced6b7
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  StreamingKit: c329785aaef3ac142d4ae388345bfe1ed23cfd45
+
+PODFILE CHECKSUM: 83348959e7a7f15a33552896f6e38dcdd52d9fd9
+
+COCOAPODS: 1.1.1
