@@ -34,6 +34,13 @@ struct Show: Codable {
     var tracks: [Track]?
 }
 
+extension Show {
+    var title: String {
+        let venueName = self.venue_name ?? (self.venue?.name ?? "")
+        return "\(self.date) - \(venueName)"
+    }
+}
+
 struct Venue: Codable {
     var id: Int
     var name: String

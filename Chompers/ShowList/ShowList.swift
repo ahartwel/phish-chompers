@@ -21,13 +21,17 @@ struct ShowList: SimpleList, ServiceInjector {
     }
     
     func getModels() -> Promise<[ListItem]> {
-        return self.service.getShows(fromYear: self.year)
+        return self.service.getShows(fromYear: self.year).then { shows -> [Show] in
+            return shows.sorted(by: { show, show2 in
+                return show.date < show2.date
+            })
+        }
     }
     
     static func createCell(tableView: UITableView, indexPath: IndexPath, models: [ListItem]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
         let show = models[indexPath.row]
-        cell.textLabel?.text = show.venue_name ?? show.date
+        cell.textLabel?.text = show.title
         return cell
     }
     static func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
