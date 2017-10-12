@@ -52,4 +52,5 @@ protocol ListViewModelDelegate {
 
 protocol ListActions {
     func selectedListing(atIndex index: IndexPath)
+    func didAppear()
 }

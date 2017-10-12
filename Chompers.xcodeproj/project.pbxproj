@@ -30,6 +30,7 @@
 		2C4A6AF11F8AFB2F00BEB58B /* SimpleListDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF01F8AFB2F00BEB58B /* SimpleListDefinition.swift */; };
 		2C4A6AF31F8AFB3F00BEB58B /* SimpleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */; };
 		2C4A6AF51F8AFB8800BEB58B /* SimpleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF41F8AFB8800BEB58B /* SimpleListCell.swift */; };
+		2C7AD5541F8EFEC400FF06CE /* QueueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5531F8EFEC400FF06CE /* QueueList.swift */; };
 		2CCC026411C13E5664C2CD21 /* Pods_ChompersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */; };
 		2CCE97B71F8AFEB400CF209F /* ShowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE97B61F8AFEB400CF209F /* ShowList.swift */; };
 		2CCE97BA1F8B019800CF209F /* EraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE97B91F8B019800CF209F /* EraList.swift */; };
@@ -86,6 +87,7 @@
 		2C4A6AF01F8AFB2F00BEB58B /* SimpleListDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListDefinition.swift; sourceTree = "<group>"; };
 		2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListViewModel.swift; sourceTree = "<group>"; };
 		2C4A6AF41F8AFB8800BEB58B /* SimpleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListCell.swift; sourceTree = "<group>"; };
+		2C7AD5531F8EFEC400FF06CE /* QueueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueList.swift; sourceTree = "<group>"; };
 		2CCE97B61F8AFEB400CF209F /* ShowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowList.swift; sourceTree = "<group>"; };
 		2CCE97B91F8B019800CF209F /* EraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraList.swift; sourceTree = "<group>"; };
 		4372EA840E47207BEEAD0F8A /* Pods-Chompers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */,
+				2C7AD5531F8EFEC400FF06CE /* QueueList.swift */,
 			);
 			path = TrackList;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				2C4A6AE41F8AF3E700BEB58B /* MainTabController.swift in Sources */,
 				2C4A6AEF1F8AF73B00BEB58B /* SimpleList.swift in Sources */,
 				2CCE97B71F8AFEB400CF209F /* ShowList.swift in Sources */,
+				2C7AD5541F8EFEC400FF06CE /* QueueList.swift in Sources */,
 				2C4A6AF11F8AFB2F00BEB58B /* SimpleListDefinition.swift in Sources */,
 				2C4A6AA61F8AE50D00BEB58B /* ViewController.swift in Sources */,
 				2C32DD761F8EBEAB0074CFE4 /* TrackList.swift in Sources */,

@@ -29,7 +29,7 @@ class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
 
 
 
-class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate {
+class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, AudioPlayerInjector {
     
     lazy var trackListView: TrackListView<T> = {
         var view = TrackListView<T>()
@@ -57,6 +57,15 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate {
         super.loadView()
         self.viewModel.delegate = self
         self.trackListView.bind(to: self.viewModel)
+        self.bindToQueueUpdates()
+    }
+    
+    func bindToQueueUpdates() {
+        if T.self is QueueTrackList.Type {
+            self.audioPlayer.changedQueue.observeNext(with: { event in
+                self.viewModel.didAppear()
+            }).dispose(in: self.bag)
+        }
     }
     
     override func viewDidLoad() {

@@ -47,6 +47,9 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     var currentShow: Observable<Show?> = Observable<Show?>(nil)
     var currentProgress: Observable<Double> = Observable<Double>(0)
     var currentDuration: Observable<Double> = Observable<Double>(0)
+    var changedQueue: Subject<Void, NoError> = Subject<Void, NoError>()
+    var didStartPlayingSource: Subject<QueueItem, NoError> = Subject<QueueItem, NoError>()
+    var sendQueueChangeEventTimer: Timer?
     var timer: Timer?
     
     lazy var audioPlayer: STKAudioPlayer = STKAudioPlayer()
@@ -73,6 +76,28 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
         }
         let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
         self.audioPlayer.setDataSource(items.audioSource, withQueueItemId: items.queueItem)
+        self.didStartPlayingSource.toSignal().take(first: 1).observe(with: { event in
+            self.addOtherTracksToQueue(track, show: show)
+            self.sendChangedQueueEvent()
+        }).dispose(in: self.bag)
+        
+    }
+    
+    func addOtherTracksToQueue(_ track: Track, show: Show) {
+        var otherTracks = show.tracks ?? []
+        if let index = otherTracks.index(where: { t in
+            return track.id == t.id
+        }) {
+            
+            for _ in 0...index {
+                if otherTracks.count > 0 {
+                    otherTracks.remove(at: 0)
+                }
+            }
+            for otherTrack in otherTracks.reversed() {
+                self.add(trackToQueue: otherTrack, fromShow: show)
+            }
+        }
     }
     
     func setUpControlCenter() {
@@ -97,6 +122,13 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     func add(trackToQueue track: Track, fromShow show: Show) {
         let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
         self.audioPlayer.queue(items.audioSource, withQueueItemId: items.queueItem)
+    }
+    
+    func sendChangedQueueEvent() {
+        self.sendQueueChangeEventTimer?.invalidate()
+        self.sendQueueChangeEventTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { timer in
+            self.changedQueue.next(())
+        })
     }
     
     func getAudioSourceAndQueue(fromTrack track: Track, andShow show: Show) -> (audioSource: STKDataSource, queueItem: QueueItem) {
@@ -156,6 +188,7 @@ extension AudioPlayer: STKAudioPlayerDelegate {
             self.currentShow.value = nil
             return
         }
+        self.didStartPlayingSource.next(queueItem)
         self.currentTrack.value = queueItem.track
         self.currentShow.value = queueItem.show
         self.currentDuration.value = audioPlayer.duration

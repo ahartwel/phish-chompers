@@ -10,6 +10,7 @@ import Foundation
 import PromiseKit
 import UIKit
 import ionicons
+
 class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManagerInjector {
     typealias ListItem = Track
     var show: Show
@@ -72,20 +73,8 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
             return
         }
         self.audioPlayer.play(track: track, fromShow: self.show)
-        self.addOtherTracksToQueue(track)
     }
     
-    func addOtherTracksToQueue(_ track: Track) {
-        var otherTracks = self.show.tracks ?? []
-        if let index = otherTracks.index(where: { t in
-            return track.id == t.id
-        }) {
-            otherTracks.remove(at: index)
-            for track in otherTracks {
-                self.audioPlayer.add(trackToQueue: track, fromShow: self.show)
-            }
-        }
-    }
     
     static func numberOfSections(models: [ListItem]) -> Int {
         return self.getArrayOfSetNames(models: models).count

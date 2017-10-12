@@ -26,6 +26,10 @@ enum PlayState: Int {
     }
 }
 
+protocol AudioPlayerViewModelDelegate: class {
+    func showQueue()
+}
+
 class AudioPlayerViewModel: AudioPlayerInjector {
     var disposeBag = DisposeBag()
     lazy var playPauseButtonText: Observable<String> = {
@@ -42,6 +46,7 @@ class AudioPlayerViewModel: AudioPlayerInjector {
     var currentProgress: Observable<Double> {
         return self.audioPlayer.currentProgress
     }
+    weak var delegate: AudioPlayerViewModelDelegate?
     
     
     
@@ -78,14 +83,19 @@ extension AudioPlayerViewModel: AudioPlayerActions {
     func seekTo(time: Float) {
         self.audioPlayer.audioPlayer.seek(toTime: Double(time))
     }
+    
+    func showQueue() {
+        self.delegate?.showQueue()
+    }
 }
 
 protocol AudioPlayerActions {
     func togglePlayPause()
     func seekTo(time: Float)
+    func showQueue()
 }
 
-class AudioPlayerController: UIViewController {
+class AudioPlayerController: UIViewController, AudioPlayerViewModelDelegate {
     static var audioPlayerHeight: CGFloat = 100
     lazy var audioView: AudioPlayerView = {
         return AudioPlayerView()
@@ -96,6 +106,7 @@ class AudioPlayerController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = self.audioView
+        self.viewModel.delegate = self
     }
     
     override func viewDidLoad() {
@@ -103,7 +114,10 @@ class AudioPlayerController: UIViewController {
         self.audioView.bind(to: self.viewModel)
     }
     
-    
+    func showQueue() {
+        let queue = MainTabBarNavigationController.createListNavigation(withList: QueueTrackList())
+        self.parent?.present(queue, animated: true, completion: nil)
+    }
     
 }
 
@@ -173,23 +187,22 @@ class AudioPlayerView: UIView {
         self.slider.snp.remakeConstraints({ make in
             make.top.bottom.equalTo(self)
             make.left.equalTo(self.playPauseButton.snp.right)
-            make.right.equalTo(self).inset(UIScreen.main.bounds.width * 0.3)
+            make.right.equalTo(self).inset(UIScreen.main.bounds.width * 0.2)
         })
         self.durationLabel.snp.remakeConstraints({ make in
-            make.top.equalTo(self)
-            make.left.equalTo(self.slider.snp.right)
-            make.right.equalTo(self)
+            make.bottom.equalTo(self)
             make.height.equalTo(self).multipliedBy(0.5)
+            make.right.equalTo(self.slider.snp.right)
         })
         self.upButton.snp.remakeConstraints({ make in
             make.right.bottom.equalTo(self)
             make.left.equalTo(self.slider.snp.right)
-            make.height.equalTo(self).multipliedBy(0.5)
+            make.height.equalTo(self)
         })
     }
     
     @objc func tappedExpand() {
-        
+        self.actions?.showQueue()
     }
     
     @objc func pressedPlayPause() {
@@ -226,7 +239,7 @@ extension Float {
     func getTimeString() -> String {
         var string = ""
         let minutes = Int(self / 60)
-        let seconds = Int(self.remainder(dividingBy: 60))
+        let seconds = Int(self.truncatingRemainder(dividingBy: 60))
         string += "\((minutes < 10 ? "0" : ""))\(minutes):"
         string += "\((seconds < 10 ? "0" : ""))\(seconds)"
         return string
