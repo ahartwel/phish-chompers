@@ -32,6 +32,7 @@ struct Show: Codable {
     var tags: [String]?
     var venue: Venue?
     var tracks: [Track]?
+    var isDownloaded: Bool? = false
 }
 
 extension Show {

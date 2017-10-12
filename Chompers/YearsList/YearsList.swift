@@ -27,9 +27,13 @@ struct YearsList: SimpleList, ServiceInjector {
         cell.textLabel?.text = models[indexPath.row]
         return cell
     }
-    static func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
+    func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
         let year = models[index.row]
         delegate.pushListings(forYear: year)
+    }
+    
+    func setUp(viewController: UIViewController) {
+        
     }
     
     init() {
@@ -43,6 +47,14 @@ struct YearsList: SimpleList, ServiceInjector {
         self.getYears = {
             return Promise<[Year]>(value: years)
         }
+    }
+    
+    static func numberOfRowsInSection(section: Int, models: [Year]) -> Int {
+        return models.count
+    }
+    
+    static func numberOfSections(models: [Year]) -> Int {
+        return 1
     }
     
 }

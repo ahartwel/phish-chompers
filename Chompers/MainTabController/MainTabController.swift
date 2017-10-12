@@ -11,11 +11,11 @@ import Bond
 import ReactiveKit
 import SnapKit
 
-class MainViewModel {
+class MainViewModel: AudioPlayerInjector {
     var isPlaying: Observable<Bool> = Observable<Bool>(false)
     var bag: DisposeBag = DisposeBag()
     init() {
-        AudioPlayer.shared.isPlayerActive.observeNext(with: { isActive in
+        self.audioPlayer.isPlayerActive.observeNext(with: { isActive in
             self.isPlaying.value = isActive
         }).dispose(in: self.bag)
     }
@@ -78,7 +78,8 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         self.setViewControllers([
             MainTabBarNavigationController.createListNavigation(withList: YearsList()),
-            MainTabBarNavigationController.createListNavigation(withList: EraList())
+            MainTabBarNavigationController.createListNavigation(withList: EraList()),
+            MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
             ], animated: false)
         
         

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C32DD761F8EBEAB0074CFE4 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */; };
+		2C32DD781F8ECA660074CFE4 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32DD771F8ECA660074CFE4 /* DownloadManager.swift */; };
 		2C4A6AA41F8AE50D00BEB58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA31F8AE50D00BEB58B /* AppDelegate.swift */; };
 		2C4A6AA61F8AE50D00BEB58B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA51F8AE50D00BEB58B /* ViewController.swift */; };
 		2C4A6AA91F8AE50D00BEB58B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 /* Begin PBXFileReference section */
 		08AB3661780869430422117E /* Pods-ChompersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChompersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChompersTests/Pods-ChompersTests.release.xcconfig"; sourceTree = "<group>"; };
 		2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChompersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
+		2C32DD771F8ECA660074CFE4 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		2C4A6AA01F8AE50D00BEB58B /* Chompers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chompers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A6AA31F8AE50D00BEB58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4A6AA51F8AE50D00BEB58B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C32DD741F8EBE980074CFE4 /* TrackList */ = {
+			isa = PBXGroup;
+			children = (
+				2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */,
+			);
+			path = TrackList;
+			sourceTree = "<group>";
+		};
 		2C4A6A971F8AE50C00BEB58B = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +158,7 @@
 		2C4A6AA21F8AE50D00BEB58B /* Chompers */ = {
 			isa = PBXGroup;
 			children = (
+				2C32DD741F8EBE980074CFE4 /* TrackList */,
 				2CCE97B81F8B018C00CF209F /* EraList */,
 				2CCE97B51F8AFEAA00CF209F /* ShowList */,
 				2C4A6AED1F8AF73100BEB58B /* ListView */,
@@ -198,6 +211,7 @@
 			children = (
 				2C4A6AD41F8AE65B00BEB58B /* PhishinService.swift */,
 				2C4A6AE01F8AF1A200BEB58B /* DataCache.swift */,
+				2C32DD771F8ECA660074CFE4 /* DownloadManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -567,10 +581,12 @@
 				2CCE97B71F8AFEB400CF209F /* ShowList.swift in Sources */,
 				2C4A6AF11F8AFB2F00BEB58B /* SimpleListDefinition.swift in Sources */,
 				2C4A6AA61F8AE50D00BEB58B /* ViewController.swift in Sources */,
+				2C32DD761F8EBEAB0074CFE4 /* TrackList.swift in Sources */,
 				2C4A6AF31F8AFB3F00BEB58B /* SimpleListViewModel.swift in Sources */,
 				2C4A6AA41F8AE50D00BEB58B /* AppDelegate.swift in Sources */,
 				2C4A6AD71F8AE74900BEB58B /* Years.swift in Sources */,
 				2CCE97BA1F8B019800CF209F /* EraList.swift in Sources */,
+				2C32DD781F8ECA660074CFE4 /* DownloadManager.swift in Sources */,
 				2C4A6ADD1F8AEA1C00BEB58B /* Show.swift in Sources */,
 				2C4A6AF51F8AFB8800BEB58B /* SimpleListCell.swift in Sources */,
 				2C4A6AD51F8AE65B00BEB58B /* PhishinService.swift in Sources */,

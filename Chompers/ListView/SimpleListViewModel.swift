@@ -25,11 +25,17 @@ class ListViewModel<T: SimpleList>: ListActions {
         }
     }
     
+    func didAppear() {
+        _ = self.list.getModels().then { models -> Void in
+            self.listings.value = models
+        }
+    }
+    
     func selectedListing(atIndex index: IndexPath) {
         guard let delegate = self.delegate else {
             return
         }
-        T.preformDelegateAction(forIndex: index, models: self.listings.value, delegate: delegate)
+        self.list.preformDelegateAction(forIndex: index, models: self.listings.value, delegate: delegate)
     }
     
 }
@@ -38,6 +44,7 @@ class ListViewModel<T: SimpleList>: ListActions {
 protocol ListViewModelDelegate {
     func pushListings(forYear year: String)
     func pushListings(withYears years: [Year])
+    func pushListing(forShow show: Show)
     //    func presentListings(withEra era: Era, downloaded: Bool)
     //    func presentListings(forYear year: String, andEra era: Era?, downloaded: Bool)
     //    func presentShowDetail(forShow show: Show, downloaded: Bool)

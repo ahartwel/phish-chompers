@@ -12,21 +12,21 @@ import SnapKit
 import Bond
 import ReactiveKit
 import StreamingKit
-
+import ionicons
 enum PlayState: Int {
     case play
     case pause
     func getString() -> String {
         switch self {
         case .play:
-            return "Pause"
+            return ion_ios_pause
         case .pause:
-            return "Play"
+            return ion_ios_play
         }
     }
 }
 
-class AudioPlayerViewModel {
+class AudioPlayerViewModel: AudioPlayerInjector {
     var disposeBag = DisposeBag()
     lazy var playPauseButtonText: Observable<String> = {
         let observable = Observable<String>("")
@@ -36,6 +36,15 @@ class AudioPlayerViewModel {
         return observable
     }()
     
+     var duration: Observable<Double> {
+       return self.audioPlayer.currentDuration
+    }
+    var currentProgress: Observable<Double> {
+        return self.audioPlayer.currentProgress
+    }
+    
+    
+    
     var playState: Observable<PlayState> = Observable<PlayState>(.play)
     
     init() {
@@ -43,7 +52,7 @@ class AudioPlayerViewModel {
     }
     
     func setUpAudioPlayerBindings() {
-        AudioPlayer.shared.state.observeNext(with: { state in
+        self.audioPlayer.state.observeNext(with: { state in
             switch state {
             case STKAudioPlayerState.playing:
                 self.playState.value = .play
@@ -60,15 +69,20 @@ class AudioPlayerViewModel {
 extension AudioPlayerViewModel: AudioPlayerActions {
     func togglePlayPause() {
         if self.playState.value == .play {
-            AudioPlayer.shared.pause()
+            self.audioPlayer.pause()
         } else {
-            AudioPlayer.shared.play()
+            self.audioPlayer.play()
         }
+    }
+    
+    func seekTo(time: Float) {
+        self.audioPlayer.audioPlayer.seek(toTime: Double(time))
     }
 }
 
 protocol AudioPlayerActions {
     func togglePlayPause()
+    func seekTo(time: Float)
 }
 
 class AudioPlayerController: UIViewController {
@@ -102,6 +116,30 @@ class AudioPlayerView: UIView {
         return button
     }()
     
+    lazy var slider: UISlider = {
+        let slider = UISlider()
+        slider.addTarget(self, action: #selector(self.sliderValueChanged(slider:)), for: .valueChanged)
+        slider.isContinuous = false
+        return slider
+    }()
+    
+    lazy var durationLabel: UILabel = {
+       let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 10)
+        return label
+    }()
+    
+    lazy var upButton: UIImageView = {
+        let image = UIImageView()
+        image.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedExpand))
+        image.addGestureRecognizer(tap)
+        image.image = IonIcons.image(withIcon: ion_arrow_up_a, size: 24, color: .black)
+        image.contentMode = UIViewContentMode.center
+        return image
+    }()
+    
     var actions: AudioPlayerActions?
     
     override init(frame: CGRect) {
@@ -115,35 +153,84 @@ class AudioPlayerView: UIView {
     }
     
     func didLoad() {
+        self.backgroundColor = UIColor.white
         self.addViews()
         self.addConstraints()
     }
     
     func addViews() {
         self.addSubview(self.playPauseButton)
+        self.addSubview(self.slider)
+        self.addSubview(self.durationLabel)
+        self.addSubview(self.upButton)
     }
     
     func addConstraints() {
         self.playPauseButton.snp.remakeConstraints({ make in
             make.left.top.bottom.equalTo(self)
-            make.width.equalTo(UIScreen.main.bounds.width * 0.25)
+            make.width.equalTo(UIScreen.main.bounds.width * 0.1)
         })
+        self.slider.snp.remakeConstraints({ make in
+            make.top.bottom.equalTo(self)
+            make.left.equalTo(self.playPauseButton.snp.right)
+            make.right.equalTo(self).inset(UIScreen.main.bounds.width * 0.3)
+        })
+        self.durationLabel.snp.remakeConstraints({ make in
+            make.top.equalTo(self)
+            make.left.equalTo(self.slider.snp.right)
+            make.right.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.5)
+        })
+        self.upButton.snp.remakeConstraints({ make in
+            make.right.bottom.equalTo(self)
+            make.left.equalTo(self.slider.snp.right)
+            make.height.equalTo(self).multipliedBy(0.5)
+        })
+    }
+    
+    @objc func tappedExpand() {
+        
     }
     
     @objc func pressedPlayPause() {
         self.actions?.togglePlayPause()
     }
     
+    @objc func sliderValueChanged(slider: UISlider) {
+        self.actions?.seekTo(time: slider.value)
+    }
+    
     func bind(to model: AudioPlayerViewModel) {
         self.actions = model
         model.playPauseButtonText.observeNext(with: { string in
-            self.playPauseButton.setTitle(string, for: .normal)
+            self.playPauseButton.setImage(IonIcons.image(withIcon: string, size: 36, color: .black), for: .normal)
         }).dispose(in: self.bag)
+        
+        let signal: Signal<(progress: Float, duration: Float), NoError> = combineLatest(model.currentProgress, model.duration) { progress, duration -> (progress: Float, duration: Float) in
+            return (progress: Float(progress), duration: Float(duration))
+        }
+        signal.observeNext { (timing) in
+            self.slider.maximumValue = timing.duration
+            self.slider.value = timing.progress
+            self.durationLabel.text = "\(timing.progress.getTimeString())/\(timing.duration.getTimeString())"
+            
+        }.dispose(in: self.bag)
+        
         
     }
     
     
 }
 
+extension Float {
+    func getTimeString() -> String {
+        var string = ""
+        let minutes = Int(self / 60)
+        let seconds = Int(self.remainder(dividingBy: 60))
+        string += "\((minutes < 10 ? "0" : ""))\(minutes):"
+        string += "\((seconds < 10 ? "0" : ""))\(seconds)"
+        return string
+    }
+}
 
 

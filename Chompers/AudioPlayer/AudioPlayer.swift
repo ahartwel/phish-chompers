@@ -10,23 +10,46 @@ import Foundation
 import StreamingKit
 import Bond
 import ReactiveKit
-
+import AVFoundation
+import MediaPlayer
 
 class QueueItem: NSObject {
     var url: URL
     var track: Track
-    init(track: Track) {
+    var show: Show
+    init(track: Track, show: Show, downloadManager: DownloadManager) {
         self.track = track
+        self.show = show
+        if let string = downloadManager.getUrl(forTrack: track) {
+            self.url = URL(fileURLWithPath: string)
+            return
+        }
         self.url = track.link!
     }
 }
 
-class AudioPlayer: NSObject {
+fileprivate var sharedAudioPlayer: AudioPlayer = AudioPlayer()
+
+protocol AudioPlayerInjector {
+    var audioPlayer: AudioPlayer { get }
+}
+
+extension AudioPlayerInjector {
+    var audioPlayer: AudioPlayer {
+        return sharedAudioPlayer
+    }
+}
+
+class AudioPlayer: NSObject, DownloadManagerInjector {
     var isPlayerActive: Observable<Bool> = Observable<Bool>(false)
     var state: Observable<STKAudioPlayerState> = Observable(.paused)
     var currentTrack: Observable<Track?> = Observable<Track?>(nil)
+    var currentShow: Observable<Show?> = Observable<Show?>(nil)
+    var currentProgress: Observable<Double> = Observable<Double>(0)
+    var currentDuration: Observable<Double> = Observable<Double>(0)
+    var timer: Timer?
+    
     lazy var audioPlayer: STKAudioPlayer = STKAudioPlayer()
-    static var shared: AudioPlayer = AudioPlayer()
     
     
     override init() {
@@ -38,28 +61,48 @@ class AudioPlayer: NSObject {
         
     }
     
-    func play(track: Track, ignoreDownloaded: Bool = false) {
-        guard let link = track.link else {
-            return
-        }
-        let audioSource: STKDataSource = STKAudioPlayer.dataSource(from: link)
-        let queue = self.audioPlayer.pendingQueue
-        self.audioPlayer.setDataSource(audioSource, withQueueItemId: QueueItem(track: track))
-        queue.forEach({
-            guard let item = $0 as? QueueItem else {
-                return
+    func play(track: Track, fromShow show: Show) {
+        do {
+            if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                UIApplication.shared.beginReceivingRemoteControlEvents()
+                try AVAudioSession.sharedInstance().setActive(true)
+                self.setUpControlCenter()
             }
-            let audioSource: STKDataSource = STKAudioPlayer.dataSource(from: track.link!)
-            self.audioPlayer.queue(audioSource, withQueueItemId: item)
+        } catch {
+        }
+        let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
+        self.audioPlayer.setDataSource(items.audioSource, withQueueItemId: items.queueItem)
+    }
+    
+    func setUpControlCenter() {
+        let command = MPRemoteCommandCenter.shared()
+        command.playCommand.addTarget(handler: { event in
+            self.audioPlayer.resume()
+            return MPRemoteCommandHandlerStatus.success
+        })
+        command.pauseCommand.addTarget(handler: { event in
+            self.audioPlayer.pause()
+            return MPRemoteCommandHandlerStatus.success
+        })
+        command.stopCommand.addTarget(handler: { event in
+            self.audioPlayer.stop()
+            return MPRemoteCommandHandlerStatus.success
+        })
+        command.nextTrackCommand.addTarget(handler: { event in
+            return MPRemoteCommandHandlerStatus.success
         })
     }
     
-    func add(trackToQueue track: Track) {
-        guard let link = track.link else {
-            return
-        }
-        let audioSource: STKDataSource = STKAudioPlayer.dataSource(from: link)
-        self.audioPlayer.queue(audioSource, withQueueItemId: QueueItem(track: track))
+    func add(trackToQueue track: Track, fromShow show: Show) {
+        let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
+        self.audioPlayer.queue(items.audioSource, withQueueItemId: items.queueItem)
+    }
+    
+    func getAudioSourceAndQueue(fromTrack track: Track, andShow show: Show) -> (audioSource: STKDataSource, queueItem: QueueItem) {
+        let queue = QueueItem(track: track, show: show, downloadManager: self.downloadManager)
+        let audioSource: STKDataSource = STKAudioPlayer.dataSource(from: queue.url)
+        return (audioSource: audioSource, queueItem: queue)
     }
     
     func download(track: Track) {
@@ -88,7 +131,17 @@ extension AudioPlayer: STKAudioPlayerDelegate {
             self.isPlayerActive.value = true
         }
         self.state.value = state
+        
+        if state == STKAudioPlayerState.playing {
+            self.currentDuration.value = audioPlayer.duration
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { timer in
+                self.currentProgress.value = audioPlayer.progress
+            })
+        } else {
+            self.timer?.invalidate()
+        }
     }
+    
     
     func audioPlayer(_ audioPlayer: STKAudioPlayer, logInfo line: String) {
         
@@ -100,15 +153,16 @@ extension AudioPlayer: STKAudioPlayerDelegate {
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didStartPlayingQueueItemId queueItemId: NSObject) {
         guard let queueItem = queueItemId as? QueueItem else {
             self.currentTrack.value = nil
+            self.currentShow.value = nil
             return
         }
         self.currentTrack.value = queueItem.track
+        self.currentShow.value = queueItem.show
+        self.currentDuration.value = audioPlayer.duration
     }
     
     func audioPlayer(_ audioPlayer: STKAudioPlayer, unexpectedError errorCode: STKAudioPlayerErrorCode) {
-        if let currentQueueItem = audioPlayer.currentlyPlayingQueueItemId() as? QueueItem {
-            self.play(track: currentQueueItem.track, ignoreDownloaded: true)
-        }
+        
     }
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didFinishBufferingSourceWithQueueItemId queueItemId: NSObject) {
         

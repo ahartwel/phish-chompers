@@ -26,17 +26,29 @@ struct EraList: SimpleList, ServiceInjector {
         }
     }
     
+    func setUp(viewController: UIViewController) {
+        
+    }
+    
     static func createCell(tableView: UITableView, indexPath: IndexPath, models: [ListItem]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
         let era = models[indexPath.row]
         cell.textLabel?.text = era
         return cell
     }
-    static func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
+    func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
         let eraName = models[index.row]
-        guard let years = self.eras?[eraName] else {
+        guard let years = EraList.eras?[eraName] else {
             return
         }
         delegate.pushListings(withYears: years)
+    }
+    
+    static func numberOfSections(models: [EraName]) -> Int {
+        return 1
+    }
+    
+    static func numberOfRowsInSection(section: Int, models: [EraName]) -> Int {
+        return models.count
     }
 }

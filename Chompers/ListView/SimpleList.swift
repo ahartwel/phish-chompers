@@ -49,7 +49,7 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate {
         self.init()
         self.viewModel = ListViewModel(list: list)
         self.title = list.title
-        
+        list.setUp(viewController: self)
     }
    
     
@@ -63,10 +63,12 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
         self.extendedLayoutIncludesOpaqueBars = false
+        self.navigationController?.navigationBar.tintColor = UIColor.black
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.viewModel.didAppear()
     }
     
     func pushListings(forYear year: String) {
@@ -79,16 +81,23 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+    func pushListing(forShow show: Show) {
+        let controller = ListController<TrackList>(list: TrackList(show: show))
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }
 
-class TrackListView<T: SimpleList>: UIView, UITableViewDelegate {
+class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewDataSource {
     
     lazy var tableView: UITableView = {
         var tableView = UITableView()
         T.registerCells(tableView: tableView)
         tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
+    var items: [T.ListItem] = []
     var actions: ListActions?
     
     override init(frame: CGRect) {
@@ -127,10 +136,10 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate {
     
     func bind(to model: ListViewModel<T>) {
         self.actions = model
-        model.listings.bind(to: self.tableView, animated: true, createCell: { dataSource, indexPath, tableView -> UITableViewCell in
-            let cell = T.createCell(tableView: tableView, indexPath: indexPath, models: dataSource.dataSource)
-            return cell
-        })
+        model.listings.observeNext(with: { items in
+            self.items = items
+            self.tableView.reloadData()
+        }).dispose(in: self.bag)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -138,6 +147,22 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate {
         self.actions?.selectedListing(atIndex: indexPath)
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = T.createCell(tableView: tableView, indexPath: indexPath, models: self.items)
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return T.numberOfSections(models: self.items)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return T.numberOfRowsInSection(section: section, models: self.items)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return T.titleForHeader(inSection: section, items: self.items)
+    }
     
     
 }

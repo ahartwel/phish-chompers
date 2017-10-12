@@ -12,7 +12,8 @@ target 'Chompers' do
   pod 'PromiseKit'
   pod 'SnapKit'
   pod 'StreamingKit'
-  
+  pod 'TWRDownloadManager'
+  pod 'ionicons'
   target 'ChompersTests' do
     inherit! :search_paths
     pod 'FBSnapshotTestCase'
