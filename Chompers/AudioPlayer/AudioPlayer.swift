@@ -94,7 +94,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
                     otherTracks.remove(at: 0)
                 }
             }
-            for otherTrack in otherTracks.reversed() {
+            for otherTrack in otherTracks {
                 self.add(trackToQueue: otherTrack, fromShow: show)
             }
         }
@@ -142,6 +142,10 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     
     func play() {
         self.audioPlayer.resume()
+    }
+    
+    func next() {
+        
     }
     
     func pause() {
@@ -192,6 +196,12 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         self.currentTrack.value = queueItem.track
         self.currentShow.value = queueItem.show
         self.currentDuration.value = audioPlayer.duration
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+            MPMediaItemPropertyTitle: queueItem.track.title,
+            MPMediaItemPropertyArtist: "Phish",
+            MPMediaItemPropertyPlaybackDuration: queueItem.track.duration,
+            MPMediaItemPropertyAlbumTitle: queueItem.show.title
+        ]
     }
     
     func audioPlayer(_ audioPlayer: STKAudioPlayer, unexpectedError errorCode: STKAudioPlayerErrorCode) {

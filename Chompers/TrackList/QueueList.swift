@@ -54,7 +54,7 @@ class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, Download
             return item.track
         })
         if let currentItem = self.audioPlayer.currentTrack.value {
-            tracks = [currentItem] + tracks
+            tracks = [currentItem] + tracks.reversed()
         }
         return Promise(value: tracks)
     }
