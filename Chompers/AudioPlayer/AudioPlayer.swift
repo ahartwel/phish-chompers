@@ -233,8 +233,8 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: queueItem.track.title,
             MPMediaItemPropertyArtist: "Phish",
-            MPMediaItemPropertyPlaybackDuration: queueItem.track.duration,
-            MPMediaItemPropertyAlbumTitle: queueItem.show.title
+            MPMediaItemPropertyPlaybackDuration: queueItem.track.duration / 1000,
+            MPMediaItemPropertyAlbumTitle: queueItem.show.title + " " + queueItem.show.date
         ]
     }
     

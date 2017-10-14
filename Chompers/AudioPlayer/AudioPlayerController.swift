@@ -46,6 +46,9 @@ class AudioPlayerViewModel: AudioPlayerInjector {
     var currentProgress: Observable<Double> {
         return self.audioPlayer.currentProgress
     }
+    var currentTrack: Observable<Track?> {
+        return self.audioPlayer.currentTrack
+    }
     weak var delegate: AudioPlayerViewModelDelegate?
     
     
@@ -267,12 +270,18 @@ class AudioPlayerView: UIView {
         let signal: Signal<(progress: Float, duration: Float), NoError> = combineLatest(model.currentProgress, model.duration) { progress, duration -> (progress: Float, duration: Float) in
             return (progress: Float(progress), duration: Float(duration))
         }
-        signal.observeNext { (timing) in
-            self.slider.maximumValue = timing.duration
-            self.slider.value = timing.progress
-            self.durationLabel.text = "\(timing.progress.getTimeString())/\(timing.duration.getTimeString())"
-            
-        }.dispose(in: self.bag)
+        combineLatest(model.currentTrack, signal) { track, timing in
+            return (track: track, timing: timing)
+        }.observeNext(with: { obj in
+            self.slider.maximumValue = obj.timing.duration
+            self.slider.value = obj.timing.progress
+            var titleString = obj.track?.title ?? ""
+            if titleString != "" {
+                titleString += " - "
+            }
+            self.durationLabel.text = "\(titleString)\(obj.timing.progress.getTimeString())/\(obj.timing.duration.getTimeString())"
+        }).dispose(in: self.bag)
+       
         
         
     }

@@ -10,6 +10,7 @@ import Foundation
 import PromiseKit
 import UIKit
 
+
 protocol SimpleList {
     associatedtype ListItem
     var title: String { get }
@@ -21,6 +22,7 @@ protocol SimpleList {
     func titleForHeader(inSection section: Int, items: [ListItem]) -> String?
     func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate)
     func setUp(viewController: UIViewController)
+    func getSearchText(forModel model: ListItem) -> String
 }
 
 extension SimpleList {

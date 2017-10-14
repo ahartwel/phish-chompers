@@ -13,19 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow()
         self.window?.rootViewController = MainViewController()
         self.window?.makeKeyAndVisible()
+
         UIBarButtonItem.appearance().setTitleTextAttributes([
             NSAttributedStringKey.foregroundColor: UIColor.white,
             NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)
             ], for: .normal)
-//        UINavigationBar.appearance().setTitl
         UITabBarItem.appearance().setTitleTextAttributes([
             NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
+            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white
+        ]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.psych1.withAlphaComponent(1)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).alpha = 1
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isOpaque = true
+        
         return true
     }
 

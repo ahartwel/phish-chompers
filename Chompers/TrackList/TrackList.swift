@@ -17,7 +17,7 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
     weak var viewController: UIViewController?
     
     var title: String {
-        return self.show.title
+        return self.show.date
     }
     
     init(show: Show) {
@@ -108,5 +108,9 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
     
     func titleForHeader(inSection section: Int, items: [ListItem]) -> String? {
         return self.getArrayOfSetNames(models: items)[section]
+    }
+    
+    func getSearchText(forModel model: Track) -> String {
+        return model.title
     }
 }

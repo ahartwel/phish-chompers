@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C32DD761F8EBEAB0074CFE4 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */; };
 		2C32DD781F8ECA660074CFE4 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32DD771F8ECA660074CFE4 /* DownloadManager.swift */; };
+		2C480D951F92686C008AB2FB /* DonutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C480D941F92686C008AB2FB /* DonutView.swift */; };
 		2C4A6AA41F8AE50D00BEB58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA31F8AE50D00BEB58B /* AppDelegate.swift */; };
 		2C4A6AA61F8AE50D00BEB58B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA51F8AE50D00BEB58B /* ViewController.swift */; };
 		2C4A6AA91F8AE50D00BEB58B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChompersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		2C32DD771F8ECA660074CFE4 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		2C480D941F92686C008AB2FB /* DonutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutView.swift; sourceTree = "<group>"; };
 		2C4A6AA01F8AE50D00BEB58B /* Chompers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chompers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A6AA31F8AE50D00BEB58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C4A6AA51F8AE50D00BEB58B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				2C4A6AAC1F8AE50D00BEB58B /* LaunchScreen.storyboard */,
 				2C4A6AAF1F8AE50D00BEB58B /* Info.plist */,
 				2C7AD5551F91B59900FF06CE /* Colors.swift */,
+				2C480D941F92686C008AB2FB /* DonutView.swift */,
 			);
 			path = Chompers;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				2C4A6ADF1F8AED6700BEB58B /* Era.swift in Sources */,
 				2C4A6AE71F8AF49500BEB58B /* AudioPlayer.swift in Sources */,
 				2C4A6AE41F8AF3E700BEB58B /* MainTabController.swift in Sources */,
+				2C480D951F92686C008AB2FB /* DonutView.swift in Sources */,
 				2C4A6AEF1F8AF73B00BEB58B /* SimpleList.swift in Sources */,
 				2CCE97B71F8AFEB400CF209F /* ShowList.swift in Sources */,
 				2C7AD5541F8EFEC400FF06CE /* QueueList.swift in Sources */,
@@ -757,11 +761,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7MZGUWK5P3;
 				INFOPLIST_FILE = Chompers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ahartwel.Chompers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -773,11 +778,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7MZGUWK5P3;
 				INFOPLIST_FILE = Chompers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ahartwel.Chompers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

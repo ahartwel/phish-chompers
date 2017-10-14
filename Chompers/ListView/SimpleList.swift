@@ -15,6 +15,14 @@ import PromiseKit
 
 class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
+    convenience init() {
+        self.init(navigationBarClass: PhishNavigationBar.self, toolbarClass: nil)
+    }
+    
     static func createListNavigation(withList list: T) -> MainTabBarNavigationController {
         let controller = MainTabBarNavigationController()
         controller.setViewControllers([
@@ -24,21 +32,49 @@ class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
         return controller
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationBar.barTintColor = UIColor.psych5
+        if #available(iOS 11.0, *) {
+            self.navigationBar.prefersLargeTitles = true
+            self.navigationBar.largeTitleTextAttributes = [
+                NSAttributedStringKey.foregroundColor: UIColor.white
+            ]
+        } else {
+        }
+        
+        
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         self.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
             NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)
         ]
+        
+    }
+}
+
+class PhishNavigationBar: UINavigationBar {
+    lazy var donutView: DonutView = DonutView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.didLoad()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.didLoad()
+    }
+    
+    func didLoad() {
+        self.backgroundColor = UIColor.psych5
+        self.barTintColor = UIColor.psych5
+        self.shadowImage = UIImage()
     }
 }
 
 
 
-
-class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, AudioPlayerInjector {
+class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, AudioPlayerInjector, UISearchResultsUpdating {
     
     lazy var trackListView: TrackListView<T> = {
         var view = TrackListView<T>()
@@ -54,10 +90,23 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
         return controller
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
     private convenience init(list: T) {
         self.init()
         self.viewModel = ListViewModel(list: list)
         self.title = list.title
+        let search = UISearchController(searchResultsController: nil)
+        search.hidesNavigationBarDuringPresentation = false
+        search.dimsBackgroundDuringPresentation = false
+        search.searchResultsUpdater = self
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = search
+        } else {
+            // Fallback on earlier versions
+        }
         list.setUp(viewController: self)
     }
    
@@ -65,6 +114,7 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
     override func loadView() {
         super.loadView()
         self.viewModel.delegate = self
+        self.view.backgroundColor = UIColor.white.withAlphaComponent(0)
         self.trackListView.bind(to: self.viewModel)
         self.bindToQueueUpdates()
     }
@@ -87,6 +137,11 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.viewModel.didAppear()
+        self.trackListView.startAnimations()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.viewModel.updateModels(forSearch: searchController.searchBar.text ?? "")
     }
     
     func pushListings(forYear year: String) {
@@ -102,12 +157,16 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
 }
 
 class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewDataSource {
-    
+    lazy var donutView: DonutView = {
+        var donutView = DonutView()
+        return donutView
+    }()
     lazy var tableView: UITableView = {
         var tableView = UITableView()
         T.registerCells(tableView: tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
         return tableView
     }()
     var items: [T.ListItem] = []
@@ -124,8 +183,10 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
     }
     
     func onInit() {
+        self.backgroundColor = UIColor.white.withAlphaComponent(0)
         self.addViews()
         self.addConstraints()
+        self.tableView.separatorStyle = .none
     }
     
     func setUpTopLevelConstraints() {
@@ -137,13 +198,20 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
         })
     }
     
+    func startAnimations() {
+        self.donutView.startAnimations()
+    }
+    
     func addViews() {
-        self.backgroundColor = UIColor.psych1
+        self.addSubview(self.donutView)
         self.addSubview(self.tableView)
     }
     
     func addConstraints() {
         self.tableView.snp.remakeConstraints({ make in
+            make.edges.equalTo(self)
+        })
+        self.donutView.snp.remakeConstraints({ make in
             make.edges.equalTo(self)
         })
     }
@@ -160,6 +228,10 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.cellForRow(at: indexPath)?.isSelected = false
         self.actions?.selectedListing(atIndex: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -184,7 +256,7 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
             return
         }
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.psych1
+        backgroundView.backgroundColor = UIColor.psych6
         backgroundView.frame = headerView.bounds
         headerView.backgroundView = backgroundView
         headerView.textLabel?.textColor = .white

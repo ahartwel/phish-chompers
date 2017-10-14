@@ -28,6 +28,11 @@ class MainViewController: UIViewController {
     var audioPlayerController = AudioPlayerController()
     var mainTabBarControllerHeightConstraint: Constraint?
     var viewModel: MainViewModel = MainViewModel()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -74,7 +79,9 @@ class MainViewController: UIViewController {
 
 class MainTabBarViewController: UITabBarController {
     var viewModel = MainViewModel()
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewControllers([

@@ -12,11 +12,10 @@ import PromiseKit
 
 
 class YearsList: SimpleList, ServiceInjector {
-    typealias ListItem = Year
+//    typealias ListItem = Year
     var title: String {
         return "Years"
     }
-    var years: [Year] = []
     var eras: Eras = [:]
     var eraNames: [EraName] = []
     
@@ -30,34 +29,30 @@ class YearsList: SimpleList, ServiceInjector {
             self.eraNames.sort()
             return self.service.getYears()
             }.then { years -> [Year] in
-            self.years = years
             return years
         }
     }
     
     func createCell(tableView: UITableView, indexPath: IndexPath, models: [Year]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
-        let era = self.eraNames[indexPath.section]
-        if let year = self.eras[era]?[indexPath.row] {
-            cell.textLabel?.text = year
-        }
+        let workingYears = getWorkingYears(fromSection: indexPath.section, models: models)
+        let year = workingYears[indexPath.row]
+        cell.textLabel?.text = year
         return cell
     }
-    func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
-        let era = self.eraNames[index.section]
-        if let year = self.eras[era]?[index.row] {
-            delegate.pushListings(forYear: year)
-        }
+    func preformDelegateAction(forIndex index: IndexPath, models: [Year], delegate: ListViewModelDelegate) {
+        let workingYears = getWorkingYears(fromSection: index.section, models: models)
+        let year = workingYears[index.row]
+        delegate.pushListings(forYear: year)
     }
     
     func setUp(viewController: UIViewController) {
         
     }
  
-    
     func numberOfRowsInSection(section: Int, models: [Year]) -> Int {
-        let era = self.eraNames[section]
-        return self.eras[era]?.count ?? 0
+        let workingYears = getWorkingYears(fromSection: section, models: models)
+        return workingYears.count
     }
     
     func numberOfSections(models: [Year]) -> Int {
@@ -69,8 +64,23 @@ class YearsList: SimpleList, ServiceInjector {
         return era
     }
     
+    func getWorkingYears(fromSection section: Int, models: [Year]) -> [Year] {
+        let era = self.eraNames[section]
+        var workingYears: [Year] = []
+        for year in self.eras[era] ?? [] {
+            if models.contains(year) {
+                workingYears.append(year)
+            }
+        }
+        return workingYears
+    }
+    
     init() {
         
+    }
+    
+    func getSearchText(forModel model: String) -> String {
+        return model
     }
     
 }

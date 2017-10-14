@@ -20,7 +20,7 @@ class ListItemCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjecto
     
     lazy var downloadButton: UIButton = {
        var button = UIButton()
-        let downloadImage = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.psych1)
+        let downloadImage = IonIcons.image(withIcon: ion_ios_cloud_download_outline, size: 24, color: UIColor.psych1)
         button.setImage(downloadImage, for: .normal)
         button.contentMode = UIViewContentMode.center
         button.addTarget(self, action: #selector(self.tappedDownload), for: .touchUpInside)
@@ -113,9 +113,12 @@ class ListItemCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjecto
     
     func didLoad() {
         self.translatesAutoresizingMaskIntoConstraints = true
-        self.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = UIColor.white
         self.textLabel?.textColor = UIColor.psych1
         self.detailTextLabel?.textColor = UIColor.psych1
+        self.contentView.snp.remakeConstraints({ make in
+            make.edges.equalTo(self)
+        })
     }
     
     @objc func tappedDownload() {

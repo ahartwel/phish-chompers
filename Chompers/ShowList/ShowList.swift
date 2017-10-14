@@ -55,8 +55,8 @@ class ShowList: SimpleList, ServiceInjector, DownloadManagerInjector {
         let venueName = show.venue_name ?? (show.venue?.name ?? "")
         let sdb = "[SBD]"
         let remaster = "[RM]"
-        cell.textLabel?.text = "\(show.sbd ? sdb : "")\(show.remastered ? remaster : "")\(venueName)"
-        cell.detailTextLabel?.text = show.date
+        cell.textLabel?.text = show.date
+        cell.detailTextLabel?.text = "\(show.sbd ? sdb : "")\(show.remastered ? remaster : "")\(venueName)"
         if !self.downloadManager.isShowDownloaded(show) {
             (cell as? ListItemCell)?.didTapDownload = { [unowned self] in
                 self.showDownloadPopup(forShow: show)
@@ -95,5 +95,9 @@ class ShowList: SimpleList, ServiceInjector, DownloadManagerInjector {
     
     func numberOfRowsInSection(section: Int, models: [Show]) -> Int {
         return models.count
+    }
+
+    func getSearchText(forModel model: Show) -> String {
+        return model.date + (model.venue_name ?? "") + (model.venue?.name ?? "")
     }
 }

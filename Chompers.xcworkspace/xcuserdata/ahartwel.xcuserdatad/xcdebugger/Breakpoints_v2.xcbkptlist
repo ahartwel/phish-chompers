@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529649069.017199"
+            timestampString = "529694260.550304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "254"
@@ -57,56 +57,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chompers/ShowList/ShowList.swift"
-            timestampString = "529649069.017313"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "createCell(tableView:indexPath:models:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Chompers.ShowList.createCell(tableView: __ObjC.UITableView, indexPath: Foundation.IndexPath, models: Swift.Array&lt;Chompers.Show&gt;) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "Chompers"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/ShowList/ShowList.swift"
-                  timestampString = "529648281.847083"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "3772">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Chompers.ShowList.createCell(tableView: __ObjC.UITableView, indexPath: Foundation.IndexPath, models: Swift.Array&lt;Chompers.Show&gt;) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "Chompers"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/ShowList/ShowList.swift"
-                  timestampString = "529648281.84851"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "508">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529649069.017361"
+            timestampString = "529694260.550364"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
@@ -122,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529649069.017449"
+            timestampString = "529694260.550406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
