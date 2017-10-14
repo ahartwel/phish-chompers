@@ -69,6 +69,7 @@ class SingleDonut: UIView {
     }
     
     func didLoad() {
+        self.alpha = 0
         self.layer.borderColor = UIColor.psych4.cgColor
         self.layer.cornerRadius = DonutView.donutSize / 2
         self.layer.borderWidth = DonutView.donutSize / 5
@@ -77,6 +78,9 @@ class SingleDonut: UIView {
     
     func startAnimation() {
         self.setStartingTransform()
+        UIView.animate(withDuration: 0.5, animations: {
+            self.alpha = 1
+        })
         self.animate()
     }
     

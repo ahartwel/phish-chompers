@@ -50,7 +50,12 @@ class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, Download
     
     typealias ListItem = Track
     var title: String {
-        return "Queue"
+        return "Queue" + {
+            guard let show = self.audioPlayer.currentShow.value else {
+                return ""
+            }
+            return " - " + show.title
+        }()
     }
     func getModels() -> Promise<[ListItem]> {
         let queue = self.audioPlayer.audioPlayer.pendingQueue as! [QueueItem]
