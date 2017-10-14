@@ -21,5 +21,83 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/Models/Show.swift"
+            timestampString = "529635869.484303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
+            timestampString = "529502873.253402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "AudioPlayer"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/ShowList/ShowList.swift"
+            timestampString = "529645705.528062"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "createCell(tableView:indexPath:models:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Chompers.ShowList.createCell(tableView: __ObjC.UITableView, indexPath: Foundation.IndexPath, models: Swift.Array&lt;Chompers.Show&gt;) -&gt; __ObjC.UITableViewCell"
+                  moduleName = "Chompers"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/ShowList/ShowList.swift"
+                  timestampString = "529645363.309227"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "3772">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Chompers.ShowList.createCell(tableView: __ObjC.UITableView, indexPath: Foundation.IndexPath, models: Swift.Array&lt;Chompers.Show&gt;) -&gt; __ObjC.UITableViewCell"
+                  moduleName = "Chompers"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/ShowList/ShowList.swift"
+                  timestampString = "529645363.311405"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "508">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

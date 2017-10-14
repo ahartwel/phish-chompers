@@ -30,7 +30,7 @@ class DownloadManager: DataCacheInjector {
     lazy var downloadedShows: [Show] = {
        return self.dataCache.loadCachedResponse(forUrl: "cached shows") ?? []
     }()
-    
+    var downloadProgress: PublishSubject<(track: Track, progress: CGFloat), NoError> = PublishSubject<(track: Track, progress: CGFloat), NoError>()
     func download(show: Show) {
         for track in show.tracks ?? [] {
             self.download(track: track, inShow: show)
@@ -40,10 +40,12 @@ class DownloadManager: DataCacheInjector {
     func download(track: Track, inShow show: Show) {
         TWRDownloadManager.shared().downloadFile(forURL: track.mp3, progressBlock: { progress in
             print(progress)
+            self.downloadProgress.next((track: track, progress: progress))
         }, completionBlock: { done in
             if !done {
                 return
             }
+            self.downloadProgress.next((track: track, progress: 1))
             self.downloadedTracks[show.title, default: []].append(track)
             if !self.downloadedShows.contains(where: { s in
                 return show.id == s.id
@@ -60,6 +62,12 @@ class DownloadManager: DataCacheInjector {
             return TWRDownloadManager.shared().localPath(forFile: track.mp3)
         }
         return nil
+    }
+    
+    func isShowDownloaded(_ show: Show) -> Bool {
+        return self.downloadedShows.contains(where: { s in
+            show.id == s.id
+        })
     }
     
     func getDownloadedShows() -> [Show] {

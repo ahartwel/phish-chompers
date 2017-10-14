@@ -43,7 +43,6 @@ class ListViewModel<T: SimpleList>: ListActions {
 
 protocol ListViewModelDelegate {
     func pushListings(forYear year: String)
-    func pushListings(withYears years: [Year])
     func pushListing(forShow show: Show)
     //    func presentListings(withEra era: Era, downloaded: Bool)
     //    func presentListings(forYear year: String, andEra era: Era?, downloaded: Bool)

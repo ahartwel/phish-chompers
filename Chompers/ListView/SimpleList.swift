@@ -24,6 +24,15 @@ class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
         return controller
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationBar.barTintColor = UIColor.psych5
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 36)
+        ]
+    }
 }
 
 
@@ -72,7 +81,7 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
         self.extendedLayoutIncludesOpaqueBars = false
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,11 +91,6 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
     
     func pushListings(forYear year: String) {
         let controller = ListController<ShowList>(list: ShowList(forYear: year))
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    func pushListings(withYears years: [Year]) {
-        let controller = ListController<YearsList>(list: YearsList(withYears: years))
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -108,7 +112,7 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
     }()
     var items: [T.ListItem] = []
     var actions: ListActions?
-    
+    var list: T!
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.onInit()
@@ -134,6 +138,7 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
     }
     
     func addViews() {
+        self.backgroundColor = UIColor.psych1
         self.addSubview(self.tableView)
     }
     
@@ -144,6 +149,7 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
     }
     
     func bind(to model: ListViewModel<T>) {
+        self.list = model.list
         self.actions = model
         model.listings.observeNext(with: { items in
             self.items = items
@@ -157,21 +163,30 @@ class TrackListView<T: SimpleList>: UIView, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = T.createCell(tableView: tableView, indexPath: indexPath, models: self.items)
+        let cell = self.list.createCell(tableView: tableView, indexPath: indexPath, models: self.items)
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return T.numberOfSections(models: self.items)
+        return self.list.numberOfSections(models: self.items)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return T.numberOfRowsInSection(section: section, models: self.items)
+        return self.list.numberOfRowsInSection(section: section, models: self.items)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return T.titleForHeader(inSection: section, items: self.items)
+        return self.list.titleForHeader(inSection: section, items: self.items)
     }
     
-    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else {
+            return
+        }
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.psych1
+        backgroundView.frame = headerView.bounds
+        headerView.backgroundView = backgroundView
+        headerView.textLabel?.textColor = .white
+    }
 }

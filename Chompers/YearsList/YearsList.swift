@@ -11,18 +11,31 @@ import UIKit
 import PromiseKit
 
 
-struct YearsList: SimpleList, ServiceInjector {    
+class YearsList: SimpleList, ServiceInjector {
     typealias ListItem = Year
     var title: String {
         return "Years"
     }
+    var years: [Year] = []
+    var eras: Eras = [:]
+    var eraNames: [EraName] = []
     
     func getModels() -> Promise<[ListItem]> {
-        return self.getYears()
+        return self.service.getEras().then { eras -> Promise<[Year]> in
+            self.eras = eras
+            self.eraNames = []
+            for (key, _) in eras {
+                self.eraNames.append(key)
+            }
+            self.eraNames.sort()
+            return self.service.getYears()
+            }.then { years -> [Year] in
+            self.years = years
+            return years
+        }
     }
-    private var getYears: () -> Promise<[Year]>
     
-    static func createCell(tableView: UITableView, indexPath: IndexPath, models: [Year]) -> UITableViewCell {
+    func createCell(tableView: UITableView, indexPath: IndexPath, models: [Year]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
         cell.textLabel?.text = models[indexPath.row]
         return cell
@@ -35,26 +48,24 @@ struct YearsList: SimpleList, ServiceInjector {
     func setUp(viewController: UIViewController) {
         
     }
+ 
+    
+    func numberOfRowsInSection(section: Int, models: [Year]) -> Int {
+        let era = self.eraNames[section]
+        return self.eras[era]?.count ?? 0
+    }
+    
+    func numberOfSections(models: [Year]) -> Int {
+        return self.eras.count
+    }
+    
+    func titleForHeader(inSection section: Int, items: [Year]) -> String? {
+        let era = self.eraNames[section]
+        return era
+    }
     
     init() {
-        self.getYears = {
-            return Promise<[Year]>(value: [])
-        }
-        self.getYears = self.service.getYears
-    }
-    
-    init(withYears years: [Year]) {
-        self.getYears = {
-            return Promise<[Year]>(value: years)
-        }
-    }
-    
-    static func numberOfRowsInSection(section: Int, models: [Year]) -> Int {
-        return models.count
-    }
-    
-    static func numberOfSections(models: [Year]) -> Int {
-        return 1
+        
     }
     
 }

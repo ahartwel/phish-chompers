@@ -14,15 +14,15 @@ import ionicons
 class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManagerInjector {
     weak var viewController: UIViewController?
     
-    static func numberOfSections(models: [Track]) -> Int {
+    func numberOfSections(models: [Track]) -> Int {
         return 1
     }
     
-    static func numberOfRowsInSection(section: Int, models: [Track]) -> Int {
+    func numberOfRowsInSection(section: Int, models: [Track]) -> Int {
         return models.count
     }
     
-    static func createCell(tableView: UITableView, indexPath: IndexPath, models: [Track]) -> UITableViewCell {
+    func createCell(tableView: UITableView, indexPath: IndexPath, models: [Track]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
         let track = models[indexPath.row]
         cell.textLabel?.text = track.title
@@ -37,7 +37,7 @@ class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, Download
     
     func setUp(viewController: UIViewController) {
         self.viewController = viewController
-        let downButton = IonIcons.image(withIcon: ion_ios_arrow_down, size: 36, color: .black)
+        let downButton = IonIcons.image(withIcon: ion_ios_arrow_down, size: 36, color: .white)
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: downButton, landscapeImagePhone: downButton, style: .plain, target: self, action: #selector(self.dismissViewController))
     }
     @objc func dismissViewController() {

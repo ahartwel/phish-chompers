@@ -19,6 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow()
         self.window?.rootViewController = MainViewController()
         self.window?.makeKeyAndVisible()
+        UIBarButtonItem.appearance().setTitleTextAttributes([
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)
+            ], for: .normal)
+//        UINavigationBar.appearance().setTitl
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
         return true
     }
 

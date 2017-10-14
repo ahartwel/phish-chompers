@@ -10,6 +10,7 @@ import UIKit
 import Bond
 import ReactiveKit
 import SnapKit
+import ionicons
 
 class MainViewModel: AudioPlayerInjector {
     var isPlaying: Observable<Bool> = Observable<Bool>(false)
@@ -78,10 +79,11 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         self.setViewControllers([
             MainTabBarNavigationController.createListNavigation(withList: YearsList()),
-            MainTabBarNavigationController.createListNavigation(withList: EraList()),
             MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
             ], animated: false)
-        
+        self.tabBar.barTintColor = UIColor.psych5
+        self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: .white)
+        self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: .white)
         
     }
     

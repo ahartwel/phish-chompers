@@ -39,7 +39,7 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
     
     func setUp(viewController: UIViewController) {
         self.viewController = viewController
-        let optionsImage = IonIcons.image(withIcon: ion_ios_more, size: 36, color: .black)
+        let optionsImage = IonIcons.image(withIcon: ion_ios_more, size: 36, color: .white)
         let rightBarButtonItem = UIBarButtonItem(image: optionsImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.clickedOptions))
         viewController.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
@@ -55,19 +55,20 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
         self.viewController?.present(alert, animated: true, completion: nil)
     }
     
-    static func createCell(tableView: UITableView, indexPath: IndexPath, models: [ListItem]) -> UITableViewCell {
+    func createCell(tableView: UITableView, indexPath: IndexPath, models: [ListItem]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
         let setNames = self.getArrayOfSetNames(models: models)
         let trackDict = self.getDictionaryOfTracks(models: models)
         let currentSet = setNames[indexPath.section]
         if let track: Track = trackDict[currentSet]?[indexPath.row] {
             cell.textLabel?.text = track.title
+            (cell as? ListItemCell)?.track = track
         }
         return cell
     }
     func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
-        let setNames = TrackList.getArrayOfSetNames(models: models)
-        let trackDict = TrackList.getDictionaryOfTracks(models: models)
+        let setNames = self.getArrayOfSetNames(models: models)
+        let trackDict = self.getDictionaryOfTracks(models: models)
         let currentSet = setNames[index.section]
         guard let track: Track = trackDict[currentSet]?[index.row] else {
             return
@@ -76,18 +77,18 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
     }
     
     
-    static func numberOfSections(models: [ListItem]) -> Int {
+    func numberOfSections(models: [ListItem]) -> Int {
         return self.getArrayOfSetNames(models: models).count
     }
     
-    static func numberOfRowsInSection(section: Int, models: [ListItem]) -> Int {
+    func numberOfRowsInSection(section: Int, models: [ListItem]) -> Int {
         let trackDict: [String: [Track]] = self.getDictionaryOfTracks(models: models)
         let name = self.getArrayOfSetNames(models: models)[section]
         return trackDict[name]?.count ?? 0
     }
     
     typealias SetName = String
-    static func getDictionaryOfTracks(models: [ListItem]) -> [SetName: [Track]] {
+    func getDictionaryOfTracks(models: [ListItem]) -> [SetName: [Track]] {
         var trackDict: [SetName: [Track]] = [:]
         models.forEach({ track in
             trackDict[track.set_name, default: []].append(track)
@@ -95,7 +96,7 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
         return trackDict
     }
     
-    static func getArrayOfSetNames(models: [ListItem]) -> [SetName] {
+    func getArrayOfSetNames(models: [ListItem]) -> [SetName] {
         var sets: [SetName] = []
         models.forEach({ track in
             if (!sets.contains(track.set_name)) {
@@ -105,7 +106,7 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
         return sets
     }
     
-    static func titleForHeader(inSection section: Int, items: [ListItem]) -> String? {
+    func titleForHeader(inSection section: Int, items: [ListItem]) -> String? {
         return self.getArrayOfSetNames(models: items)[section]
     }
 }
