@@ -139,6 +139,31 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             self.previous()
             return MPRemoteCommandHandlerStatus.success
         })
+        command.seekForwardCommand.addTarget(handler: { event in
+            guard let event = event as? MPSkipIntervalCommandEvent else {
+                return MPRemoteCommandHandlerStatus.commandFailed
+            }
+            let newTime = self.currentDuration.value + event.interval
+            self.audioPlayer.seek(toTime: newTime)
+            return MPRemoteCommandHandlerStatus.success
+        })
+        
+        command.seekBackwardCommand.addTarget(handler: { event in
+            guard let event = event as? MPSkipIntervalCommandEvent else {
+                return MPRemoteCommandHandlerStatus.commandFailed
+            }
+            let newTime = self.currentDuration.value - event.interval
+            self.audioPlayer.seek(toTime: newTime)
+            return MPRemoteCommandHandlerStatus.success
+        })
+        
+        command.changePlaybackPositionCommand.addTarget(handler: { event in
+            guard let event = event as? MPChangePlaybackPositionCommandEvent else {
+                return MPRemoteCommandHandlerStatus.commandFailed
+            }
+            self.audioPlayer.seek(toTime: event.positionTime)
+            return MPRemoteCommandHandlerStatus.success
+        })
     }
     
     func add(trackToQueue track: Track, fromShow show: Show) {
