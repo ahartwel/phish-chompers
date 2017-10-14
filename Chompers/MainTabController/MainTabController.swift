@@ -44,6 +44,18 @@ class MainViewController: UIViewController {
         self.setUpChildControllerConstraints()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserDefaults.standard.bool(forKey: "hasLaunched") == false {
+            let alert = UIAlertController(title: "Sending Feedback", message: "Shake your phone to take a screenshot and send feedback.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.default, handler: { action in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            UserDefaults.standard.set(true, forKey: "hasLaunched")
+        }
+    }
+    
     func addAudioPlayerView() {
         self.addChildViewController(self.audioPlayerController)
         self.view.addSubview(self.audioPlayerController.view)
@@ -77,7 +89,7 @@ class MainViewController: UIViewController {
     
 }
 
-class MainTabBarViewController: UITabBarController {
+class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     var viewModel = MainViewModel()
     lazy var yearsList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: YearsList())
@@ -90,19 +102,36 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         self.setViewControllers([
             self.yearsList,
-            self.downloadList
+            self.downloadList,
+            UIViewController()
             ], animated: false)
-        
+        self.delegate = self
         self.tabBar.barTintColor = UIColor.psych5
         self.tabBar.items?[0].selectedImage = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white)
         self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white.withAlphaComponent(0.5))
         self.tabBar.items?[1].selectedImage = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white)
         self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white.withAlphaComponent(0.5))
+        self.tabBar.items?[2].selectedImage = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white)
+        self.tabBar.items?[2].image = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white.withAlphaComponent(0.5))
+        self.tabBar.items?[2].title = "Feedback"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let index = tabBar.items?.index(of: item) else {
+            return
+        }
+        if index == 2 {
+            AppDelegate.pinpointKit.show(from: self)
+        }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        return viewController is UINavigationController
     }
 }
 

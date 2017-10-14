@@ -16,6 +16,7 @@ target 'Chompers' do
   pod 'ionicons'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'PinpointKit/Core'
   target 'ChompersTests' do
     inherit! :search_paths
     pod 'FBSnapshotTestCase'

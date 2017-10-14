@@ -9,17 +9,18 @@
 import UIKit
 import Fabric
 import Crashlytics
+import PinpointKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    static let pinpointKit = PinpointKit(feedbackRecipients: ["chompersapp@gmail.com"])
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
-
-        self.window = UIWindow()
+        self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         self.window?.rootViewController = MainViewController()
         self.window?.makeKeyAndVisible()
 
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
             NSAttributedStringKey.foregroundColor.rawValue: UIColor.white
         ]
+        UINavigationBar.appearance().barTintColor = UIColor.psych5
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.psych1.withAlphaComponent(1)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).alpha = 1
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isOpaque = true

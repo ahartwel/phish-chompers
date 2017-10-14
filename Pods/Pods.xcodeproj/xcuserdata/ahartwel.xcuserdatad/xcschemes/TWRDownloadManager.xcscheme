@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C87230397F8C9FB7314C716762F87336'
+               BlueprintIdentifier = 'D065810F64DFC71E138E8DBA093C1A0B'
                BlueprintName = 'TWRDownloadManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'TWRDownloadManager.framework'>

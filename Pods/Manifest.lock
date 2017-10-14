@@ -18,6 +18,7 @@ PODS:
   - Moya/Core (9.0.0):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
+  - PinpointKit/Core (1.1.0)
   - PromiseKit (4.4.0):
     - PromiseKit/Foundation (= 4.4.0)
     - PromiseKit/QuartzCore (= 4.4.0)
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - FBSnapshotTestCase
   - ionicons
   - Moya
+  - PinpointKit/Core
   - PromiseKit
   - ReactiveKit
   - SnapKit
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
+  PinpointKit: b444d66d8b10420c1ffc22c176dee37c1c12b4e7
   PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
   ReactiveKit: 59813e52505065d14fa77b453d8be5981eced6b7
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
@@ -64,6 +67,6 @@ SPEC CHECKSUMS:
   StreamingKit: c329785aaef3ac142d4ae388345bfe1ed23cfd45
   TWRDownloadManager: 34193d7d1ab6e6b4243d74fa4f686cc2ed5ef40f
 
-PODFILE CHECKSUM: 43a3e3befb2f950cb6a99424881cee3f76427d5a
+PODFILE CHECKSUM: d1a9fa3037d80bc8e5f6f95ff38b125cc11226f7
 
 COCOAPODS: 1.2.0

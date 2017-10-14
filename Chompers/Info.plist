@@ -32,6 +32,19 @@
 				<key>KitName</key>
 				<string>Crashlytics</string>
 			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>client_identifier</key>
+					<string>mobile_sdk_client_95da642130d8bf866328</string>
+					<key>identifier</key>
+					<string>b1e78c24fe23aa19793f1602c8e1bdd30a288b324ac0c25a</string>
+					<key>url</key>
+					<string>https://fabric-hartwellalexgmailcom.zendesk.com</string>
+				</dict>
+				<key>KitName</key>
+				<string>Zendesk</string>
+			</dict>
 		</array>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
