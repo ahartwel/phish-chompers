@@ -32,7 +32,7 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
             self.show = show
             let tracks = show.tracks ?? []
             return tracks.sorted(by: { track1, track2 -> Bool in
-                return track1.set < track2.set
+                return track1.set < track2.set && track1.position < track2.position
             })
         }
     }

@@ -28,11 +28,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/Models/Show.swift"
-            timestampString = "529695884.373283"
+            timestampString = "529707239.516377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70">
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "Track"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -81,6 +83,54 @@
             endingLineNumber = "115"
             landmarkName = "addOtherTracksToQueue(_:show:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
+            timestampString = "529707377.385393"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "play(track:fromShow:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Chompers.AudioPlayer.play(track: Chompers.Track, fromShow: Chompers.Show) -&gt; ()"
+                  moduleName = "Chompers"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/AudioPlayer/AudioPlayer.swift"
+                  timestampString = "529707377.609261"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "2616">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Chompers.QueueItem) -&gt; () in Chompers.AudioPlayer.play(track: Chompers.Track, fromShow: Chompers.Show) -&gt; ()"
+                  moduleName = "Chompers"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/AudioPlayer/AudioPlayer.swift"
+                  timestampString = "529707377.611369"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "428">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
