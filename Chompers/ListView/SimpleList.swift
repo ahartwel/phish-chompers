@@ -30,7 +30,7 @@ class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         self.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
-            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 36)
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)
         ]
     }
 }

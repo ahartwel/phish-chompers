@@ -87,11 +87,20 @@ extension AudioPlayerViewModel: AudioPlayerActions {
     func showQueue() {
         self.delegate?.showQueue()
     }
+    func pressedPrevious() {
+        self.audioPlayer.previous()
+    }
+    
+    func pressedNext() {
+        self.audioPlayer.next()
+    }
 }
 
 protocol AudioPlayerActions {
     func togglePlayPause()
     func seekTo(time: Float)
+    func pressedNext()
+    func pressedPrevious()
     func showQueue()
 }
 
@@ -130,10 +139,26 @@ class AudioPlayerView: UIView {
         return button
     }()
     
+    lazy var previousButton: UIButton = {
+        let button = UIButton()
+        button.setImage(IonIcons.image(withIcon: ion_ios_arrow_left, size: 24, color: .psych1), for: .normal)
+        button.addTarget(self, action: #selector(self.pressedPrevous), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.setImage(IonIcons.image(withIcon: ion_ios_arrow_right, size: 24, color: .psych1), for: .normal)
+        button.addTarget(self, action: #selector(self.pressedNext), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var slider: UISlider = {
         let slider = UISlider()
         slider.addTarget(self, action: #selector(self.sliderValueChanged(slider:)), for: .valueChanged)
         slider.isContinuous = false
+        slider.maximumTrackTintColor = UIColor.psych1
+        slider.minimumTrackTintColor = UIColor.psych1
         return slider
     }()
     
@@ -149,7 +174,7 @@ class AudioPlayerView: UIView {
         image.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedExpand))
         image.addGestureRecognizer(tap)
-        image.image = IonIcons.image(withIcon: ion_arrow_up_a, size: 24, color: .black)
+        image.image = IonIcons.image(withIcon: ion_ios_arrow_up, size: 28, color: .psych1)
         image.contentMode = UIViewContentMode.center
         return image
     }()
@@ -174,19 +199,31 @@ class AudioPlayerView: UIView {
     
     func addViews() {
         self.addSubview(self.playPauseButton)
+        self.addSubview(self.previousButton)
+        self.addSubview(self.nextButton)
         self.addSubview(self.slider)
         self.addSubview(self.durationLabel)
         self.addSubview(self.upButton)
     }
     
     func addConstraints() {
-        self.playPauseButton.snp.remakeConstraints({ make in
+        self.previousButton.snp.remakeConstraints({ make in
             make.left.top.bottom.equalTo(self)
-            make.width.equalTo(UIScreen.main.bounds.width * 0.1)
+            make.width.equalTo(self).multipliedBy(0.1)
+        })
+        self.playPauseButton.snp.remakeConstraints({ make in
+            make.top.bottom.equalTo(self)
+            make.left.equalTo(self.previousButton.snp.right)
+            make.width.equalTo(self).multipliedBy(0.1)
+        })
+        self.nextButton.snp.remakeConstraints({ make in
+            make.top.bottom.equalTo(self)
+            make.left.equalTo(self.playPauseButton.snp.right)
+            make.width.equalTo(self).multipliedBy(0.1)
         })
         self.slider.snp.remakeConstraints({ make in
             make.top.bottom.equalTo(self)
-            make.left.equalTo(self.playPauseButton.snp.right)
+            make.left.equalTo(self.nextButton.snp.right)
             make.right.equalTo(self).inset(UIScreen.main.bounds.width * 0.2)
         })
         self.durationLabel.snp.remakeConstraints({ make in
@@ -209,6 +246,14 @@ class AudioPlayerView: UIView {
         self.actions?.togglePlayPause()
     }
     
+    @objc func pressedPrevous() {
+        self.actions?.pressedPrevious()
+    }
+    
+    @objc func pressedNext() {
+        self.actions?.pressedNext()
+    }
+    
     @objc func sliderValueChanged(slider: UISlider) {
         self.actions?.seekTo(time: slider.value)
     }
@@ -216,7 +261,7 @@ class AudioPlayerView: UIView {
     func bind(to model: AudioPlayerViewModel) {
         self.actions = model
         model.playPauseButtonText.observeNext(with: { string in
-            self.playPauseButton.setImage(IonIcons.image(withIcon: string, size: 36, color: .black), for: .normal)
+            self.playPauseButton.setImage(IonIcons.image(withIcon: string, size: 36, color: .psych1), for: .normal)
         }).dispose(in: self.bag)
         
         let signal: Signal<(progress: Float, duration: Float), NoError> = combineLatest(model.currentProgress, model.duration) { progress, duration -> (progress: Float, duration: Float) in

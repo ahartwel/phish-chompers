@@ -37,12 +37,17 @@ class YearsList: SimpleList, ServiceInjector {
     
     func createCell(tableView: UITableView, indexPath: IndexPath, models: [Year]) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
-        cell.textLabel?.text = models[indexPath.row]
+        let era = self.eraNames[indexPath.section]
+        if let year = self.eras[era]?[indexPath.row] {
+            cell.textLabel?.text = year
+        }
         return cell
     }
     func preformDelegateAction(forIndex index: IndexPath, models: [ListItem], delegate: ListViewModelDelegate) {
-        let year = models[index.row]
-        delegate.pushListings(forYear: year)
+        let era = self.eraNames[index.section]
+        if let year = self.eras[era]?[index.row] {
+            delegate.pushListings(forYear: year)
+        }
     }
     
     func setUp(viewController: UIViewController) {

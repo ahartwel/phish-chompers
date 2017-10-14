@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529502873.253402"
+            timestampString = "529649069.017199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "AudioPlayer"
             landmarkType = "21">
          </BreakpointContent>
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/ShowList/ShowList.swift"
-            timestampString = "529645705.528062"
+            timestampString = "529649069.017313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -74,7 +74,7 @@
                   moduleName = "Chompers"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/ShowList/ShowList.swift"
-                  timestampString = "529645363.309227"
+                  timestampString = "529648281.847083"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
@@ -89,7 +89,7 @@
                   moduleName = "Chompers"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/ShowList/ShowList.swift"
-                  timestampString = "529645363.311405"
+                  timestampString = "529648281.84851"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "62"
@@ -97,6 +97,38 @@
                   offsetFromSymbolStart = "508">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
+            timestampString = "529649069.017361"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "next()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
+            timestampString = "529649069.017449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "addOtherTracksToQueue(_:show:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

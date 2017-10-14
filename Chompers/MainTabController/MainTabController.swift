@@ -82,9 +82,10 @@ class MainTabBarViewController: UITabBarController {
             MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
             ], animated: false)
         self.tabBar.barTintColor = UIColor.psych5
-        self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: .white)
-        self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: .white)
-        
+        self.tabBar.items?[0].selectedImage = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white)
+        self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white.withAlphaComponent(0.5))
+        self.tabBar.items?[1].selectedImage = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white)
+        self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white.withAlphaComponent(0.5))
     }
     
     override func didReceiveMemoryWarning() {

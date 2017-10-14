@@ -49,8 +49,13 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     var currentDuration: Observable<Double> = Observable<Double>(0)
     var changedQueue: Subject<Void, NoError> = Subject<Void, NoError>()
     var didStartPlayingSource: Subject<QueueItem, NoError> = Subject<QueueItem, NoError>()
+    var didStartDispose: DisposeBag = DisposeBag()
+    var didEndPlayingSource: Subject<QueueItem, NoError> = Subject<QueueItem, NoError>()
+    var didEndDispose: DisposeBag = DisposeBag()
     var sendQueueChangeEventTimer: Timer?
     var timer: Timer?
+    
+    var pastQueue: [Track] = []
     
     lazy var audioPlayer: STKAudioPlayer = STKAudioPlayer()
     
@@ -74,13 +79,22 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             }
         } catch {
         }
-        let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
-        self.audioPlayer.setDataSource(items.audioSource, withQueueItemId: items.queueItem)
-        self.didStartPlayingSource.toSignal().take(first: 1).observe(with: { event in
+        self.pastQueue = []
+        self.didEndDispose.dispose()
+        self.didStartPlayingSource.observeNext(with: { [unowned self] item in
+            self.didStartDispose.dispose()
             self.addOtherTracksToQueue(track, show: show)
             self.sendChangedQueueEvent()
-        }).dispose(in: self.bag)
-        
+            self.listentToEndEvents()
+        }).dispose(in: self.didStartDispose)
+        let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
+        self.audioPlayer.setDataSource(items.audioSource, withQueueItemId: items.queueItem)
+    }
+    
+    func listentToEndEvents() {
+        self.didEndPlayingSource.observeNext(with: { queueItem in
+            self.pastQueue.append(queueItem.track)
+        }).dispose(in: self.didEndDispose)
     }
     
     func addOtherTracksToQueue(_ track: Track, show: Show) {
@@ -91,6 +105,9 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             
             for _ in 0...index {
                 if otherTracks.count > 0 {
+                    if otherTracks[0].id != track.id {
+                        self.pastQueue.append(otherTracks[0])
+                    }
                     otherTracks.remove(at: 0)
                 }
             }
@@ -115,6 +132,11 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             return MPRemoteCommandHandlerStatus.success
         })
         command.nextTrackCommand.addTarget(handler: { event in
+            self.next()
+            return MPRemoteCommandHandlerStatus.success
+        })
+        command.previousTrackCommand.addTarget(handler: { event in
+            self.previous()
             return MPRemoteCommandHandlerStatus.success
         })
     }
@@ -145,7 +167,19 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     }
     
     func next() {
-        
+        if self.audioPlayer.pendingQueue.count == 0 {
+            return
+        }
+        guard let queueItem = self.audioPlayer.pendingQueue.last as? QueueItem else {
+            return
+        }
+        self.play(track: queueItem.track, fromShow: queueItem.show)
+    }
+    func previous() {
+        guard let last = self.pastQueue.last, let currentShow = self.currentShow.value else {
+            return
+        }
+        self.play(track: last, fromShow: currentShow)
     }
     
     func pause() {
@@ -212,7 +246,10 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         
     }
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didFinishPlayingQueueItemId queueItemId: NSObject, with stopReason: STKAudioPlayerStopReason, andProgress progress: Double, andDuration duration: Double) {
-        
+        guard let queueItem = queueItemId as? QueueItem else {
+            return
+        }
+        self.didEndPlayingSource.next(queueItem)
     }
 }
 
