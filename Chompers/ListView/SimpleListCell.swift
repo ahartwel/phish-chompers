@@ -112,7 +112,6 @@ class ListItemCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjecto
     }
     
     func didLoad() {
-        self.translatesAutoresizingMaskIntoConstraints = true
         self.contentView.backgroundColor = UIColor.white
         self.textLabel?.textColor = UIColor.psych1
         self.detailTextLabel?.textColor = UIColor.psych1

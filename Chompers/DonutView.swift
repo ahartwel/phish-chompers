@@ -44,7 +44,7 @@ class DonutView: UIView {
                 } else {
                     startingX = -DonutView.donutSize / 2
                 }
-                startingY += DonutView.donutSize * (CGFloat(arc4random_uniform(1)) * 0.5 + 1.25)
+                startingY += DonutView.donutSize * (CGFloat(arc4random_uniform(1)) * 0.5 + 0.75)
             }
         }
     }

@@ -40,8 +40,6 @@ class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, Download
         self.viewController = viewController
         if #available(iOS 11.0, *) {
             viewController.navigationItem.searchController = nil
-        } else {
-            // Fallback on earlier versions
         }
         let downButton = IonIcons.image(withIcon: ion_ios_arrow_down, size: 36, color: .white)
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: downButton, landscapeImagePhone: downButton, style: .plain, target: self, action: #selector(self.dismissViewController))

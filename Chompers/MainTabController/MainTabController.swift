@@ -78,16 +78,21 @@ class MainViewController: UIViewController {
 }
 
 class MainTabBarViewController: UITabBarController {
+    
     var viewModel = MainViewModel()
+    lazy var yearsList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: YearsList())
+    lazy var downloadList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewControllers([
-            MainTabBarNavigationController.createListNavigation(withList: YearsList()),
-            MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
+            self.yearsList,
+            self.downloadList
             ], animated: false)
+        
         self.tabBar.barTintColor = UIColor.psych5
         self.tabBar.items?[0].selectedImage = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white)
         self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white.withAlphaComponent(0.5))
@@ -99,8 +104,6 @@ class MainTabBarViewController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 
 

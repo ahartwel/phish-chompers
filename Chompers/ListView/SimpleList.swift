@@ -40,7 +40,6 @@ class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
             self.navigationBar.largeTitleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.white
             ]
-        } else {
         }
         
         
@@ -104,8 +103,6 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
         search.searchResultsUpdater = self
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = search
-        } else {
-            // Fallback on earlier versions
         }
         list.setUp(viewController: self)
     }
@@ -138,6 +135,13 @@ class ListController<T: SimpleList>: UIViewController, ListViewModelDelegate, Au
         super.viewDidAppear(animated)
         self.viewModel.didAppear()
         self.trackListView.startAnimations()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController?.isActive = false
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
