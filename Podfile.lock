@@ -3,7 +3,10 @@ PODS:
   - Bond (6.3.0):
     - Diff (~> 0.5.3)
     - ReactiveKit (~> 3.6.2)
+  - Crashlytics (3.8.6):
+    - Fabric (~> 1.6.3)
   - Diff (0.5.3)
+  - Fabric (1.6.13)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
@@ -34,6 +37,8 @@ PODS:
 
 DEPENDENCIES:
   - Bond
+  - Crashlytics
+  - Fabric
   - FBSnapshotTestCase
   - ionicons
   - Moya
@@ -46,7 +51,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Bond: 6a15b0635bbaae915d91b4c4ffa1396807530ef3
+  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
   FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
@@ -57,6 +64,6 @@ SPEC CHECKSUMS:
   StreamingKit: c329785aaef3ac142d4ae388345bfe1ed23cfd45
   TWRDownloadManager: 34193d7d1ab6e6b4243d74fa4f686cc2ed5ef40f
 
-PODFILE CHECKSUM: 0fab1e14311cbae912af59de4ef1ae1b5846da38
+PODFILE CHECKSUM: 43a3e3befb2f950cb6a99424881cee3f76427d5a
 
 COCOAPODS: 1.2.0

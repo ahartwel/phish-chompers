@@ -302,6 +302,7 @@
 				2C4A6A9E1F8AE50D00BEB58B /* Resources */,
 				CAA51E1C1F83A8A77A064ED4 /* [CP] Embed Pods Frameworks */,
 				0E3C63E545F0B6F33A3F3B23 /* [CP] Copy Pods Resources */,
+				2C706BD21F92919E004BB615 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -457,6 +458,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChompersTests/Pods-ChompersTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		2C706BD21F92919E004BB615 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3d58b742e02d37f22794569b9f1866da9b83407d d9c375ab101774609f12d752a21607a6cbeb64e043427bda38541a3aa95f79de";
 		};
 		41C3AF23677EDA1028B4B3BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -763,7 +777,7 @@
 				INFOPLIST_FILE = Chompers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ahartwel.Chompers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -780,7 +794,7 @@
 				INFOPLIST_FILE = Chompers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ahartwel.Chompers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -14,6 +14,8 @@ target 'Chompers' do
   pod 'StreamingKit'
   pod 'TWRDownloadManager'
   pod 'ionicons'
+  pod 'Fabric'
+  pod 'Crashlytics'
   target 'ChompersTests' do
     inherit! :search_paths
     pod 'FBSnapshotTestCase'
