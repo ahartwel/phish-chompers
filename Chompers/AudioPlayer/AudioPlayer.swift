@@ -255,6 +255,7 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         self.currentTrack.value = queueItem.track
         self.currentShow.value = queueItem.show
         self.currentDuration.value = audioPlayer.duration
+        self.setUpControlCenter()
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: queueItem.track.title,
             MPMediaItemPropertyArtist: "Phish",

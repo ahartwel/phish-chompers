@@ -94,6 +94,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     var viewModel = MainViewModel()
     lazy var yearsList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: YearsList())
     lazy var downloadList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
+    lazy var onThisDayList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: TodayShowList())
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
@@ -102,6 +104,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.setViewControllers([
             self.yearsList,
+            self.onThisDayList,
             self.downloadList,
             UIViewController()
             ], animated: false)
@@ -109,11 +112,18 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.barTintColor = UIColor.psych5
         self.tabBar.items?[0].selectedImage = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white)
         self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white.withAlphaComponent(0.5))
-        self.tabBar.items?[1].selectedImage = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white)
-        self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white.withAlphaComponent(0.5))
-        self.tabBar.items?[2].selectedImage = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white)
-        self.tabBar.items?[2].image = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white.withAlphaComponent(0.5))
-        self.tabBar.items?[2].title = "Feedback"
+        
+        self.tabBar.items?[1].selectedImage = IonIcons.image(withIcon: ion_clock, size: 24, color: UIColor.white)
+        self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_clock, size: 24, color: UIColor.white.withAlphaComponent(0.5))
+        
+        
+        self.tabBar.items?[2].selectedImage = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white)
+        self.tabBar.items?[2].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white.withAlphaComponent(0.5))
+        
+        
+        self.tabBar.items?[3].selectedImage = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white)
+        self.tabBar.items?[3].image = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white.withAlphaComponent(0.5))
+        self.tabBar.items?[3].title = "Feedback"
     }
     
     override func didReceiveMemoryWarning() {

@@ -104,6 +104,51 @@ class PhishInService: DataCacheInjector {
     }
    
     
+    func getShowsOnThisDay() -> Promise<[Show]> {
+        let date = Date()
+        let calendar = Calendar.current
+        let day = calendar.component(Calendar.Component.day, from: date)
+        let month = calendar.component(Calendar.Component.month, from: date)
+        let dateString = self.getDateString(fromDay: day, andMonth: month)
+        return self.getYears().then { years -> Promise<[[Show]]> in
+            var showsPromises: [Promise<[Show]>] = []
+            for year in years {
+                let promise = self.getShows(fromYear: year).then { shows -> [Show] in
+                    var showsToday: [Show] = []
+                    for show in shows {
+                        if show.date.contains(dateString) {
+                            showsToday.append(show)
+                        }
+                    }
+                    return showsToday
+                }
+                showsPromises.append(promise)
+            }
+            return when(fulfilled: showsPromises)
+            }.then { shows -> [Show] in
+                var showReturn: [Show] = []
+                for show in shows {
+                    showReturn += show
+                }
+                return showReturn
+        }
+    }
+    
+    private func getDateString(fromDay day: Int, andMonth month: Int) -> String {
+        var string = ""
+        if month < 10 {
+            string += "0\(month)"
+        } else {
+            string += "\(month)"
+        }
+        if day < 10 {
+            string += "-0\(day)"
+        } else {
+            string += "-\(day)"
+        }
+        return string
+    }
+    
     func getYears() -> Promise<[Year]> {
         return self.makeRequest(.getYears).then { (yearResponse: YearsResponse) -> [Year] in
             return yearResponse.data
