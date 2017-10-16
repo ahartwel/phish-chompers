@@ -32,7 +32,9 @@ class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, Download
     
     func preformDelegateAction(forIndex index: IndexPath, models: [Track], delegate: ListViewModelDelegate) {
         let track = models[index.row]
-        let show = Show(id: -1, date: "", duration: 0, sbd: false, remastered: false, tour_id: -1, venue_id: -1, likes_count: 0, taper_notes: nil, venue_name: nil, location: nil, tags: nil, venue: nil, tracks: models, isDownloaded: false)
+        guard let show = self.audioPlayer.currentShow.value else {
+            return
+        }
         self.audioPlayer.play(track: track, fromShow: show)
     }
     
