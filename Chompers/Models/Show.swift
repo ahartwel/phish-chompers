@@ -66,5 +66,9 @@ struct Track: Codable {
     var link: URL? {
         return URL(string: self.mp3)
     }
+    var durationString: String {
+        let float = Float(self.duration / 1000)
+        return float.getTimeString()
+    }
     var song_ids: [Int]
 }

@@ -275,6 +275,7 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         guard let queueItem = queueItemId as? QueueItem else {
             return
         }
+        self.currentProgress.value = 0
         self.didEndPlayingSource.next(queueItem)
     }
 }

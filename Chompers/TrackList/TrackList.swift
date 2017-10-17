@@ -62,6 +62,7 @@ class TrackList: SimpleList, ServiceInjector, AudioPlayerInjector, DownloadManag
         let currentSet = setNames[indexPath.section]
         if let track: Track = trackDict[currentSet]?[indexPath.row] {
             cell.textLabel?.text = track.title
+            cell.detailTextLabel?.text = track.durationString
             (cell as? ListItemCell)?.track = track
         }
         return cell

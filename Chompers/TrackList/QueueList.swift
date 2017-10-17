@@ -26,6 +26,7 @@ class QueueTrackList: SimpleList, ServiceInjector, AudioPlayerInjector, Download
         let cell = tableView.dequeueReusableCell(withIdentifier: ListItemCell.reuseIdentifier!, for: indexPath)
         let track = models[indexPath.row]
         cell.textLabel?.text = track.title
+        cell.detailTextLabel?.text = track.durationString
         (cell as? ListItemCell)?.track = track
         return cell
     }
