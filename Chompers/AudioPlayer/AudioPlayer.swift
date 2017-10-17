@@ -74,9 +74,9 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 UIApplication.shared.beginReceivingRemoteControlEvents()
-                try AVAudioSession.sharedInstance().setActive(true)
                 self.setUpControlCenter()
             }
+            try AVAudioSession.sharedInstance().setActive(true)
         } catch {
         }
         self.pastQueue = []
