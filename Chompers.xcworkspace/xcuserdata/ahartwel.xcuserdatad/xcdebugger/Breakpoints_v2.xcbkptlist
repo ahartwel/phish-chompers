@@ -28,13 +28,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/Models/Show.swift"
-            timestampString = "529707874.139452"
+            timestampString = "529892130.478826"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "Track"
-            landmarkType = "14">
+            endingLineNumber = "71">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -44,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529707874.139842"
+            timestampString = "529892130.479598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "audioPlayer(_:didFinishBufferingSourceWithQueueItemId:)"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "audioPlayer(_:didFinishPlayingQueueItemId:with:andProgress:andDuration:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -60,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529707874.140489"
+            timestampString = "529892130.480078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "next()"
             landmarkType = "7">
          </BreakpointContent>
@@ -76,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "529707874.14075"
+            timestampString = "529892130.48021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
