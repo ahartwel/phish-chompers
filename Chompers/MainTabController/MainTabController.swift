@@ -135,7 +135,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         guard let index = tabBar.items?.index(of: item) else {
             return
         }
-        if index == 2 {
+        if index == 3 {
             AppDelegate.pinpointKit.show(from: self)
         }
     }
