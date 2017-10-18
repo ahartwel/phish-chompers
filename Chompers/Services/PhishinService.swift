@@ -170,9 +170,6 @@ class PhishInService: DataCacheInjector {
     func getShow(byId id: Int) -> Promise<Show> {
         return self.makeRequest(.show(id: id)).then { (response: ShowResponse) -> Show in
             var show = response.data
-            show.tracks?.sort(by: { track, track2 -> Bool in
-                return track.position < track2.position
-            })
             return show
         }
     }

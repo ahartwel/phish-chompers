@@ -34,7 +34,7 @@ class DownloadManager: DataCacheInjector {
     var downloadingShow: PublishSubject<(show: Show, complete: Bool), NoError> = PublishSubject<(show: Show, complete: Bool), NoError>()
     
     func download(show: Show) {
-        for track in show.tracks ?? [] {
+        for track in show.sortedTracks ?? [] {
             self.downloadingShow.next((show: show, complete: false))
             self.download(track: track, inShow: show, onComplete: {
                 self.downloadingShow.next((show: show, complete: true))

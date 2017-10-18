@@ -32,6 +32,11 @@ struct Show: Codable {
     var tags: [String]?
     var venue: Venue?
     var tracks: [Track]?
+    var sortedTracks: [Track]? {
+        return self.tracks?.sorted(by: { track1, track2 -> Bool in
+            return track1.set < track2.set && track1.position < track2.position
+        })
+    }
     var isDownloaded: Bool? = false
     
 }

@@ -63,6 +63,8 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     override init() {
         super.init()
         self.audioPlayer.delegate = self
+        self.handleInterruptions()
+        self.setUpControlCenter()
     }
     
     func onAppClose() {
@@ -70,18 +72,10 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     }
     
     func play(track: Track, fromShow show: Show) {
-        do {
-            if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                UIApplication.shared.beginReceivingRemoteControlEvents()
-                self.setUpControlCenter()
-            }
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-        }
+        self.setUpAudioSession()
         self.pastQueue = []
         self.didEndDispose.dispose()
-        self.didStartPlayingSource.observeNext(with: { [unowned self] item in
+        self.didStartPlayingSource.observeNext(with: { [unowned self, track, show] item in
             self.didStartDispose.dispose()
             self.addOtherTracksToQueue(track, show: show)
             self.sendChangedQueueEvent()
@@ -91,6 +85,38 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
         self.audioPlayer.setDataSource(items.audioSource, withQueueItemId: items.queueItem)
     }
     
+    func setUpAudioSession() {
+        do {
+            if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                UIApplication.shared.beginReceivingRemoteControlEvents()
+            }
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+        }
+    }
+    
+    func handleInterruptions() {
+        NotificationCenter.default.reactive.notification(name: Notification.Name.AVAudioSessionInterruption).observeNext(with: { notification in
+            guard let info = notification.userInfo,
+                let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+                let type = AVAudioSessionInterruptionType(rawValue: typeValue) else {
+                    return
+            }
+            if type == AVAudioSessionInterruptionType.began {
+                self.pause()
+            }else if type == AVAudioSessionInterruptionType.ended {
+                guard let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt else {
+                        return
+                }
+                let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
+                if options.contains(.shouldResume) {
+                    self.play()
+                }
+            }
+        }).dispose(in: self.bag)
+    }
+    
     func listentToEndEvents() {
         self.didEndPlayingSource.observeNext(with: { queueItem in
             self.pastQueue.append(queueItem.track)
@@ -98,7 +124,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     }
     
     func addOtherTracksToQueue(_ track: Track, show: Show) {
-        var otherTracks = show.tracks ?? []
+        var otherTracks = show.sortedTracks ?? []
         if let index = otherTracks.index(where: { t in
             return track.id == t.id
         }) {
@@ -120,7 +146,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     func setUpControlCenter() {
         let command = MPRemoteCommandCenter.shared()
         command.playCommand.addTarget(handler: { event in
-            self.audioPlayer.resume()
+            self.play()
             return MPRemoteCommandHandlerStatus.success
         })
         command.pauseCommand.addTarget(handler: { event in
@@ -188,6 +214,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     }
     
     func play() {
+        self.setUpAudioSession()
         self.audioPlayer.resume()
     }
     
@@ -255,7 +282,6 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         self.currentTrack.value = queueItem.track
         self.currentShow.value = queueItem.show
         self.currentDuration.value = audioPlayer.duration
-        self.setUpControlCenter()
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: queueItem.track.title,
             MPMediaItemPropertyArtist: "Phish",
