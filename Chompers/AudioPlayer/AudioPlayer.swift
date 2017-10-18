@@ -145,12 +145,20 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     
     func setUpControlCenter() {
         let command = MPRemoteCommandCenter.shared()
+        command.togglePlayPauseCommand.addTarget(handler: { event in
+            if self.state.value == STKAudioPlayerState.playing {
+                self.pause()
+            } else {
+                self.play()
+            }
+            return MPRemoteCommandHandlerStatus.success
+        })
         command.playCommand.addTarget(handler: { event in
             self.play()
             return MPRemoteCommandHandlerStatus.success
         })
         command.pauseCommand.addTarget(handler: { event in
-            self.audioPlayer.pause()
+            self.pause()
             return MPRemoteCommandHandlerStatus.success
         })
         command.stopCommand.addTarget(handler: { event in
