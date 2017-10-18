@@ -32,6 +32,36 @@
 		2C4A6AF31F8AFB3F00BEB58B /* SimpleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */; };
 		2C4A6AF51F8AFB8800BEB58B /* SimpleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF41F8AFB8800BEB58B /* SimpleListCell.swift */; };
 		2C706BD41F957F96004BB615 /* OnThisDayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C706BD31F957F96004BB615 /* OnThisDayList.swift */; };
+		2C706BFD1F978DB5004BB615 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFC1F978DB5004BB615 /* fabric.apikey */; };
+		2C706BFF1F978DED004BB615 /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFE1F978DEC004BB615 /* fabric.buildsecret */; };
+		2C706C031F978E89004BB615 /* YearsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AEB1F8AF5F000BEB58B /* YearsList.swift */; };
+		2C706C041F978E89004BB615 /* OnThisDayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C706BD31F957F96004BB615 /* OnThisDayList.swift */; };
+		2C706C051F978E89004BB615 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE01F8AF1A200BEB58B /* DataCache.swift */; };
+		2C706C061F978E89004BB615 /* Era.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6ADE1F8AED6700BEB58B /* Era.swift */; };
+		2C706C071F978E89004BB615 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE61F8AF49500BEB58B /* AudioPlayer.swift */; };
+		2C706C081F978E89004BB615 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE31F8AF3E700BEB58B /* MainTabController.swift */; };
+		2C706C091F978E89004BB615 /* DonutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C480D941F92686C008AB2FB /* DonutView.swift */; };
+		2C706C0A1F978E89004BB615 /* SimpleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AEE1F8AF73B00BEB58B /* SimpleList.swift */; };
+		2C706C0B1F978E89004BB615 /* ShowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE97B61F8AFEB400CF209F /* ShowList.swift */; };
+		2C706C0C1F978E89004BB615 /* QueueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5531F8EFEC400FF06CE /* QueueList.swift */; };
+		2C706C0D1F978E89004BB615 /* SimpleListDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF01F8AFB2F00BEB58B /* SimpleListDefinition.swift */; };
+		2C706C0E1F978E89004BB615 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA51F8AE50D00BEB58B /* ViewController.swift */; };
+		2C706C0F1F978E89004BB615 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5551F91B59900FF06CE /* Colors.swift */; };
+		2C706C101F978E89004BB615 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32DD751F8EBEAB0074CFE4 /* TrackList.swift */; };
+		2C706C111F978E89004BB615 /* SimpleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */; };
+		2C706C121F978E89004BB615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA31F8AE50D00BEB58B /* AppDelegate.swift */; };
+		2C706C131F978E89004BB615 /* Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AD61F8AE74900BEB58B /* Years.swift */; };
+		2C706C141F978E89004BB615 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32DD771F8ECA660074CFE4 /* DownloadManager.swift */; };
+		2C706C151F978E89004BB615 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6ADC1F8AEA1C00BEB58B /* Show.swift */; };
+		2C706C161F978E89004BB615 /* SimpleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF41F8AFB8800BEB58B /* SimpleListCell.swift */; };
+		2C706C171F978E89004BB615 /* PhishinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AD41F8AE65B00BEB58B /* PhishinService.swift */; };
+		2C706C181F978E89004BB615 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE81F8AF5CB00BEB58B /* AudioPlayerController.swift */; };
+		2C706C1A1F978E89004BB615 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B449874C00F7B2CE29A9E97 /* Pods_Chompers.framework */; };
+		2C706C1C1F978E89004BB615 /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFE1F978DEC004BB615 /* fabric.buildsecret */; };
+		2C706C1D1F978E89004BB615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AAC1F8AE50D00BEB58B /* LaunchScreen.storyboard */; };
+		2C706C1E1F978E89004BB615 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFC1F978DB5004BB615 /* fabric.apikey */; };
+		2C706C1F1F978E89004BB615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AAA1F8AE50D00BEB58B /* Assets.xcassets */; };
+		2C706C201F978E89004BB615 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */; };
 		2C7AD5541F8EFEC400FF06CE /* QueueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5531F8EFEC400FF06CE /* QueueList.swift */; };
 		2C7AD5561F91B59900FF06CE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5551F91B59900FF06CE /* Colors.swift */; };
 		2CCC026411C13E5664C2CD21 /* Pods_ChompersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */; };
@@ -91,6 +121,11 @@
 		2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListViewModel.swift; sourceTree = "<group>"; };
 		2C4A6AF41F8AFB8800BEB58B /* SimpleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListCell.swift; sourceTree = "<group>"; };
 		2C706BD31F957F96004BB615 /* OnThisDayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnThisDayList.swift; sourceTree = "<group>"; };
+		2C706BFB1F978D22004BB615 /* Chompers copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Chompers copy-Info.plist"; path = "/Users/ahartwel/Documents/experiments/Chompers/Chompers copy-Info.plist"; sourceTree = "<absolute>"; };
+		2C706BFC1F978DB5004BB615 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; name = fabric.apikey; path = ../fabric.apikey; sourceTree = "<group>"; };
+		2C706BFE1F978DEC004BB615 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; name = fabric.buildsecret; path = ../fabric.buildsecret; sourceTree = "<group>"; };
+		2C706C271F978E89004BB615 /* ChompersDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChompersDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C706C281F978E89004BB615 /* Chompers copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Chompers copy2-Info.plist"; path = "/Users/ahartwel/Documents/experiments/Chompers/Chompers copy2-Info.plist"; sourceTree = "<absolute>"; };
 		2C7AD5531F8EFEC400FF06CE /* QueueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueList.swift; sourceTree = "<group>"; };
 		2C7AD5551F91B59900FF06CE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2CCE97B61F8AFEB400CF209F /* ShowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowList.swift; sourceTree = "<group>"; };
@@ -128,6 +163,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2C706C191F978E89004BB615 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C706C1A1F978E89004BB615 /* Pods_Chompers.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -149,6 +192,8 @@
 				2C4A6AA11F8AE50D00BEB58B /* Products */,
 				87BFB8BC4F68532480F72E0D /* Pods */,
 				F92F9FE7F4C9AD27F390C453 /* Frameworks */,
+				2C706BFB1F978D22004BB615 /* Chompers copy-Info.plist */,
+				2C706C281F978E89004BB615 /* Chompers copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +203,7 @@
 				2C4A6AA01F8AE50D00BEB58B /* Chompers.app */,
 				2C4A6AB41F8AE50D00BEB58B /* ChompersTests.xctest */,
 				2C4A6ABF1F8AE50D00BEB58B /* ChompersUITests.xctest */,
+				2C706C271F978E89004BB615 /* ChompersDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,6 +226,8 @@
 				2C4A6AAC1F8AE50D00BEB58B /* LaunchScreen.storyboard */,
 				2C4A6AAF1F8AE50D00BEB58B /* Info.plist */,
 				2C7AD5551F91B59900FF06CE /* Colors.swift */,
+				2C706BFC1F978DB5004BB615 /* fabric.apikey */,
+				2C706BFE1F978DEC004BB615 /* fabric.buildsecret */,
 				2C480D941F92686C008AB2FB /* DonutView.swift */,
 			);
 			path = Chompers;
@@ -358,6 +406,26 @@
 			productReference = 2C4A6ABF1F8AE50D00BEB58B /* ChompersUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		2C706C001F978E89004BB615 /* ChompersDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C706C241F978E89004BB615 /* Build configuration list for PBXNativeTarget "ChompersDev" */;
+			buildPhases = (
+				2C706C011F978E89004BB615 /* [CP] Check Pods Manifest.lock */,
+				2C706C021F978E89004BB615 /* Sources */,
+				2C706C191F978E89004BB615 /* Frameworks */,
+				2C706C1B1F978E89004BB615 /* Resources */,
+				2C706C211F978E89004BB615 /* [CP] Embed Pods Frameworks */,
+				2C706C221F978E89004BB615 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChompersDev;
+			productName = Chompers;
+			productReference = 2C706C271F978E89004BB615 /* ChompersDev.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -382,6 +450,9 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2C4A6A9F1F8AE50D00BEB58B;
 					};
+					2C706C001F978E89004BB615 = {
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 2C4A6A9B1F8AE50C00BEB58B /* Build configuration list for PBXProject "Chompers" */;
@@ -400,6 +471,7 @@
 				2C4A6A9F1F8AE50D00BEB58B /* Chompers */,
 				2C4A6AB31F8AE50D00BEB58B /* ChompersTests */,
 				2C4A6ABE1F8AE50D00BEB58B /* ChompersUITests */,
+				2C706C001F978E89004BB615 /* ChompersDev */,
 			);
 		};
 /* End PBXProject section */
@@ -409,7 +481,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C706BFF1F978DED004BB615 /* fabric.buildsecret in Resources */,
 				2C4A6AAE1F8AE50D00BEB58B /* LaunchScreen.storyboard in Resources */,
+				2C706BFD1F978DB5004BB615 /* fabric.apikey in Resources */,
 				2C4A6AAB1F8AE50D00BEB58B /* Assets.xcassets in Resources */,
 				2C4A6AA91F8AE50D00BEB58B /* Main.storyboard in Resources */,
 			);
@@ -426,6 +500,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C706C1B1F978E89004BB615 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C706C1C1F978E89004BB615 /* fabric.buildsecret in Resources */,
+				2C706C1D1F978E89004BB615 /* LaunchScreen.storyboard in Resources */,
+				2C706C1E1F978E89004BB615 /* fabric.apikey in Resources */,
+				2C706C1F1F978E89004BB615 /* Assets.xcassets in Resources */,
+				2C706C201F978E89004BB615 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +559,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 3d58b742e02d37f22794569b9f1866da9b83407d d9c375ab101774609f12d752a21607a6cbeb64e043427bda38541a3aa95f79de";
+			shellScript = "FABRIC_APIKEY=$(cat ${SRCROOT}/fabric.apikey)\nFABRIC_BUILDSECRET=$(cat ${SRCROOT}/fabric.buildsecret)\n\"${PODS_ROOT}/Fabric/run\" ${FABRIC_APIKEY} ${FABRIC_BUILDSECRET}";
+		};
+		2C706C011F978E89004BB615 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2C706C211F978E89004BB615 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chompers/Pods-Chompers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C706C221F978E89004BB615 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chompers/Pods-Chompers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		41C3AF23677EDA1028B4B3BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -626,6 +757,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4A6AC41F8AE50D00BEB58B /* ChompersUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C706C021F978E89004BB615 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C706C031F978E89004BB615 /* YearsList.swift in Sources */,
+				2C706C041F978E89004BB615 /* OnThisDayList.swift in Sources */,
+				2C706C051F978E89004BB615 /* DataCache.swift in Sources */,
+				2C706C061F978E89004BB615 /* Era.swift in Sources */,
+				2C706C071F978E89004BB615 /* AudioPlayer.swift in Sources */,
+				2C706C081F978E89004BB615 /* MainTabController.swift in Sources */,
+				2C706C091F978E89004BB615 /* DonutView.swift in Sources */,
+				2C706C0A1F978E89004BB615 /* SimpleList.swift in Sources */,
+				2C706C0B1F978E89004BB615 /* ShowList.swift in Sources */,
+				2C706C0C1F978E89004BB615 /* QueueList.swift in Sources */,
+				2C706C0D1F978E89004BB615 /* SimpleListDefinition.swift in Sources */,
+				2C706C0E1F978E89004BB615 /* ViewController.swift in Sources */,
+				2C706C0F1F978E89004BB615 /* Colors.swift in Sources */,
+				2C706C101F978E89004BB615 /* TrackList.swift in Sources */,
+				2C706C111F978E89004BB615 /* SimpleListViewModel.swift in Sources */,
+				2C706C121F978E89004BB615 /* AppDelegate.swift in Sources */,
+				2C706C131F978E89004BB615 /* Years.swift in Sources */,
+				2C706C141F978E89004BB615 /* DownloadManager.swift in Sources */,
+				2C706C151F978E89004BB615 /* Show.swift in Sources */,
+				2C706C161F978E89004BB615 /* SimpleListCell.swift in Sources */,
+				2C706C171F978E89004BB615 /* PhishinService.swift in Sources */,
+				2C706C181F978E89004BB615 /* AudioPlayerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +1035,40 @@
 			};
 			name = Release;
 		};
+		2C706C251F978E89004BB615 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5403CAA219BEEFC76A110DE8 /* Pods-Chompers.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7MZGUWK5P3;
+				INFOPLIST_FILE = "Chompers copy2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2C706C261F978E89004BB615 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4372EA840E47207BEEAD0F8A /* Pods-Chompers.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7MZGUWK5P3;
+				INFOPLIST_FILE = "Chompers copy2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -910,6 +1104,15 @@
 			buildConfigurations = (
 				2C4A6ACF1F8AE50D00BEB58B /* Debug */,
 				2C4A6AD01F8AE50D00BEB58B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C706C241F978E89004BB615 /* Build configuration list for PBXNativeTarget "ChompersDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C706C251F978E89004BB615 /* Debug */,
+				2C706C261F978E89004BB615 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
