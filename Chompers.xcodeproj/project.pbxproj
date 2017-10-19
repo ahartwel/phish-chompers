@@ -26,7 +26,6 @@
 		2C4A6AE41F8AF3E700BEB58B /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE31F8AF3E700BEB58B /* MainTabController.swift */; };
 		2C4A6AE71F8AF49500BEB58B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE61F8AF49500BEB58B /* AudioPlayer.swift */; };
 		2C4A6AE91F8AF5CB00BEB58B /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE81F8AF5CB00BEB58B /* AudioPlayerController.swift */; };
-		2C4A6AEC1F8AF5F000BEB58B /* YearsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AEB1F8AF5F000BEB58B /* YearsList.swift */; };
 		2C4A6AEF1F8AF73B00BEB58B /* SimpleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AEE1F8AF73B00BEB58B /* SimpleList.swift */; };
 		2C4A6AF11F8AFB2F00BEB58B /* SimpleListDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF01F8AFB2F00BEB58B /* SimpleListDefinition.swift */; };
 		2C4A6AF31F8AFB3F00BEB58B /* SimpleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */; };
@@ -34,7 +33,6 @@
 		2C706BD41F957F96004BB615 /* OnThisDayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C706BD31F957F96004BB615 /* OnThisDayList.swift */; };
 		2C706BFD1F978DB5004BB615 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFC1F978DB5004BB615 /* fabric.apikey */; };
 		2C706BFF1F978DED004BB615 /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFE1F978DEC004BB615 /* fabric.buildsecret */; };
-		2C706C031F978E89004BB615 /* YearsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AEB1F8AF5F000BEB58B /* YearsList.swift */; };
 		2C706C041F978E89004BB615 /* OnThisDayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C706BD31F957F96004BB615 /* OnThisDayList.swift */; };
 		2C706C051F978E89004BB615 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE01F8AF1A200BEB58B /* DataCache.swift */; };
 		2C706C061F978E89004BB615 /* Era.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6ADE1F8AED6700BEB58B /* Era.swift */; };
@@ -64,6 +62,10 @@
 		2C706C201F978E89004BB615 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */; };
 		2C7AD5541F8EFEC400FF06CE /* QueueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5531F8EFEC400FF06CE /* QueueList.swift */; };
 		2C7AD5561F91B59900FF06CE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5551F91B59900FF06CE /* Colors.swift */; };
+		2CA15D051F98390B00230823 /* YearListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D041F98390B00230823 /* YearListController.swift */; };
+		2CA15D071F983FF500230823 /* YearListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D061F983FF500230823 /* YearListViewModel.swift */; };
+		2CA15D091F98407000230823 /* YearListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D081F98407000230823 /* YearListView.swift */; };
+		2CA15D0B1F98479300230823 /* PhishTableViewBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D0A1F98479300230823 /* PhishTableViewBond.swift */; };
 		2CCC026411C13E5664C2CD21 /* Pods_ChompersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */; };
 		2CCE97B71F8AFEB400CF209F /* ShowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE97B61F8AFEB400CF209F /* ShowList.swift */; };
 		F577F7745E336255F8834D10 /* Pods_ChompersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A20757FACAA1D4ACAB2CB3 /* Pods_ChompersUITests.framework */; };
@@ -115,7 +117,6 @@
 		2C4A6AE31F8AF3E700BEB58B /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		2C4A6AE61F8AF49500BEB58B /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		2C4A6AE81F8AF5CB00BEB58B /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
-		2C4A6AEB1F8AF5F000BEB58B /* YearsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearsList.swift; sourceTree = "<group>"; };
 		2C4A6AEE1F8AF73B00BEB58B /* SimpleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleList.swift; sourceTree = "<group>"; };
 		2C4A6AF01F8AFB2F00BEB58B /* SimpleListDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListDefinition.swift; sourceTree = "<group>"; };
 		2C4A6AF21F8AFB3F00BEB58B /* SimpleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleListViewModel.swift; sourceTree = "<group>"; };
@@ -128,6 +129,10 @@
 		2C706C281F978E89004BB615 /* Chompers copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Chompers copy2-Info.plist"; path = "/Users/ahartwel/Documents/experiments/Chompers/Chompers copy2-Info.plist"; sourceTree = "<absolute>"; };
 		2C7AD5531F8EFEC400FF06CE /* QueueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueList.swift; sourceTree = "<group>"; };
 		2C7AD5551F91B59900FF06CE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2CA15D041F98390B00230823 /* YearListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListController.swift; sourceTree = "<group>"; };
+		2CA15D061F983FF500230823 /* YearListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListViewModel.swift; sourceTree = "<group>"; };
+		2CA15D081F98407000230823 /* YearListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListView.swift; sourceTree = "<group>"; };
+		2CA15D0A1F98479300230823 /* PhishTableViewBond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhishTableViewBond.swift; sourceTree = "<group>"; };
 		2CCE97B61F8AFEB400CF209F /* ShowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowList.swift; sourceTree = "<group>"; };
 		4372EA840E47207BEEAD0F8A /* Pods-Chompers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.release.xcconfig"; sourceTree = "<group>"; };
 		5403CAA219BEEFC76A110DE8 /* Pods-Chompers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +226,7 @@
 				2C4A6AD21F8AE5C500BEB58B /* Models */,
 				2C4A6AA31F8AE50D00BEB58B /* AppDelegate.swift */,
 				2C4A6AA51F8AE50D00BEB58B /* ViewController.swift */,
+				2CA15D0A1F98479300230823 /* PhishTableViewBond.swift */,
 				2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */,
 				2C4A6AAA1F8AE50D00BEB58B /* Assets.xcassets */,
 				2C4A6AAC1F8AE50D00BEB58B /* LaunchScreen.storyboard */,
@@ -292,7 +298,9 @@
 		2C4A6AEA1F8AF5E600BEB58B /* YearsList */ = {
 			isa = PBXGroup;
 			children = (
-				2C4A6AEB1F8AF5F000BEB58B /* YearsList.swift */,
+				2CA15D041F98390B00230823 /* YearListController.swift */,
+				2CA15D061F983FF500230823 /* YearListViewModel.swift */,
+				2CA15D081F98407000230823 /* YearListView.swift */,
 			);
 			path = YearsList;
 			sourceTree = "<group>";
@@ -718,9 +726,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C4A6AEC1F8AF5F000BEB58B /* YearsList.swift in Sources */,
 				2C706BD41F957F96004BB615 /* OnThisDayList.swift in Sources */,
 				2C4A6AE11F8AF1A200BEB58B /* DataCache.swift in Sources */,
+				2CA15D071F983FF500230823 /* YearListViewModel.swift in Sources */,
 				2C4A6ADF1F8AED6700BEB58B /* Era.swift in Sources */,
 				2C4A6AE71F8AF49500BEB58B /* AudioPlayer.swift in Sources */,
 				2C4A6AE41F8AF3E700BEB58B /* MainTabController.swift in Sources */,
@@ -729,12 +737,15 @@
 				2CCE97B71F8AFEB400CF209F /* ShowList.swift in Sources */,
 				2C7AD5541F8EFEC400FF06CE /* QueueList.swift in Sources */,
 				2C4A6AF11F8AFB2F00BEB58B /* SimpleListDefinition.swift in Sources */,
+				2CA15D091F98407000230823 /* YearListView.swift in Sources */,
 				2C4A6AA61F8AE50D00BEB58B /* ViewController.swift in Sources */,
 				2C7AD5561F91B59900FF06CE /* Colors.swift in Sources */,
 				2C32DD761F8EBEAB0074CFE4 /* TrackList.swift in Sources */,
 				2C4A6AF31F8AFB3F00BEB58B /* SimpleListViewModel.swift in Sources */,
+				2CA15D051F98390B00230823 /* YearListController.swift in Sources */,
 				2C4A6AA41F8AE50D00BEB58B /* AppDelegate.swift in Sources */,
 				2C4A6AD71F8AE74900BEB58B /* Years.swift in Sources */,
+				2CA15D0B1F98479300230823 /* PhishTableViewBond.swift in Sources */,
 				2C32DD781F8ECA660074CFE4 /* DownloadManager.swift in Sources */,
 				2C4A6ADD1F8AEA1C00BEB58B /* Show.swift in Sources */,
 				2C4A6AF51F8AFB8800BEB58B /* SimpleListCell.swift in Sources */,
@@ -764,7 +775,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C706C031F978E89004BB615 /* YearsList.swift in Sources */,
 				2C706C041F978E89004BB615 /* OnThisDayList.swift in Sources */,
 				2C706C051F978E89004BB615 /* DataCache.swift in Sources */,
 				2C706C061F978E89004BB615 /* Era.swift in Sources */,

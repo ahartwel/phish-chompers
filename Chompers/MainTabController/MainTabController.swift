@@ -92,7 +92,7 @@ class MainViewController: UIViewController {
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     var viewModel = MainViewModel()
-    lazy var yearsList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: YearsList())
+    lazy var yearsList: UIViewController = MainTabBarNavigationController<ShowList>.createWithController(controller: YearListController())
     lazy var downloadList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
     lazy var onThisDayList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: TodayShowList())
     
@@ -102,14 +102,21 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         self.setViewControllers([
             self.yearsList,
             self.onThisDayList,
             self.downloadList,
             UIViewController()
             ], animated: false)
-        self.delegate = self
+        self.setUpTabs()
+        
+    }
+    func setUpTabs() {
+        
+        self.tabBar.isTranslucent = false
         self.tabBar.barTintColor = UIColor.psych5
+        
         self.tabBar.items?[0].selectedImage = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white)
         self.tabBar.items?[0].image = IonIcons.image(withIcon: ion_calendar, size: 24, color: UIColor.white.withAlphaComponent(0.5))
         

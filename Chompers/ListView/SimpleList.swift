@@ -23,6 +23,14 @@ class MainTabBarNavigationController<T: SimpleList>: UINavigationController {
         self.init(navigationBarClass: PhishNavigationBar.self, toolbarClass: nil)
     }
     
+    static func createWithController(controller: UIViewController) -> MainTabBarNavigationController {
+        let navController = MainTabBarNavigationController()
+        navController.setViewControllers([
+            controller
+            ], animated: false)
+        return navController
+    }
+    
     static func createListNavigation(withList list: T) -> MainTabBarNavigationController {
         let controller = MainTabBarNavigationController()
         controller.setViewControllers([
