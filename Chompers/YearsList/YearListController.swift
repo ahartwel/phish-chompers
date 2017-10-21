@@ -16,7 +16,6 @@ class YearListController: UIViewController, UISearchResultsUpdating {
     lazy var viewModel: YearViewModel = YearViewModel(delegate: self)
     var yearView: YearListView = YearListView()
     
-    
     override func loadView() {
         self.view = self.yearView
     }

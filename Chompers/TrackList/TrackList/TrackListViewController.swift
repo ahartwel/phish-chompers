@@ -36,6 +36,7 @@ class TrackListController: UIViewController, UISearchResultsUpdating {
         self.view = self.viewInstance
         self.viewInstance.bindTo(model: self.viewModel, withActions: self.viewModel)
         self.setUpSearch()
+        self.setUpBarButtonItem()
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
@@ -61,11 +62,17 @@ class TrackListController: UIViewController, UISearchResultsUpdating {
         let alert = UIAlertController(title: "Show Options", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: {
             return self.viewModel.isShowDownloaded() ? "Redownload Show" : "Download Show"
-        }(), style: UIAlertActionStyle.default, handler: { action in
+        }(), style: UIAlertActionStyle.default, handler: { _ in
             alert.dismiss(animated: true, completion: nil)
             self.viewModel.downloadShow()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+        if self.viewModel.isShowDownloaded() {
+            alert.addAction(UIAlertAction(title: "Delete Show", style: .destructive, handler: { _ in
+                alert.dismiss(animated: true, completion: nil)
+                self.viewModel.deleteShow()
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             alert.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)

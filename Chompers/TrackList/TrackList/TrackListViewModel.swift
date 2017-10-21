@@ -19,6 +19,7 @@ protocol TrackListActions: class {
     func selectedTrack(atIndex indexPath: IndexPath)
     func filterTracks(withSearchString search: String)
     func downloadShow()
+    func deleteShow()
 }
 
 protocol TrackListViewModelDelegate: class {
@@ -89,5 +90,8 @@ extension TrackListViewModel: TrackListActions {
     }
     func isShowDownloaded() -> Bool {
         return self.downloadManager.downloadedShows.value.contains(self.show.value)
+    }
+    func deleteShow() {
+        self.downloadManager.delete(show: self.show.value)
     }
 }
