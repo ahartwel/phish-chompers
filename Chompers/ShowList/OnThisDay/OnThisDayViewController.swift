@@ -1,36 +1,36 @@
 //
-//  YearListController.swift
+//  OnThisDayViewController.swift
 //  Chompers
 //
-//  Created by Alex Hartwell on 10/18/17.
-//  Copyright © 2017 ahartwel. All rights reserved.
+//  Created by Alex Hartwell on 10/21/17.
+//Copyright © 2017 ahartwel. All rights reserved.
 //
 
 import Foundation
-import UIKit
 import Bond
 import ReactiveKit
 import PromiseKit
+import UIKit
 
-class YearListController: UIViewController, UISearchResultsUpdating {
-    lazy var viewModel: YearViewModel = YearViewModel(delegate: self)
-    var yearView: YearListView = YearListView()
+class OnThisDayController: UIViewController, UISearchResultsUpdating {
+    lazy var viewInstance = {
+        return OnThisDayView()
+    }()
     
+    lazy var viewModel: OnThisDayViewModel = {
+        return OnThisDayViewModel(delegate: self)
+    }()
     
     override func loadView() {
-        self.view = self.yearView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setUpBindings()
+        self.view = self.viewInstance
+        self.title = "On This Day"
+        self.viewInstance.bindTo(model: self.viewModel, withActions: self.viewModel)
         self.setUpSearch()
-        self.yearView.bind(to: self.viewModel, withActions: self.viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        self.yearView.startAnimations()
+        super.viewWillAppear(animated)
+        self.viewInstance.startAnimations()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,12 +38,6 @@ class YearListController: UIViewController, UISearchResultsUpdating {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController?.isActive = false
         }
-    }
-    
-    func setUpBindings() {
-        self.viewModel.title.observeNext(with: { title in
-            self.title = title
-        }).dispose(in: self.bag)
     }
     
     func setUpSearch() {
@@ -59,12 +53,11 @@ class YearListController: UIViewController, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         self.viewModel.searchTextChanged(searchController.searchBar.text ?? "")
     }
-    
 }
 
-extension YearListController: YearListViewModelDelegate {
-    func presentDetails(forYear year: Year) {
-        let controller = ShowListController(withYear: year)
+extension OnThisDayController: OnThisDayViewModelDelegate {
+    func present(show: Show) {
+        let controller = TrackListController(show: show)
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

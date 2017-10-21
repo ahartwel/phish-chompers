@@ -16,7 +16,10 @@ struct ShowResponse: Codable {
     var data: Show
 }
 
-struct Show: Codable {
+struct Show: Codable, Equatable {
+    static func ==(lhs: Show, rhs: Show) -> Bool {
+        return lhs.id == rhs.id && (lhs.tracks ?? []).count == (rhs.tracks ?? []).count
+    }
     var id: Int
     var date: String
     var duration: TimeInterval
@@ -58,7 +61,10 @@ struct Venue: Codable {
     var slug: String
 }
 
-struct Track: Codable {
+struct Track: Codable, Equatable {
+    static func ==(lhs: Track, rhs: Track) -> Bool {
+        return lhs.id == rhs.id
+    }
     var id: Int
     var title: String
     var position: Int

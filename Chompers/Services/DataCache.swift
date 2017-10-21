@@ -19,19 +19,27 @@ extension DataCacheInjector {
 }
 
 class DataCache {
-    
+    lazy var defaults: UserDefaults = {
+        #if TESTBUILD
+            let standard =  UserDefaults(suiteName: "testSuite")
+            standard!.removePersistentDomain(forName: "testSuite")
+            return standard!
+        #else
+            return UserDefaults.standard
+        #endif
+    }()
     func cacheResponse<T: Codable>(_ response: T, url: String) {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(response)
-            UserDefaults.standard.set(data, forKey: url)
+            self.defaults.set(data, forKey: url)
         } catch {
             print(error.localizedDescription)
         }
     }
     
     func loadCachedResponse<T: Codable>(forUrl url: String) -> T? {
-        guard let data = UserDefaults.standard.data(forKey: url) else {
+        guard let data = self.defaults.data(forKey: url) else {
             return nil
         }
         let decoder = JSONDecoder()

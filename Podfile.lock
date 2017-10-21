@@ -1,37 +1,37 @@
 PODS:
   - Alamofire (4.5.1)
-  - Bond (6.3.0):
-    - Diff (~> 0.5.3)
-    - ReactiveKit (~> 3.6.2)
-  - Crashlytics (3.8.6):
-    - Fabric (~> 1.6.3)
-  - Diff (0.5.3)
-  - Fabric (1.6.13)
+  - Bond (6.4.3):
+    - Differ (~> 1.0.0)
+    - ReactiveKit (~> 3.7.4)
+  - Crashlytics (3.9.0):
+    - Fabric (~> 1.7.0)
+  - Differ (1.0.2)
+  - Fabric (1.7.0)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - ionicons (2.0.3)
+  - ionicons (2.1.1)
   - Moya (9.0.0):
     - Moya/Core (= 9.0.0)
   - Moya/Core (9.0.0):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
   - PinpointKit/Core (1.1.0)
-  - PromiseKit (4.4.0):
-    - PromiseKit/Foundation (= 4.4.0)
-    - PromiseKit/QuartzCore (= 4.4.0)
-    - PromiseKit/UIKit (= 4.4.0)
-  - PromiseKit/CorePromise (4.4.0)
-  - PromiseKit/Foundation (4.4.0):
+  - PromiseKit (4.4.3):
+    - PromiseKit/Foundation (= 4.4.3)
+    - PromiseKit/QuartzCore (= 4.4.3)
+    - PromiseKit/UIKit (= 4.4.3)
+  - PromiseKit/CorePromise (4.4.3)
+  - PromiseKit/Foundation (4.4.3):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.4.0):
+  - PromiseKit/QuartzCore (4.4.3):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.4.0):
+  - PromiseKit/UIKit (4.4.3):
     - PromiseKit/CorePromise
-  - ReactiveKit (3.6.2)
-  - Result (3.2.3)
+  - ReactiveKit (3.7.4)
+  - Result (3.2.4)
   - SnapKit (4.0.0)
   - StreamingKit (0.1.29)
   - TWRDownloadManager (1.1.1)
@@ -52,21 +52,21 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Bond: 6a15b0635bbaae915d91b4c4ffa1396807530ef3
-  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
-  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
-  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  Bond: ac3e1f1a5213cddbc0a820ffc7535ac0205505e9
+  Crashlytics: 64aad5dd97249dd3ff94b979fea140144590cdd3
+  Differ: a571b66c49d0fc83fe5af9a4a41f09bb09e91c85
+  Fabric: e6be012366472553807dada21243c5ab8d904151
   FBSnapshotTestCase: '094f9f314decbabe373b87cc339bea235a63e07a'
-  ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
+  ionicons: 630bcd2c2970741c3359e3a35ad544e71d3c086b
   Moya: cf5e6ee93af526532f92614004b8ad2ea60fd845
   PinpointKit: b444d66d8b10420c1ffc22c176dee37c1c12b4e7
-  PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
-  ReactiveKit: 59813e52505065d14fa77b453d8be5981eced6b7
-  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  PromiseKit: fbb52a0d154402c57eeb6eccd36dd7724fcf6117
+  ReactiveKit: 0af7e43958a532342e0e247d2aeb318653628e68
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   StreamingKit: c329785aaef3ac142d4ae388345bfe1ed23cfd45
   TWRDownloadManager: 34193d7d1ab6e6b4243d74fa4f686cc2ed5ef40f
 
-PODFILE CHECKSUM: d1a9fa3037d80bc8e5f6f95ff38b125cc11226f7
+PODFILE CHECKSUM: c3be3d1ac3897dbed5e1d4cae28867c3bbb7a5b0
 
 COCOAPODS: 1.2.0

@@ -28,6 +28,7 @@ class DonutView: UIView {
     func didLoad() {
         self.backgroundColor = UIColor.psych5
         self.clipsToBounds = true
+        #if !TESTBUILD
         var row: Int = 0
         var startingX: CGFloat = 0
         var startingY: CGFloat = 0
@@ -47,12 +48,15 @@ class DonutView: UIView {
                 startingY += DonutView.donutSize * (CGFloat(arc4random_uniform(1)) * 0.5 + 0.75)
             }
         }
+        #endif
     }
     
     func startAnimations() {
+         #if !TESTBUILD
         for donut in donuts {
             donut.startAnimation()
         }
+        #endif
     }
     
 }

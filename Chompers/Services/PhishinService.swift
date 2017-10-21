@@ -13,11 +13,16 @@ fileprivate var sharedService: PhishInService = PhishInService()
 protocol ServiceInjector {
     var service: PhishInService { get }
 }
+ #if !TESTBUILD
 extension ServiceInjector {
+   
     var service: PhishInService {
-        return sharedService
+        get {
+            return sharedService
+        }
     }
 }
+#endif
 
 enum PhishServiceDefinition: TargetType {
 

@@ -22,18 +22,36 @@ extension DownloadManagerInjector {
     }
 }
 
-class DownloadManager: DataCacheInjector {
+class DownloadManager: DataCacheInjector, ServiceInjector {
     typealias ShowName = String
     lazy var downloadedTracks: [ShowName: [Track]] = {
         return self.dataCache.loadCachedResponse(forUrl: "cached tracks") ?? [:]
     }()
-    lazy var downloadedShows: [Show] = {
-       return self.dataCache.loadCachedResponse(forUrl: "cached shows") ?? []
+
+    lazy var downloadedShows: Observable<[Show]> = {
+        let shows: [Show] = self.dataCache.loadCachedResponse(forUrl: "cached shows") ?? []
+        return Observable<[Show]>(shows)
     }()
     var downloadProgress: PublishSubject<(track: Track, progress: CGFloat), NoError> = PublishSubject<(track: Track, progress: CGFloat), NoError>()
     var downloadingShow: PublishSubject<(show: Show, complete: Bool), NoError> = PublishSubject<(show: Show, complete: Bool), NoError>()
-    
+    lazy var sortedDownloadedShows: Signal<[Show], NoError> = {
+        return self.downloadedShows.map({ [unowned self] shows in
+            let tracks = self.downloadedTracks
+            return shows.map({ show in
+                var newShow = show
+                newShow.tracks = tracks[show.title] ?? []
+                newShow.isDownloaded = true
+                return newShow
+            })
+        })
+    }()
     func download(show: Show) {
+        if (show.sortedTracks ?? []).count == 0 {
+            _ = self.service.getShow(byId: show.id).then(execute: { show in
+                self.download(show: show)
+            })
+            return
+        }
         for track in show.sortedTracks ?? [] {
             self.downloadingShow.next((show: show, complete: false))
             self.download(track: track, inShow: show, onComplete: {
@@ -53,13 +71,13 @@ class DownloadManager: DataCacheInjector {
             onComplete()
             self.downloadProgress.next((track: track, progress: 1))
             self.downloadedTracks[show.title, default: []].append(track)
-            if !self.downloadedShows.contains(where: { s in
+            if !self.downloadedShows.value.contains(where: { s in
                 return show.id == s.id
             }) {
-                self.downloadedShows.append(show)
+                self.downloadedShows.value.append(show)
             }
             self.dataCache.cacheResponse(self.downloadedTracks, url: "cached tracks")
-            self.dataCache.cacheResponse(self.downloadedShows, url: "cached shows")
+            self.dataCache.cacheResponse(self.downloadedShows.value, url: "cached shows")
         }, enableBackgroundMode: true)
     }
     
@@ -71,7 +89,7 @@ class DownloadManager: DataCacheInjector {
     }
     
     func isShowDownloaded(_ show: Show) -> Bool {
-        return self.downloadedShows.contains(where: { s in
+        return self.downloadedShows.value.contains(where: { s in
             show.id == s.id
         })
     }
@@ -79,7 +97,7 @@ class DownloadManager: DataCacheInjector {
     func getDownloadedShows() -> [Show] {
         let shows = self.downloadedShows
         let tracks = self.downloadedTracks
-        return shows.map({ show in
+        return shows.value.map({ show in
             var newShow = show
             newShow.tracks = tracks[show.title] ?? []
             newShow.isDownloaded = true

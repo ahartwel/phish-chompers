@@ -4,66 +4,18 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chompers/Models/Show.swift"
-            timestampString = "530040924.026048"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "530040924.03449"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "AudioPlayer"
-            landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "530040924.038439"
+            filePath = "Chompers/ShowList/ShowCell.swift"
+            timestampString = "530296437.378188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "next()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "setUp(withShow:onTapDownload:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "530040924.038962"
+            filePath = "Chompers/ShowList/ShowCell.swift"
+            timestampString = "530296437.378248"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "play()"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "setUp(withShow:onTapDownload:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,43 +41,75 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chompers/AudioPlayer/AudioPlayer.swift"
-            timestampString = "530040924.0393"
+            filePath = "Chompers/Services/DownloadManager.swift"
+            timestampString = "530296437.378302"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "addOtherTracksToQueue(_:show:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "download(track:inShow:onComplete:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/Services/DownloadManager.swift"
+            timestampString = "530296437.378357"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "download(show:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/Services/DownloadManager.swift"
+            timestampString = "530296437.378407"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "download(show:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Chompers.AudioPlayer.addOtherTracksToQueue(Chompers.Track, show: Chompers.Show) -&gt; ()"
-                  moduleName = "Chompers"
+                  symbolName = "ChompersDev.DownloadManager.download(show: ChompersDev.Show) -&gt; ()"
+                  moduleName = "ChompersDev"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/AudioPlayer/AudioPlayer.swift"
-                  timestampString = "530072031.161969"
+                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/Services/DownloadManager.swift"
+                  timestampString = "530302586.560557"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "876">
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "1452">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Array&lt;Chompers.Track&gt; in Chompers.AudioPlayer.addOtherTracksToQueue(Chompers.Track, show: Chompers.Show) -&gt; ()"
-                  moduleName = "Chompers"
+                  symbolName = "implicit closure #2 : @autoclosure () throws -&gt; Swift.Array&lt;ChompersDev.Track&gt; in ChompersDev.DownloadManager.download(show: ChompersDev.Show) -&gt; ()"
+                  moduleName = "ChompersDev"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/AudioPlayer/AudioPlayer.swift"
-                  timestampString = "530072031.163826"
+                  urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/Services/DownloadManager.swift"
+                  timestampString = "530302586.561975"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
                   offsetFromSymbolStart = "92">
                </Location>
             </Locations>
@@ -137,13 +121,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chompers/Services/PhishinService.swift"
-            timestampString = "530040924.040472"
+            filePath = "Chompers/Services/DownloadManager.swift"
+            timestampString = "530296437.378454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "getShow(byId:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "download(show:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Chompers/TrackList/TrackList/TrackListViewModel.swift"
+            timestampString = "530302717.991203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "filterTracks(withSearchString:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

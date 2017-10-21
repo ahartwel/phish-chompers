@@ -1,17 +1,19 @@
 //
-//  YearListView.swift
+//  TrackListView.swift
 //  Chompers
 //
-//  Created by Alex Hartwell on 10/18/17.
-//  Copyright © 2017 ahartwel. All rights reserved.
+//  Created by Alex Hartwell on 10/21/17.
+//Copyright © 2017 ahartwel. All rights reserved.
 //
 
 import Foundation
-import UIKit
 import Bond
 import ReactiveKit
+import UIKit
 
-class YearListView: UIView, UITableViewDelegate {
+class TrackListView: UIView, UITableViewDelegate {
+    weak var actions: TrackListActions?
+    
     lazy var donutView: DonutView = {
         var donutView = DonutView()
         return donutView
@@ -19,12 +21,11 @@ class YearListView: UIView, UITableViewDelegate {
     lazy var tableView: UITableView = {
         var tableView = UITableView()
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(TrackCell.self, forCellReuseIdentifier: TrackCell.reuseIdentifier ?? "")
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
         
         return tableView
     }()
-    weak var actions: YearListActions?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,29 +61,34 @@ class YearListView: UIView, UITableViewDelegate {
             make.edges.equalTo(self)
         })
     }
-    
-    func bind(to model: YearsListBindables, withActions actions: YearListActions) {
-        self.actions = actions
-        model.eras.bind(to: self.tableView, using: TableBond()).dispose(in: self.bag)
+ 
+    func bindTo(model: TrackListBindables, withActions: TrackListActions) {
+        self.actions = withActions
+        model.tracks.bind(to: self.tableView, using: TableBond()).dispose(in: self.bag)
         
     }
+    
     struct TableBond: PhishTableViewBond {
-        func cellForRow(at indexPath: IndexPath, tableView: UITableView, dataSource: Observable2DArray<EraName, Year>) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            let year = dataSource.sections[indexPath.section].items[indexPath.row]
-            cell.textLabel?.text = year
+        func cellForRow(at indexPath: IndexPath, tableView: UITableView, dataSource: Observable2DArray<String, Track>) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TrackCell.reuseIdentifier ?? "", for: indexPath)
+            let track = dataSource.sections[indexPath.section].items[indexPath.row]
+            (cell as? TrackCell)?.setUp(withTrack: track)
             return cell
         }
-        func titleForHeader(in section: Int, dataSource: Observable2DArray<EraName, Year>) -> String? {
+        func titleForHeader(in section: Int, dataSource: Observable2DArray<String, Track>) -> String? {
             return dataSource.sections[section].metadata
         }
-        func titleForFooter(in section: Int, dataSource: Observable2DArray<EraName, Year>) -> String? {
+        func titleForFooter(in section: Int, dataSource: Observable2DArray<String, Track>) -> String? {
             return nil
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.actions?.selected(yearAtIndex: indexPath)
+        self.actions?.selectedTrack(atIndex: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -92,18 +98,4 @@ class YearListView: UIView, UITableViewDelegate {
         headerView.style()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
-}
-
-extension UITableViewHeaderFooterView {
-    func style() {
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.psych6
-        backgroundView.frame = self.bounds
-        self.backgroundView = backgroundView
-        self.textLabel?.textColor = .white
-    }
 }

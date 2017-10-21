@@ -14,16 +14,16 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C706C001F978E89004BB615"
-               BuildableName = "ChompersDev.app"
-               BlueprintName = "ChompersDev"
+               BlueprintIdentifier = "2C4A6A9F1F8AE50D00BEB58B"
+               BuildableName = "Chompers.app"
+               BlueprintName = "Chompers"
                ReferencedContainer = "container:Chompers.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Test"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
@@ -40,13 +40,23 @@
                ReferencedContainer = "container:Chompers.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2C4A6ABE1F8AE50D00BEB58B"
+               BuildableName = "ChompersUITests.xctest"
+               BlueprintName = "ChompersUITests"
+               ReferencedContainer = "container:Chompers.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C706C001F978E89004BB615"
-            BuildableName = "ChompersDev.app"
-            BlueprintName = "ChompersDev"
+            BlueprintIdentifier = "2C4A6A9F1F8AE50D00BEB58B"
+            BuildableName = "Chompers.app"
+            BlueprintName = "Chompers"
             ReferencedContainer = "container:Chompers.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -68,24 +78,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C706C001F978E89004BB615"
-            BuildableName = "ChompersDev.app"
-            BlueprintName = "ChompersDev"
+            BlueprintIdentifier = "2C4A6A9F1F8AE50D00BEB58B"
+            BuildableName = "Chompers.app"
+            BlueprintName = "Chompers"
             ReferencedContainer = "container:Chompers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "IMAGE_DIFF_DIR"
-            value = "$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/FailureDiffs"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "FB_REFERENCE_IMAGE_DIR"
-            value = "$(SOURCE_ROOT)/$(PROJECT_NAME)Tests/ReferenceImages"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -95,15 +93,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C706C001F978E89004BB615"
-            BuildableName = "ChompersDev.app"
-            BlueprintName = "ChompersDev"
+            BlueprintIdentifier = "2C4A6A9F1F8AE50D00BEB58B"
+            BuildableName = "Chompers.app"
+            BlueprintName = "Chompers"
             ReferencedContainer = "container:Chompers.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -92,9 +92,9 @@ class MainViewController: UIViewController {
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     var viewModel = MainViewModel()
-    lazy var yearsList: UIViewController = MainTabBarNavigationController<ShowList>.createWithController(controller: YearListController())
-    lazy var downloadList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: DownloadedShowList())
-    lazy var onThisDayList: UIViewController = MainTabBarNavigationController.createListNavigation(withList: TodayShowList())
+    lazy var yearsList: UIViewController = MainTabBarNavigationController.createWithController(controller: YearListController())
+    lazy var downloadList: UIViewController = MainTabBarNavigationController.createWithController(controller: ShowListController(downloaded: ()))
+    lazy var onThisDayList: UIViewController = MainTabBarNavigationController.createWithController(controller: OnThisDayController())
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
@@ -122,11 +122,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         self.tabBar.items?[1].selectedImage = IonIcons.image(withIcon: ion_clock, size: 24, color: UIColor.white)
         self.tabBar.items?[1].image = IonIcons.image(withIcon: ion_clock, size: 24, color: UIColor.white.withAlphaComponent(0.5))
-        
+        self.tabBar.items?[1].title = "On This Day"
         
         self.tabBar.items?[2].selectedImage = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white)
         self.tabBar.items?[2].image = IonIcons.image(withIcon: ion_ios_cloud_download, size: 24, color: UIColor.white.withAlphaComponent(0.5))
-        
+        self.tabBar.items?[2].title = "Downloaded"
         
         self.tabBar.items?[3].selectedImage = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white)
         self.tabBar.items?[3].image = IonIcons.image(withIcon: ion_ios_help, size: 24, color: UIColor.white.withAlphaComponent(0.5))

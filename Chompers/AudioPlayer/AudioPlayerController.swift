@@ -49,6 +49,9 @@ class AudioPlayerViewModel: AudioPlayerInjector {
     var currentTrack: Observable<Track?> {
         return self.audioPlayer.currentTrack
     }
+    var currentShow: Observable<Show?> {
+        return self.audioPlayer.currentShow
+    }
     weak var delegate: AudioPlayerViewModelDelegate?
     
     
@@ -127,8 +130,11 @@ class AudioPlayerController: UIViewController, AudioPlayerViewModelDelegate {
     }
     
     func showQueue() {
-        let queue = MainTabBarNavigationController.createListNavigation(withList: QueueTrackList())
-        self.parent?.present(queue, animated: true, completion: nil)
+        guard let show = self.viewModel.currentShow.value else {
+            return
+        }
+        let controller = MainTabBarNavigationController.createWithController(controller: QueueListController(show: show))
+        self.parent?.present(controller, animated: true, completion: nil)
     }
     
 }

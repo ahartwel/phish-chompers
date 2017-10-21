@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Chompers
+@testable import ChompersDev
 
 class ChompersTests: XCTestCase {
     
