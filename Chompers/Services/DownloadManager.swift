@@ -54,6 +54,7 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             return
         }
         for track in show.sortedTracks ?? [] {
+            TWRDownloadManager.shared().cancelDownload(forUrl: track.mp3)
             TWRDownloadManager.shared().deleteFile(forUrl: track.mp3)
             if let index = (self.downloadedTracks[show.title] ?? []).index(of: track) {
                 self.downloadedTracks[show.title]?.remove(at: index)
