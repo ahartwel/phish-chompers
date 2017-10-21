@@ -54,14 +54,18 @@ class TrackListViewModel: TrackListBindables, AudioPlayerInjector, ServiceInject
                 array.removeAllItemsAndSections()
                 let lowercased = tracksAndSearch.search.lowercased()
                 var sections: [String: [Track]] = [:]
+                var sectionNames: [String] = []
                 for track in tracksAndSearch.tracks {
                     if lowercased == "" || track.title.lowercased().contains(lowercased) {
+                        if sections[track.set_name] == nil {
+                            sectionNames.append(track.set_name)
+                        }
                         sections[track.set_name, default: []].append(track)
                     }
                 }
                
-                for (key, value) in sections {
-                    let section = Observable2DArraySection(metadata: key, items: value)
+                for name in sectionNames {
+                    let section = Observable2DArraySection(metadata: name, items: sections[name] ?? [])
                     array.appendSection(section)
                 }
             }

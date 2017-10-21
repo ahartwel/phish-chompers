@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/Services/DownloadManager.swift"
-            timestampString = "530296437.378302"
+            timestampString = "530303896.122989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "download(track:inShow:onComplete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Chompers/Services/DownloadManager.swift"
-            timestampString = "530296437.378357"
+            filePath = "Chompers/TrackList/TrackList/TrackListViewModel.swift"
+            timestampString = "530303896.123448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "download(show:)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "filterTracks(withSearchString:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,42 +74,42 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/Services/DownloadManager.swift"
-            timestampString = "530296437.378407"
+            timestampString = "530303914.478057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "download(show:)"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "delete(show:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ChompersDev.DownloadManager.download(show: ChompersDev.Show) -&gt; ()"
+                  symbolName = "ChompersDev.DownloadManager.delete(show: ChompersDev.Show) -&gt; ()"
                   moduleName = "ChompersDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/Services/DownloadManager.swift"
-                  timestampString = "530302586.560557"
+                  timestampString = "530303914.609109"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "1452">
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "624">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "implicit closure #2 : @autoclosure () throws -&gt; Swift.Array&lt;ChompersDev.Track&gt; in ChompersDev.DownloadManager.download(show: ChompersDev.Show) -&gt; ()"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Array&lt;ChompersDev.Track&gt; in ChompersDev.DownloadManager.delete(show: ChompersDev.Show) -&gt; ()"
                   moduleName = "ChompersDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ahartwel/Documents/experiments/Chompers/Chompers/Services/DownloadManager.swift"
-                  timestampString = "530302586.561975"
+                  timestampString = "530303914.614876"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
                   offsetFromSymbolStart = "92">
                </Location>
             </Locations>
@@ -122,28 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Chompers/Services/DownloadManager.swift"
-            timestampString = "530296437.378454"
+            timestampString = "530303915.580674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "download(show:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Chompers/TrackList/TrackList/TrackListViewModel.swift"
-            timestampString = "530302717.991203"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "filterTracks(withSearchString:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "delete(show:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

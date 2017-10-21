@@ -94,7 +94,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     var viewModel = MainViewModel()
     lazy var yearsList: UIViewController = MainTabBarNavigationController.createWithController(controller: YearListController())
     lazy var downloadList: UIViewController = MainTabBarNavigationController.createWithController(controller: ShowListController(downloaded: ()))
-    lazy var onThisDayList: UIViewController = MainTabBarNavigationController.createWithController(controller: OnThisDayController())
+    lazy var onThisDayList: UIViewController = MainTabBarNavigationController.createWithController(controller: ShowListController(onThisDay: ()))
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent

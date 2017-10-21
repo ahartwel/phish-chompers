@@ -45,6 +45,27 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             })
         })
     }()
+    
+    func delete(show: Show) {
+        if (show.sortedTracks ?? []).count == 0 {
+            _ = self.service.getShow(byId: show.id).then(execute: { show in
+                self.delete(show: show)
+            })
+            return
+        }
+        for track in show.sortedTracks ?? [] {
+            TWRDownloadManager.shared().deleteFile(forUrl: track.mp3)
+            if let index = (self.downloadedTracks[show.title] ?? []).index(of: track) {
+                self.downloadedTracks[show.title]?.remove(at: index)
+            }
+            
+        }
+        if let index = self.downloadedShows.value.index(of: show) {
+            self.downloadedShows.value.remove(at: index)
+        }
+        self.saveCache()
+    }
+    
     func download(show: Show) {
         if (show.sortedTracks ?? []).count == 0 {
             _ = self.service.getShow(byId: show.id).then(execute: { show in
@@ -76,9 +97,13 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             }) {
                 self.downloadedShows.value.append(show)
             }
-            self.dataCache.cacheResponse(self.downloadedTracks, url: "cached tracks")
-            self.dataCache.cacheResponse(self.downloadedShows.value, url: "cached shows")
+            self.saveCache()
         }, enableBackgroundMode: true)
+    }
+    
+    func saveCache() {
+        self.dataCache.cacheResponse(self.downloadedTracks, url: "cached tracks")
+        self.dataCache.cacheResponse(self.downloadedShows.value, url: "cached shows")
     }
     
     func getUrl(forTrack track: Track) -> String? {

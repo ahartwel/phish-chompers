@@ -79,12 +79,6 @@
 		2CA15D111F98C34000230823 /* PhishTableViewBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D0A1F98479300230823 /* PhishTableViewBond.swift */; };
 		2CA15D1A1F98C51100230823 /* YearListTestSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D181F98C50F00230823 /* YearListTestSetUp.swift */; };
 		2CA15D1B1F98CDA700230823 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */; };
-		2CA16ACA1F9BA41200B102C4 /* OnThisDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA16AC71F9BA41200B102C4 /* OnThisDayViewController.swift */; };
-		2CA16ACB1F9BA41200B102C4 /* OnThisDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA16AC71F9BA41200B102C4 /* OnThisDayViewController.swift */; };
-		2CA16ACC1F9BA41200B102C4 /* OnThisDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA16AC81F9BA41200B102C4 /* OnThisDayView.swift */; };
-		2CA16ACD1F9BA41200B102C4 /* OnThisDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA16AC81F9BA41200B102C4 /* OnThisDayView.swift */; };
-		2CA16ACE1F9BA41200B102C4 /* OnThisDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA16AC91F9BA41200B102C4 /* OnThisDayViewModel.swift */; };
-		2CA16ACF1F9BA41200B102C4 /* OnThisDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA16AC91F9BA41200B102C4 /* OnThisDayViewModel.swift */; };
 		3256BE97DB8999A61E3B4501 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */; };
 		DCBFD1EE103F01CF4FE6A73B /* Pods_ChompersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */; };
 		E534D0B0E66933D7C3D3BFAE /* Pods_ChompersDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE09A81AEDD3C818000A577 /* Pods_ChompersDev.framework */; };
@@ -161,9 +155,6 @@
 		2CA15D0C1F98C22300230823 /* YearListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListTests.swift; sourceTree = "<group>"; };
 		2CA15D181F98C50F00230823 /* YearListTestSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListTestSetUp.swift; sourceTree = "<group>"; };
 		2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Chompers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CA16AC71F9BA41200B102C4 /* OnThisDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnThisDayViewController.swift; sourceTree = "<group>"; };
-		2CA16AC81F9BA41200B102C4 /* OnThisDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnThisDayView.swift; sourceTree = "<group>"; };
-		2CA16AC91F9BA41200B102C4 /* OnThisDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnThisDayViewModel.swift; sourceTree = "<group>"; };
 		32A13A67F397CE45D59125BC /* Pods-ChompersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChompersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChompersTests/Pods-ChompersTests.release.xcconfig"; sourceTree = "<group>"; };
 		39A6FF6B37CD96C3DFA0B613 /* Pods-Chompers.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.test.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.test.xcconfig"; sourceTree = "<group>"; };
 		4F0E0B087325487F53884BCC /* Pods-Chompers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.release.xcconfig"; sourceTree = "<group>"; };
@@ -373,16 +364,6 @@
 			path = ShowList;
 			sourceTree = "<group>";
 		};
-		2CA16AA41F9B81A600B102C4 /* OnThisDay */ = {
-			isa = PBXGroup;
-			children = (
-				2CA16AC71F9BA41200B102C4 /* OnThisDayViewController.swift */,
-				2CA16AC81F9BA41200B102C4 /* OnThisDayView.swift */,
-				2CA16AC91F9BA41200B102C4 /* OnThisDayViewModel.swift */,
-			);
-			path = OnThisDay;
-			sourceTree = "<group>";
-		};
 		2CA16AA81F9B820200B102C4 /* TrackList */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,7 +377,6 @@
 		2CCE97B51F8AFEAA00CF209F /* ShowList */ = {
 			isa = PBXGroup;
 			children = (
-				2CA16AA41F9B81A600B102C4 /* OnThisDay */,
 				2CA16AA31F9B819F00B102C4 /* ShowList */,
 				2C6E73111F9BA79D00DE52F1 /* ShowCell.swift */,
 			);
@@ -823,10 +803,8 @@
 				2C7CFD711F9BC24C002C58D0 /* MainTabBarNavigationController.swift in Sources */,
 				2C5FECA41F9BB35700F6569D /* TrackCell.swift in Sources */,
 				2C5FECB11F9BBD9000F6569D /* ShowListView.swift in Sources */,
-				2CA16ACE1F9BA41200B102C4 /* OnThisDayViewModel.swift in Sources */,
 				2C5FECA81F9BB73700F6569D /* QueueListViewModel.swift in Sources */,
 				2CA15D091F98407000230823 /* YearListView.swift in Sources */,
-				2CA16ACA1F9BA41200B102C4 /* OnThisDayViewController.swift in Sources */,
 				2C4A6AA61F8AE50D00BEB58B /* ViewController.swift in Sources */,
 				2C7AD5561F91B59900FF06CE /* Colors.swift in Sources */,
 				2C6E731B1F9BAEBE00DE52F1 /* TrackListViewModel.swift in Sources */,
@@ -839,7 +817,6 @@
 				2C4A6ADD1F8AEA1C00BEB58B /* Show.swift in Sources */,
 				2C5FECB21F9BBD9000F6569D /* ShowListViewModel.swift in Sources */,
 				2C6E73191F9BAEBE00DE52F1 /* TrackListView.swift in Sources */,
-				2CA16ACC1F9BA41200B102C4 /* OnThisDayView.swift in Sources */,
 				2C4A6AD51F8AE65B00BEB58B /* PhishinService.swift in Sources */,
 				2C6E73171F9BAEBE00DE52F1 /* TrackListViewController.swift in Sources */,
 				2C4A6AE91F8AF5CB00BEB58B /* AudioPlayerController.swift in Sources */,
@@ -870,12 +847,9 @@
 			files = (
 				2C5FECA91F9BB73A00F6569D /* QueueListViewModel.swift in Sources */,
 				2C5FECA51F9BB35A00F6569D /* TrackCell.swift in Sources */,
-				2CA16ACB1F9BA41200B102C4 /* OnThisDayViewController.swift in Sources */,
 				2C706C051F978E89004BB615 /* DataCache.swift in Sources */,
 				2C7CFD721F9BC32D002C58D0 /* MainTabBarNavigationController.swift in Sources */,
-				2CA16ACF1F9BA41200B102C4 /* OnThisDayViewModel.swift in Sources */,
 				2C706C061F978E89004BB615 /* Era.swift in Sources */,
-				2CA16ACD1F9BA41200B102C4 /* OnThisDayView.swift in Sources */,
 				2C5FECB31F9BBEFF00F6569D /* ShowListViewController.swift in Sources */,
 				2C5FECB51F9BBF0700F6569D /* ShowListViewModel.swift in Sources */,
 				2C706C071F978E89004BB615 /* AudioPlayer.swift in Sources */,

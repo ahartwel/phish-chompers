@@ -31,6 +31,12 @@ class ShowListController: UIViewController, UISearchResultsUpdating {
         self.viewModel = ShowListViewModel(delegate: self, downloaded: downloaded)
     }
     
+    convenience init(onThisDay: ()) {
+        self.init()
+        self.title = "On This Day"
+        self.viewModel = ShowListViewModel(delegate: self, onThisDay: onThisDay)
+    }
+    
     override func loadView() {
         self.view = self.viewInstance
         self.viewInstance.bindTo(model: self.viewModel, withActions: self.viewModel)

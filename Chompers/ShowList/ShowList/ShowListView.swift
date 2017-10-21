@@ -85,6 +85,17 @@ class ShowListView: UIView, UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if self.actions?.isShowDownloaded(AtIndex: indexPath) == true {
+            return [
+                UITableViewRowAction(style: .destructive, title: "Delete", handler: { action, indexPath in
+                    self.actions?.delete(showAtPath: indexPath)
+                })
+            ]
+        } else {
+            return nil
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.actions?.selectedShow(atIndex: indexPath)
