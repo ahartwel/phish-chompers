@@ -43,6 +43,18 @@ struct Show: Codable, Equatable {
     }
     var isDownloaded: Bool? = false
 
+    init(venue_name: String, date: String, tracks: [Track], id: Int) {
+        self.venue_name = venue_name
+        self.date = date
+        self.tracks = tracks
+        self.id = id
+        self.duration = 1000
+        self.tour_id = 1
+        self.likes_count = 1
+        self.remastered = true
+        self.sbd = false
+    }
+    
 }
 
 extension Show {
@@ -83,4 +95,20 @@ struct Track: Codable, Equatable {
         return float.getTimeString()
     }
     var song_ids: [Int]
+    
+    init(title: String, position: Int, set_name: String, id: Int) {
+        self.title = title
+        self.position = position
+        self.set = set_name
+        self.set_name = set_name
+        self.mp3 = "http://google.com"
+        self.slug = "/asdfasd"
+        self.likes_count = 3
+        self.duration = 10000
+        self.id = id
+        self.song_ids = [
+            1
+        ]
+    }
+    
 }

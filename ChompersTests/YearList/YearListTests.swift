@@ -23,7 +23,8 @@ class YearListTest: FBSnapshotTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
+    
+    //TEST NEED TO BE RUN IN A PLUS SIZE SIMIULATOR, otherwise the view tests will fail
     func testViewLaysOutProperly() {
         let exp = self.expectation(description: "view lays out")
         let controller: YearListController = YearListController()
