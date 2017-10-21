@@ -1,12 +1,12 @@
-#Chompers: Live Phish
-[status](https://www.bitrise.io/app/b1ca00282162f441/status.svg?token=QCr0UaTgB_z5r4tV2zzX3g)
+# Chompers: Live Phish
+![status](https://www.bitrise.io/app/b1ca00282162f441/status.svg?token=QCr0UaTgB_z5r4tV2zzX3g)
 
 
-##What is it
+## What is it
 
 An app to listen to and download live Phish shows. It uses the http://phish.in/ api to find and serve shows.
 
-##Contributing
+## Contributing
 
 The general architecture is documented in this [repo](https://github.com/ahartwel/What-Does-The-New-York-Times-Think-Of-)
 
