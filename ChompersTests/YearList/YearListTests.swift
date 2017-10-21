@@ -33,7 +33,7 @@ class YearListTest: FBSnapshotTestCase {
         controller.viewWillAppear(false)
         controller.viewDidAppear(false)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.FBSnapshotVerifyView(controller.view)
+            self.FBSnapshotVerifyView(controller.view, tolerance: 0.05)
             exp.fulfill()
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
@@ -48,7 +48,7 @@ class YearListTest: FBSnapshotTestCase {
         controller.viewDidAppear(false)
         controller.viewModel.searchTextChanged("1999")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.FBSnapshotVerifyView(controller.view)
+            self.FBSnapshotVerifyView(controller.view, tolerance: 0.05)
             exp.fulfill()
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
