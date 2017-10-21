@@ -13,7 +13,9 @@ import PromiseKit
 
 class QueueListViewModel: TrackListViewModel {
     override func loadTracks() {
-        let queue = self.audioPlayer.audioPlayer.pendingQueue as! [QueueItem]
+        guard let queue = self.audioPlayer.audioPlayer.pendingQueue as? [QueueItem] else {
+            return
+        }
         var tracks = queue.map({ item in
             return item.track
         })

@@ -16,7 +16,7 @@ class ShowCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjector {
     static var reuseIdentifier: String? {
         return "ShowCell"
     }
-    
+
     lazy var downloadButton: UIButton = {
         var button = UIButton()
         let downloadImage = IonIcons.image(withIcon: ion_ios_cloud_download_outline, size: 24, color: UIColor.psych1)
@@ -25,15 +25,15 @@ class ShowCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjector {
         button.addTarget(self, action: #selector(self.tappedDownload), for: .touchUpInside)
         return button
     }()
-    
+
     var didTapDownload: ((Show) -> Void)?
     var show: Show?
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
         self.didLoad()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.didLoad()
@@ -74,14 +74,14 @@ class ShowCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjector {
         self.setDetailTextLabel(forShow: show)
         self.textLabel?.text = show.date
     }
-    
+
     func setDetailTextLabel(forShow show: Show) {
         let venueName = show.venue_name ?? (show.venue?.name ?? "")
         let sdb = "[SBD]"
         let remaster = "[RM]"
         self.detailTextLabel?.text = "\(show.sbd ? sdb : "")\(show.remastered ? remaster : "")\(venueName)"
     }
-    
+
     func didLoad() {
         self.contentView.backgroundColor = UIColor.white
         self.textLabel?.textColor = UIColor.psych1
@@ -90,14 +90,14 @@ class ShowCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjector {
             make.edges.equalTo(self)
         })
     }
-    
+
     @objc func tappedDownload() {
         guard let show = self.show else {
             return
         }
         self.didTapDownload?(show)
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         self.bag.dispose()
@@ -105,7 +105,7 @@ class ShowCell: UITableViewCell, DownloadManagerInjector, AudioPlayerInjector {
 //        self.downloadButton.alpha = 0
 //        self.track = nil
     }
-    
+
     override func updateConstraints() {
         let size = UIScreen.main.bounds.width * 0.2
         self.downloadButton.frame = CGRect(x: 12, y: 0, width: size, height: size)

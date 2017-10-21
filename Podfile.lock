@@ -34,6 +34,7 @@ PODS:
   - Result (3.2.4)
   - SnapKit (4.0.0)
   - StreamingKit (0.1.29)
+  - SwiftLint (0.23.1)
   - TWRDownloadManager (1.1.1)
 
 DEPENDENCIES:
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - ReactiveKit
   - SnapKit
   - StreamingKit
+  - SwiftLint
   - TWRDownloadManager
 
 SPEC CHECKSUMS:
@@ -65,8 +67,9 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   StreamingKit: c329785aaef3ac142d4ae388345bfe1ed23cfd45
+  SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
   TWRDownloadManager: 34193d7d1ab6e6b4243d74fa4f686cc2ed5ef40f
 
-PODFILE CHECKSUM: c3be3d1ac3897dbed5e1d4cae28867c3bbb7a5b0
+PODFILE CHECKSUM: b24ca2c6f2b000254a644b94121837c2f4bc2f31
 
 COCOAPODS: 1.2.0

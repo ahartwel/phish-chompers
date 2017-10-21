@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, DownloadManagerInjector {
 
     var window: UIWindow?
     static let pinpointKit = PinpointKit(feedbackRecipients: ["chompersapp@gmail.com"])
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Crashlytics.self])
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, DownloadManagerInjector {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.psych1.withAlphaComponent(1)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).alpha = 1
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isOpaque = true
-        
+
         return true
     }
 
@@ -64,6 +64,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, DownloadManagerInjector {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

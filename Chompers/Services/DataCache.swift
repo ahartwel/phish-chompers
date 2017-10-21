@@ -37,7 +37,7 @@ class DataCache {
             print(error.localizedDescription)
         }
     }
-    
+
     func loadCachedResponse<T: Codable>(forUrl url: String) -> T? {
         guard let data = self.defaults.data(forKey: url) else {
             return nil

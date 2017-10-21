@@ -31,15 +31,15 @@ class YearViewModel: YearsListBindables, ServiceInjector {
     var eras: MutableObservable2DArray<EraName, Year> = MutableObservable2DArray<EraName, Year>([])
     var title: Observable<String> = Observable<String>("Years")
     unowned var delegate: YearListViewModelDelegate
-    
+
     var bag: DisposeBag = DisposeBag()
-    
+
     init(delegate: YearListViewModelDelegate) {
         self.delegate = delegate
         self.setUpCombines()
         self.loadData()
     }
-    
+
     func setUpCombines() {
         let eraSorterSignal: Signal<Eras, NoError> = combineLatest(self.searchText, self.eraReturn) { text, oldEras in
             let lowercasedString = text.lowercased()
@@ -65,7 +65,7 @@ class YearViewModel: YearsListBindables, ServiceInjector {
             })
         }).dispose(in: self.bag)
     }
-    
+
     func loadData() {
         _ = self.service.getEras().then(execute: { eras -> Void in
             self.eraReturn.value = eras

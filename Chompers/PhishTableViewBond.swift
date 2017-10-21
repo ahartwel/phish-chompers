@@ -12,6 +12,7 @@ import Bond
 protocol PhishTableViewBond: TableViewBond {
 }
 extension PhishTableViewBond {
+    //swiftlint:disable:next cyclomatic_complexity
     public func apply(event: DataSourceEvent<DataSource, BatchKindDiff>, to tableView: UITableView) {
         switch event.kind {
         case .reload:

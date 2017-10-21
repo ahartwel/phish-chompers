@@ -44,13 +44,13 @@ class ShowListViewModel: ShowListBindables, ServiceInjector, DownloadManagerInje
         self.loadDownloadedShows()
         self.setUpObservables()
     }
-    
+
     init(delegate: ShowListViewModelDelegate?, onThisDay: Void) {
         self.delegate = delegate
         self.loadOnThisDayShows()
         self.setUpObservables()
     }
-    
+
     func setUpObservables() {
         let signal = combineLatest(self.originalShows, self.searchText) { shows, search in
             return (shows: shows, search: search)
@@ -67,19 +67,19 @@ class ShowListViewModel: ShowListBindables, ServiceInjector, DownloadManagerInje
             }), performDiff: true)
         }).dispose(in: self.bag)
     }
-    
+
     func loadDownloadedShows() {
         _ = self.downloadManager.downloadedShows.observeNext(with: { shows in
             self.originalShows.value = shows
         }).dispose(in: self.bag)
     }
-    
+
     func loadOnThisDayShows() {
         _ = self.service.getShowsOnThisDay().then { shows in
             self.originalShows.value = shows
         }
     }
-    
+
     func loadShows() {
         guard let year = self.year else {
             return
@@ -95,20 +95,20 @@ extension ShowListViewModel: ShowListActions {
         let show = self.shows.array[indexPath.row]
         self.delegate?.presentTrackList(forShow: show)
     }
-    
+
     func download(show: Show) {
         self.downloadManager.download(show: show)
     }
-    
+
     func delete(showAtPath indexPath: IndexPath) {
         let show = self.shows.array[indexPath.row]
         self.downloadManager.delete(show: show)
     }
-    
+
     func searchTextChanged(_ text: String) {
         self.searchText.value = text
     }
-    
+
     func isShowDownloaded(AtIndex indexPath: IndexPath) -> Bool {
         let show = self.shows.array[indexPath.row]
         return self.downloadManager.downloadedShows.value.contains(show)

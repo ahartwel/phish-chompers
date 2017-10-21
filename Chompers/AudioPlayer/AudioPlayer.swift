@@ -27,7 +27,6 @@ class QueueItem: NSObject {
         self.url = track.link!
     }
 }
-
 fileprivate var sharedAudioPlayer: AudioPlayer = AudioPlayer()
 
 protocol AudioPlayerInjector {
@@ -54,28 +53,27 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     var didEndDispose: DisposeBag = DisposeBag()
     var sendQueueChangeEventTimer: Timer?
     var timer: Timer?
-    
+
     var pastQueue: [Track] = []
-    
+
     lazy var audioPlayer: STKAudioPlayer = STKAudioPlayer()
-    
-    
+
     override init() {
         super.init()
         self.audioPlayer.delegate = self
         self.handleInterruptions()
         self.setUpControlCenter()
     }
-    
+
     func onAppClose() {
-        
+
     }
-    
+
     func play(track: Track, fromShow show: Show) {
         self.setUpAudioSession()
         self.pastQueue = []
         self.didEndDispose.dispose()
-        self.didStartPlayingSource.observeNext(with: { [unowned self, track, show] item in
+        self.didStartPlayingSource.observeNext(with: { [unowned self, track, show] _ in
             self.didStartDispose.dispose()
             self.addOtherTracksToQueue(track, show: show)
             self.sendChangedQueueEvent()
@@ -84,10 +82,10 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
         let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
         self.audioPlayer.setDataSource(items.audioSource, withQueueItemId: items.queueItem)
     }
-    
+
     func setUpAudioSession() {
         do {
-            if (AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback) {
+            if AVAudioSession.sharedInstance().category != AVAudioSessionCategoryPlayback {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 UIApplication.shared.beginReceivingRemoteControlEvents()
             }
@@ -95,8 +93,9 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
         } catch {
         }
     }
-    
+
     func handleInterruptions() {
+        //swiftlint:disable:next line_length
         NotificationCenter.default.reactive.notification(name: Notification.Name.AVAudioSessionInterruption).observeNext(with: { notification in
             guard let info = notification.userInfo,
                 let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
@@ -105,7 +104,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             }
             if type == AVAudioSessionInterruptionType.began {
                 self.pause()
-            }else if type == AVAudioSessionInterruptionType.ended {
+            } else if type == AVAudioSessionInterruptionType.ended {
                 guard let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt else {
                         return
                 }
@@ -116,20 +115,21 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             }
         }).dispose(in: self.bag)
     }
-    
+
     func listentToEndEvents() {
         self.didEndPlayingSource.observeNext(with: { queueItem in
             self.pastQueue.append(queueItem.track)
         }).dispose(in: self.didEndDispose)
     }
-    
+
     func addOtherTracksToQueue(_ track: Track, show: Show) {
         var otherTracks = show.sortedTracks ?? []
-        if let index = otherTracks.index(where: { t in
-            return track.id == t.id
+        if let index = otherTracks.index(where: { otherTrack in
+            return track.id == otherTrack.id
         }) {
-            
+
             for _ in 0...index {
+                //swiftlint:disable:next for_where
                 if otherTracks.count > 0 {
                     if otherTracks[0].id != track.id {
                         self.pastQueue.append(otherTracks[0])
@@ -142,10 +142,10 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             }
         }
     }
-    
+
     func setUpControlCenter() {
         let command = MPRemoteCommandCenter.shared()
-        command.togglePlayPauseCommand.addTarget(handler: { event in
+        command.togglePlayPauseCommand.addTarget(handler: { _ in
             if self.state.value == STKAudioPlayerState.playing {
                 self.pause()
             } else {
@@ -153,23 +153,23 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             }
             return MPRemoteCommandHandlerStatus.success
         })
-        command.playCommand.addTarget(handler: { event in
+        command.playCommand.addTarget(handler: { _ in
             self.play()
             return MPRemoteCommandHandlerStatus.success
         })
-        command.pauseCommand.addTarget(handler: { event in
+        command.pauseCommand.addTarget(handler: { _ in
             self.pause()
             return MPRemoteCommandHandlerStatus.success
         })
-        command.stopCommand.addTarget(handler: { event in
+        command.stopCommand.addTarget(handler: { _ in
             self.audioPlayer.stop()
             return MPRemoteCommandHandlerStatus.success
         })
-        command.nextTrackCommand.addTarget(handler: { event in
+        command.nextTrackCommand.addTarget(handler: { _ in
             self.next()
             return MPRemoteCommandHandlerStatus.success
         })
-        command.previousTrackCommand.addTarget(handler: { event in
+        command.previousTrackCommand.addTarget(handler: { _ in
             self.previous()
             return MPRemoteCommandHandlerStatus.success
         })
@@ -181,7 +181,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             self.audioPlayer.seek(toTime: newTime)
             return MPRemoteCommandHandlerStatus.success
         })
-        
+
         command.seekBackwardCommand.addTarget(handler: { event in
             guard let event = event as? MPSkipIntervalCommandEvent else {
                 return MPRemoteCommandHandlerStatus.commandFailed
@@ -190,7 +190,7 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             self.audioPlayer.seek(toTime: newTime)
             return MPRemoteCommandHandlerStatus.success
         })
-        
+
         command.changePlaybackPositionCommand.addTarget(handler: { event in
             guard let event = event as? MPChangePlaybackPositionCommandEvent else {
                 return MPRemoteCommandHandlerStatus.commandFailed
@@ -199,33 +199,33 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
             return MPRemoteCommandHandlerStatus.success
         })
     }
-    
+
     func add(trackToQueue track: Track, fromShow show: Show) {
         let items = self.getAudioSourceAndQueue(fromTrack: track, andShow: show)
         self.audioPlayer.queue(items.audioSource, withQueueItemId: items.queueItem)
     }
-    
+
     func sendChangedQueueEvent() {
         self.sendQueueChangeEventTimer?.invalidate()
-        self.sendQueueChangeEventTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { timer in
+        self.sendQueueChangeEventTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { _ in
             self.changedQueue.next(())
         })
     }
-    
+
     func getAudioSourceAndQueue(fromTrack track: Track, andShow show: Show) -> (audioSource: STKDataSource, queueItem: QueueItem) {
         let queue = QueueItem(track: track, show: show, downloadManager: self.downloadManager)
         let audioSource: STKDataSource = STKAudioPlayer.dataSource(from: queue.url)
         return (audioSource: audioSource, queueItem: queue)
     }
-    
+
     func download(track: Track) {
     }
-    
+
     func play() {
         self.setUpAudioSession()
         self.audioPlayer.resume()
     }
-    
+
     func next() {
         if self.audioPlayer.pendingQueue.count == 0 {
             return
@@ -241,12 +241,11 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
         }
         self.play(track: last, fromShow: currentShow)
     }
-    
+
     func pause() {
         self.audioPlayer.pause()
     }
-    
-    
+
 }
 
 extension STKAudioPlayerState {
@@ -261,25 +260,24 @@ extension AudioPlayer: STKAudioPlayerDelegate {
             self.isPlayerActive.value = true
         }
         self.state.value = state
-        
+
         if state == STKAudioPlayerState.playing {
             self.currentDuration.value = audioPlayer.duration
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { timer in
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
                 self.currentProgress.value = audioPlayer.progress
             })
         } else {
             self.timer?.invalidate()
         }
     }
-    
-    
+
     func audioPlayer(_ audioPlayer: STKAudioPlayer, logInfo line: String) {
-        
+
     }
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didCancelQueuedItems queuedItems: [Any]) {
-        
+
     }
-    
+
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didStartPlayingQueueItemId queueItemId: NSObject) {
         guard let queueItem = queueItemId as? QueueItem else {
             self.currentTrack.value = nil
@@ -297,14 +295,12 @@ extension AudioPlayer: STKAudioPlayerDelegate {
             MPMediaItemPropertyAlbumTitle: queueItem.show.title + " " + queueItem.show.date
         ]
     }
-    
+
     func audioPlayer(_ audioPlayer: STKAudioPlayer, unexpectedError errorCode: STKAudioPlayerErrorCode) {
-        
     }
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didFinishBufferingSourceWithQueueItemId queueItemId: NSObject) {
-        
-        
     }
+    //swiftlint:disable:next line_length
     func audioPlayer(_ audioPlayer: STKAudioPlayer, didFinishPlayingQueueItemId queueItemId: NSObject, with stopReason: STKAudioPlayerStopReason, andProgress progress: Double, andDuration duration: Double) {
         guard let queueItem = queueItemId as? QueueItem else {
             return
@@ -313,4 +309,3 @@ extension AudioPlayer: STKAudioPlayerDelegate {
         self.didEndPlayingSource.next(queueItem)
     }
 }
-

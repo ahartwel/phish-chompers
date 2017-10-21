@@ -21,11 +21,11 @@ class YearListView: UIView, UITableViewDelegate {
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
-        
+
         return tableView
     }()
     weak var actions: YearListActions?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.onInit()
@@ -34,7 +34,7 @@ class YearListView: UIView, UITableViewDelegate {
         super.init(coder: aDecoder)
         self.onInit()
     }
-    
+
     func onInit() {
         self.clipsToBounds = true
         self.backgroundColor = UIColor.white.withAlphaComponent(0)
@@ -42,16 +42,17 @@ class YearListView: UIView, UITableViewDelegate {
         self.addConstraints()
         self.tableView.separatorStyle = .none
     }
-    
+
     func startAnimations() {
         self.donutView.startAnimations()
+        self.setNeedsUpdateConstraints()
     }
-    
+
     func addViews() {
         self.addSubview(self.donutView)
         self.addSubview(self.tableView)
     }
-    
+
     func addConstraints() {
         self.tableView.snp.remakeConstraints({ make in
             make.edges.equalTo(self)
@@ -60,11 +61,11 @@ class YearListView: UIView, UITableViewDelegate {
             make.edges.equalTo(self)
         })
     }
-    
+
     func bind(to model: YearsListBindables, withActions actions: YearListActions) {
         self.actions = actions
         model.eras.bind(to: self.tableView, using: TableBond()).dispose(in: self.bag)
-        
+
     }
     struct TableBond: PhishTableViewBond {
         func cellForRow(at indexPath: IndexPath, tableView: UITableView, dataSource: Observable2DArray<EraName, Year>) -> UITableViewCell {
@@ -80,22 +81,22 @@ class YearListView: UIView, UITableViewDelegate {
             return nil
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.actions?.selected(yearAtIndex: indexPath)
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else {
             return
         }
         headerView.style()
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    
+
 }
 
 extension UITableViewHeaderFooterView {

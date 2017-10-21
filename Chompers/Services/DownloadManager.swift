@@ -45,7 +45,7 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             })
         })
     }()
-    
+
     func delete(show: Show) {
         if (show.sortedTracks ?? []).count == 0 {
             _ = self.service.getShow(byId: show.id).then(execute: { show in
@@ -58,14 +58,14 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             if let index = (self.downloadedTracks[show.title] ?? []).index(of: track) {
                 self.downloadedTracks[show.title]?.remove(at: index)
             }
-            
+
         }
         if let index = self.downloadedShows.value.index(of: show) {
             self.downloadedShows.value.remove(at: index)
         }
         self.saveCache()
     }
-    
+
     func download(show: Show) {
         if (show.sortedTracks ?? []).count == 0 {
             _ = self.service.getShow(byId: show.id).then(execute: { show in
@@ -80,7 +80,7 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             })
         }
     }
-    
+
     func download(track: Track, inShow show: Show, onComplete: @escaping () -> Void) {
         TWRDownloadManager.shared().downloadFile(forURL: track.mp3, progressBlock: { progress in
             self.downloadProgress.next((track: track, progress: progress))
@@ -100,25 +100,25 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             self.saveCache()
         }, enableBackgroundMode: true)
     }
-    
+
     func saveCache() {
         self.dataCache.cacheResponse(self.downloadedTracks, url: "cached tracks")
         self.dataCache.cacheResponse(self.downloadedShows.value, url: "cached shows")
     }
-    
+
     func getUrl(forTrack track: Track) -> String? {
         if TWRDownloadManager.shared().fileExists(forUrl: track.mp3) {
             return TWRDownloadManager.shared().localPath(forFile: track.mp3)
         }
         return nil
     }
-    
+
     func isShowDownloaded(_ show: Show) -> Bool {
         return self.downloadedShows.value.contains(where: { s in
             show.id == s.id
         })
     }
-    
+
     func getDownloadedShows() -> [Show] {
         let shows = self.downloadedShows
         let tracks = self.downloadedTracks
@@ -129,9 +129,9 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
             return newShow
         })
     }
-    
+
     func stopDownloads() {
         TWRDownloadManager.shared().cancelAllDownloads()
     }
-    
+
 }

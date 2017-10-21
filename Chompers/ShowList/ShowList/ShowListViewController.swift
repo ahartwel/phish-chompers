@@ -18,13 +18,13 @@ class ShowListController: UIViewController, UISearchResultsUpdating {
     }()
     
     var viewModel: ShowListViewModel!
-    
+
     convenience init(withYear year: Year) {
         self.init()
         self.title = "Shows in \(year)"
         self.viewModel = ShowListViewModel(delegate: self, year: year)
     }
-    
+
     convenience init(downloaded: ()) {
         self.init()
         self.title = "Downloaded Shows"

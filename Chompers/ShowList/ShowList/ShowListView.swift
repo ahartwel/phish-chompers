@@ -13,7 +13,7 @@ import UIKit
 
 class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var actions: ShowListActions?
-    
+
     lazy var donutView: DonutView = {
         var donutView = DonutView()
         return donutView
@@ -24,35 +24,36 @@ class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         tableView.register(ShowCell.self, forCellReuseIdentifier: ShowCell.reuseIdentifier ?? "")
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
-        
+
         return tableView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         didLoad()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         didLoad()
     }
-    
+
     func didLoad() {
         self.addViews()
         self.addConstraints()
     }
-    
+
     func addViews() {
         self.addSubview(self.donutView)
         self.addSubview(self.tableView)
         self.tableView.separatorStyle = .none
     }
-    
+
     func startAnimations() {
         self.donutView.startAnimations()
+        self.setNeedsUpdateConstraints()
     }
-    
+
     func addConstraints() {
         self.tableView.snp.remakeConstraints({ make in
             make.edges.equalTo(self)
@@ -61,12 +62,12 @@ class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
             make.edges.equalTo(self)
         })
     }
-    
+
     func bindTo(model: ShowListBindables, withActions: ShowListActions) {
         self.actions = withActions
         model.shows.bind(to: self.tableView, using: TableBond(actions: self.actions)).dispose(in: self.bag)
     }
-    
+
     struct TableBond: PhishTableViewBond {
         weak var actions: ShowListActions?
         init(actions: ShowListActions?) {
@@ -85,7 +86,7 @@ class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
             return nil
         }
     }
-    
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if self.actions?.isShowDownloaded(AtIndex: indexPath) == true {
             return [
@@ -95,7 +96,7 @@ class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
             return []
         }
     }
-    
+
     //not used bind takes care of this
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
@@ -104,19 +105,19 @@ class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return self.actions?.isShowDownloaded(AtIndex: indexPath) == true
     }
-    
+
     func deleteShow(action: UITableViewRowAction, atIndexPath indexPath: IndexPath) {
         self.actions?.delete(showAtPath: indexPath)
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.actions?.selectedShow(atIndex: indexPath)
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }

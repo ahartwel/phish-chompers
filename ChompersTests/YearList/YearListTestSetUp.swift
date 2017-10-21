@@ -11,11 +11,9 @@ import PromiseKit
 
 #if TESTBUILD
     extension ServiceInjector {
-        
+
         var service: PhishInService {
-            get {
                 return MockYearService()
-            }
         }
     }
     extension YearViewModel {
@@ -23,7 +21,7 @@ import PromiseKit
             return MockYearService()
         }
     }
-    
+
     class MockYearService: PhishInService {
         override func getEras() -> Promise<Eras> {
             return Promise<Eras>(value: [

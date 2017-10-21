@@ -17,9 +17,10 @@ struct ShowResponse: Codable {
 }
 
 struct Show: Codable, Equatable {
-    static func ==(lhs: Show, rhs: Show) -> Bool {
+    static func == (lhs: Show, rhs: Show) -> Bool {
         return lhs.id == rhs.id
     }
+    //swiftlint:disable:next identifier_name
     var id: Int
     var date: String
     var duration: TimeInterval
@@ -41,7 +42,7 @@ struct Show: Codable, Equatable {
         })
     }
     var isDownloaded: Bool? = false
-    
+
 }
 
 extension Show {
@@ -62,7 +63,7 @@ struct Venue: Codable {
 }
 
 struct Track: Codable, Equatable {
-    static func ==(lhs: Track, rhs: Track) -> Bool {
+    static func == (lhs: Track, rhs: Track) -> Bool {
         return lhs.id == rhs.id
     }
     var id: Int

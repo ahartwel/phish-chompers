@@ -10,12 +10,12 @@ import XCTest
 @testable import ChompersDev
 
 class ServiceTest: XCTestCase {
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     func testYearsAreParsed() {
         let exp = self.expectation(description: "gets years from test json")
         let service = PhishInService.createTestService()
@@ -27,7 +27,7 @@ class ServiceTest: XCTestCase {
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
     }
-    
+
     func testShowsByYearsAreParsed() {
         let exp = self.expectation(description: "gets shows from year from test json")
         let service = PhishInService.createTestService()
@@ -39,7 +39,7 @@ class ServiceTest: XCTestCase {
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
     }
-    
+
     func testGetEras() {
         let exp = self.expectation(description: "gets eras from test json")
         let service = PhishInService.createTestService()
@@ -51,7 +51,7 @@ class ServiceTest: XCTestCase {
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
     }
-    
+
     func testGetShowById() {
         let exp = self.expectation(description: "gets show from test json")
         let service = PhishInService.createTestService()
