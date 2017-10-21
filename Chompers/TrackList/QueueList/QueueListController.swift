@@ -23,6 +23,9 @@ class QueueListController: TrackListController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: downButton, landscapeImagePhone: downButton, style: .plain, target: self, action: #selector(self.dismissViewController))
     }
     
+    override func setUpBarButtonItem() {
+    }
+    
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }

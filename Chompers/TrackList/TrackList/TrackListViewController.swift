@@ -11,6 +11,7 @@ import Bond
 import ReactiveKit
 import PromiseKit
 import UIKit
+import ionicons
 
 class TrackListController: UIViewController, UISearchResultsUpdating {
     lazy var viewInstance = {
@@ -48,6 +49,26 @@ class TrackListController: UIViewController, UISearchResultsUpdating {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController?.isActive = false
         }
+    }
+    
+    func setUpBarButtonItem() {
+        let downloadButtonImage = IonIcons.image(withIcon: ion_ios_settings, size: 30, color: .white)
+        let barButtonItem = UIBarButtonItem(image: downloadButtonImage!, style: .plain, target: self, action: #selector(self.showMenu))
+        self.navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    @objc func showMenu() {
+        let alert = UIAlertController(title: "Show Options", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: {
+            return self.viewModel.isShowDownloaded() ? "Redownload Show" : "Download Show"
+        }(), style: UIAlertActionStyle.default, handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+            self.viewModel.downloadShow()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func setUpSearch() {

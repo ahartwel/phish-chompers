@@ -130,6 +130,8 @@ class DownloadManager: DataCacheInjector, ServiceInjector {
         })
     }
     
-    
+    func stopDownloads() {
+        TWRDownloadManager.shared().cancelAllDownloads()
+    }
     
 }

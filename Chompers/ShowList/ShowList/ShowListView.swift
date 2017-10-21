@@ -11,7 +11,7 @@ import Bond
 import ReactiveKit
 import UIKit
 
-class ShowListView: UIView, UITableViewDelegate {
+class ShowListView: UIView, UITableViewDelegate, UITableViewDataSource {
     weak var actions: ShowListActions?
     
     lazy var donutView: DonutView = {
@@ -21,6 +21,7 @@ class ShowListView: UIView, UITableViewDelegate {
     lazy var tableView: UITableView = {
         var tableView = UITableView()
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(ShowCell.self, forCellReuseIdentifier: ShowCell.reuseIdentifier ?? "")
         tableView.backgroundColor = UIColor.white.withAlphaComponent(0)
         
@@ -88,13 +89,28 @@ class ShowListView: UIView, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if self.actions?.isShowDownloaded(AtIndex: indexPath) == true {
             return [
-                UITableViewRowAction(style: .destructive, title: "Delete", handler: { action, indexPath in
-                    self.actions?.delete(showAtPath: indexPath)
-                })
+                UITableViewRowAction(style: .destructive, title: "Delete", handler: self.deleteShow)
             ]
         } else {
-            return nil
+            return []
         }
+    }
+    
+    //not used bind takes care of this
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    //not used bind takes care of this
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return self.actions?.isShowDownloaded(AtIndex: indexPath) == true
+    }
+    
+    func deleteShow(action: UITableViewRowAction, atIndexPath indexPath: IndexPath) {
+        self.actions?.delete(showAtPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

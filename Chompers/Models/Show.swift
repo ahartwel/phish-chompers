@@ -18,7 +18,7 @@ struct ShowResponse: Codable {
 
 struct Show: Codable, Equatable {
     static func ==(lhs: Show, rhs: Show) -> Bool {
-        return lhs.id == rhs.id && (lhs.tracks ?? []).count == (rhs.tracks ?? []).count
+        return lhs.id == rhs.id
     }
     var id: Int
     var date: String

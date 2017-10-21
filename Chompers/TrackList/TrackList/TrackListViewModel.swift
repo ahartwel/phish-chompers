@@ -18,13 +18,14 @@ protocol TrackListBindables {
 protocol TrackListActions: class {
     func selectedTrack(atIndex indexPath: IndexPath)
     func filterTracks(withSearchString search: String)
+    func downloadShow()
 }
 
 protocol TrackListViewModelDelegate: class {
     
 }
 
-class TrackListViewModel: TrackListBindables, AudioPlayerInjector, ServiceInjector {
+class TrackListViewModel: TrackListBindables, AudioPlayerInjector, ServiceInjector, DownloadManagerInjector {
     weak var delegate: TrackListViewModelDelegate?
     var show: Observable<Show>
     var tracks: MutableObservable2DArray<String, Track> = MutableObservable2DArray<String, Track>([])
@@ -82,5 +83,11 @@ extension TrackListViewModel: TrackListActions {
     
     func filterTracks(withSearchString search: String) {
         self.searchString.value = search
+    }
+    func downloadShow() {
+        self.downloadManager.download(show: self.show.value)
+    }
+    func isShowDownloaded() -> Bool {
+        return self.downloadManager.downloadedShows.value.contains(self.show.value)
     }
 }

@@ -12,7 +12,7 @@ import Crashlytics
 import PinpointKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, DownloadManagerInjector {
 
     var window: UIWindow?
     static let pinpointKit = PinpointKit(feedbackRecipients: ["chompersapp@gmail.com"])
@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        self.downloadManager.stopDownloads()
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
