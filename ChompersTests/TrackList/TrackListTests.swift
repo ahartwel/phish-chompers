@@ -38,7 +38,7 @@ class TrackListTests: FBSnapshotTestCase {
         DispatchQueue.main.async {
             XCTAssertEqual(viewModel.tracks.sections.count, 3)
             XCTAssertEqual(viewModel.tracks.sections[0].metadata, "set 1")
-            viewModel.updatedSearchText("3")
+            viewModel.updatedSearchText("tEst track 3")
             DispatchQueue.main.async {
                 XCTAssertEqual(viewModel.tracks.sections.count, 1)
                 XCTAssertEqual(viewModel.tracks.sections[0].metadata, "set 2")

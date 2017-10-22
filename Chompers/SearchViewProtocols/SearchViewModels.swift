@@ -45,7 +45,7 @@ extension SearchControllerViewModel where Item: SearchableItem {
     func filterSearchItems(withSearchTerm search: String, items: [Item]) -> [Item] {
         let lowercased = search.lowercased()
         return items.filter({
-            return lowercased == "" || $0.searchString.lowercased().contains(search)
+            return lowercased == "" || $0.searchString.lowercased().contains(lowercased)
         })
     }
     
