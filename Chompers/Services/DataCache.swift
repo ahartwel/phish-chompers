@@ -18,8 +18,6 @@ extension DataCacheInjector {
     }
 }
 
-
-
 class DataCache {
     #if TESTBUILD
     var defaults: UserDefaults {

@@ -34,6 +34,7 @@ class TrackListController: UIViewController, UISearchResultsUpdating {
     
     override func loadView() {
         self.view = self.viewInstance
+        self.edgesForExtendedLayout = []
         self.viewInstance.bindTo(model: self.viewModel, withActions: self.viewModel)
         self.setUpSearch()
         self.setUpBarButtonItem()
@@ -89,7 +90,7 @@ class TrackListController: UIViewController, UISearchResultsUpdating {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        self.viewModel.filterTracks(withSearchString: searchController.searchBar.text ?? "")
+        self.viewModel.updatedSearchText(searchController.searchBar.text ?? "")
     }
 }
 

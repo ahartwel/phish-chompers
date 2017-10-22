@@ -51,7 +51,7 @@ import PromiseKit
                 Track(title: "test track 4", position: 4, set_name: "set 2", id: 4),
                 Track(title: "test track 5", position: 5, set_name: "set 2", id: 5),
                 Track(title: "test track 6", position: 6, set_name: "encore", id: 6),
-                Track(title: "test track 7", position: 7, set_name: "encore", id: 7),
+                Track(title: "test track 7", position: 7, set_name: "encore", id: 7)
                 ], id: 1)
             return show
         }

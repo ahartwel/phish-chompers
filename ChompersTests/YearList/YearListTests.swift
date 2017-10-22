@@ -24,6 +24,24 @@ class YearListTest: FBSnapshotTestCase {
         super.tearDown()
     }
     
+    func testThatYearsSortProperly() {
+        let exp = self.expectation(description: "list is filtered properly")
+        
+        let viewModel = YearViewModel(delegate: YearListController())
+        viewModel.loadData()
+        DispatchQueue.main.async {
+            XCTAssertGreaterThan(viewModel.eras.sections.count, 1)
+            viewModel.searchTextChanged("1999")
+            DispatchQueue.main.async {
+                XCTAssertEqual(viewModel.eras.sections.count, 1)
+                XCTAssertEqual(viewModel.eras.sections[0].items[0], "1999")
+                XCTAssertEqual(viewModel.eras.sections[0].items.count, 1)
+                exp.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 0.3, handler: nil)
+    }
+    
     //TEST NEED TO BE RUN IN A PLUS SIZE SIMIULATOR, otherwise the view tests will fail
     func testViewLaysOutProperly() {
         let exp = self.expectation(description: "view lays out")

@@ -23,6 +23,6 @@ class QueueListViewModel: TrackListViewModel {
             tracks = [currentItem] + tracks.reversed()
         }
         tracks = self.audioPlayer.pastQueue + tracks
-        self.originalTracks.value = tracks
+        self.itemsToFilter.value = tracks
     }
 }

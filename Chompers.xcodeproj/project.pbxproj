@@ -78,6 +78,8 @@
 		2CA15D1B1F98CDA700230823 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */; };
 		2CD4BCC81F9BFB4A005A7C1A /* TrackListTestSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCC71F9BFB4A005A7C1A /* TrackListTestSetup.swift */; };
 		2CD4BCCA1F9BFFD9005A7C1A /* TrackListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCC91F9BFFD9005A7C1A /* TrackListTests.swift */; };
+		2CD4BCCE1F9CC223005A7C1A /* SearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */; };
+		2CD4BCCF1F9CC223005A7C1A /* SearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */; };
 		3256BE97DB8999A61E3B4501 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */; };
 		DCBFD1EE103F01CF4FE6A73B /* Pods_ChompersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */; };
 		E534D0B0E66933D7C3D3BFAE /* Pods_ChompersDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE09A81AEDD3C818000A577 /* Pods_ChompersDev.framework */; };
@@ -155,6 +157,7 @@
 		2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Chompers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD4BCC71F9BFB4A005A7C1A /* TrackListTestSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTestSetup.swift; sourceTree = "<group>"; };
 		2CD4BCC91F9BFFD9005A7C1A /* TrackListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTests.swift; sourceTree = "<group>"; };
+		2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModels.swift; sourceTree = "<group>"; };
 		32A13A67F397CE45D59125BC /* Pods-ChompersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChompersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChompersTests/Pods-ChompersTests.release.xcconfig"; sourceTree = "<group>"; };
 		39A6FF6B37CD96C3DFA0B613 /* Pods-Chompers.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.test.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.test.xcconfig"; sourceTree = "<group>"; };
 		4F0E0B087325487F53884BCC /* Pods-Chompers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 		2C4A6AA21F8AE50D00BEB58B /* Chompers */ = {
 			isa = PBXGroup;
 			children = (
+				2CD4BCCC1F9CC208005A7C1A /* SearchViewProtocols */,
 				2C32DD741F8EBE980074CFE4 /* TrackList */,
 				2CCE97B51F8AFEAA00CF209F /* ShowList */,
 				2C4A6AEA1F8AF5E600BEB58B /* YearsList */,
@@ -398,6 +402,14 @@
 			children = (
 			);
 			path = ShowList;
+			sourceTree = "<group>";
+		};
+		2CD4BCCC1F9CC208005A7C1A /* SearchViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */,
+			);
+			path = SearchViewProtocols;
 			sourceTree = "<group>";
 		};
 		87BFB8BC4F68532480F72E0D /* Pods */ = {
@@ -845,6 +857,7 @@
 				2C32DD781F8ECA660074CFE4 /* DownloadManager.swift in Sources */,
 				2C4A6ADD1F8AEA1C00BEB58B /* Show.swift in Sources */,
 				2C5FECB21F9BBD9000F6569D /* ShowListViewModel.swift in Sources */,
+				2CD4BCCE1F9CC223005A7C1A /* SearchViewModels.swift in Sources */,
 				2C6E73191F9BAEBE00DE52F1 /* TrackListView.swift in Sources */,
 				2C4A6AD51F8AE65B00BEB58B /* PhishinService.swift in Sources */,
 				2C6E73171F9BAEBE00DE52F1 /* TrackListViewController.swift in Sources */,
@@ -894,6 +907,7 @@
 				2CA15D1A1F98C51100230823 /* YearListTestSetUp.swift in Sources */,
 				2C706C121F978E89004BB615 /* AppDelegate.swift in Sources */,
 				2C5FECB41F9BBF0400F6569D /* ShowListView.swift in Sources */,
+				2CD4BCCF1F9CC223005A7C1A /* SearchViewModels.swift in Sources */,
 				2C706C131F978E89004BB615 /* Years.swift in Sources */,
 				2C706C141F978E89004BB615 /* DownloadManager.swift in Sources */,
 				2C5FECAC1F9BB8E600F6569D /* QueueListController.swift in Sources */,

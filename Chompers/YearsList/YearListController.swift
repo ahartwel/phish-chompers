@@ -18,6 +18,7 @@ class YearListController: UIViewController, UISearchResultsUpdating {
     
     override func loadView() {
         self.view = self.yearView
+        self.edgesForExtendedLayout = []
     }
     
     override func viewDidLoad() {

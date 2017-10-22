@@ -57,6 +57,13 @@ struct Show: Codable, Equatable {
     
 }
 
+extension Show: SearchableItem {
+    var searchString: String {
+        let venueName = (self.venue?.name ?? self.venue_name) ?? ""
+        return self.date + venueName
+    }
+}
+
 extension Show {
     var title: String {
         let venueName = self.venue_name ?? (self.venue?.name ?? "")
@@ -111,4 +118,10 @@ struct Track: Codable, Equatable {
         ]
     }
     
+}
+
+extension Track: SearchableItem {
+    var searchString: String {
+        return self.title
+    }
 }

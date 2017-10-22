@@ -32,6 +32,23 @@ class TrackListTests: FBSnapshotTestCase {
         super.tearDown()
     }
     
+    func testTracksAreSortedProperly() {
+        let exp = self.expectation(description: "tracks sort properly")
+        let viewModel = TrackListViewModel(delegate: TrackListController(show: self.show), show: self.show)
+        DispatchQueue.main.async {
+            XCTAssertEqual(viewModel.tracks.sections.count, 3)
+            XCTAssertEqual(viewModel.tracks.sections[0].metadata, "set 1")
+            viewModel.filterTracks(withSearchString: "3")
+            DispatchQueue.main.async {
+                XCTAssertEqual(viewModel.tracks.sections.count, 1)
+                XCTAssertEqual(viewModel.tracks.sections[0].metadata, "set 2")
+                XCTAssertEqual(viewModel.tracks.sections[0].items.count, 1)
+                exp.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 0.3, handler: nil)
+    }
+    
     //TEST NEED TO BE RUN IN A PLUS SIZE SIMIULATOR, otherwise the view tests will fail
     func testViewLaysOutProperly() {
         let exp = self.expectation(description: "view lays out")
