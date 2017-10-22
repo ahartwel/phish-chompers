@@ -38,7 +38,7 @@ class TrackListTests: FBSnapshotTestCase {
         DispatchQueue.main.async {
             XCTAssertEqual(viewModel.tracks.sections.count, 3)
             XCTAssertEqual(viewModel.tracks.sections[0].metadata, "set 1")
-            viewModel.filterTracks(withSearchString: "3")
+            viewModel.updatedSearchText("3")
             DispatchQueue.main.async {
                 XCTAssertEqual(viewModel.tracks.sections.count, 1)
                 XCTAssertEqual(viewModel.tracks.sections[0].metadata, "set 2")
@@ -69,7 +69,7 @@ class TrackListTests: FBSnapshotTestCase {
         controller.view.frame = CGRect(x: 0, y: 0, width: 350, height: 800)
         controller.viewWillAppear(false)
         controller.viewDidAppear(false)
-        controller.viewModel.filterTracks(withSearchString: "3")
+        controller.viewModel.updatedSearchText("3")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.FBSnapshotVerifyView(controller.view, tolerance: 0.05)
             exp.fulfill()
