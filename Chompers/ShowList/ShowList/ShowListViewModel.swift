@@ -14,11 +14,10 @@ import PromiseKit
 protocol ShowListBindables {
     var shows: MutableObservableArray<Show> { get }
 }
-protocol ShowListActions: class {
+protocol ShowListActions: class, SearchableControllerActions {
     func selectedShow(atIndex indexPath: IndexPath)
     func download(show: Show)
     func delete(showAtPath indexPath: IndexPath)
-    func searchTextChanged(_ text: String)
     func isShowDownloaded(AtIndex indexPath: IndexPath) -> Bool
 }
 
@@ -26,11 +25,13 @@ protocol ShowListViewModelDelegate: class {
     func presentTrackList(forShow show: Show)
 }
 
-class ShowListViewModel: ShowListBindables, ServiceInjector, DownloadManagerInjector {
+class ShowListViewModel: SearchControllerViewModel, ShowListBindables, ServiceInjector, DownloadManagerInjector {
     weak var delegate: ShowListViewModelDelegate?
-    var originalShows: Observable<[Show]> = Observable<[Show]>([])
     var shows: MutableObservableArray<Show> = MutableObservableArray<Show>([])
-    var searchText: Observable<String> = Observable<String>("")
+    
+    var searchText: Property<String> = Observable<String>("")
+    var itemsToFilter: Property<[Show]> = Observable<[Show]>([])
+    
     var year: Year?
     var bag: DisposeBag = DisposeBag()
     init(delegate: ShowListViewModelDelegate?, year: Year) {
@@ -52,31 +53,20 @@ class ShowListViewModel: ShowListBindables, ServiceInjector, DownloadManagerInje
     }
 
     func setUpObservables() {
-        let signal = combineLatest(self.originalShows, self.searchText) { shows, search in
-            return (shows: shows, search: search)
-        }
-        signal.observeNext(with: { showsAndSearch in
-            if showsAndSearch.search == "" {
-                self.shows.replace(with: showsAndSearch.shows, performDiff: true)
-                return
-            }
-            let lowercased = showsAndSearch.search.lowercased()
-            self.shows.replace(with: showsAndSearch.shows.filter({ show in
-                let venueName = (show.venue?.name ?? show.venue_name) ?? ""
-                return show.date.contains(lowercased) || venueName.lowercased().contains(lowercased)
-            }), performDiff: true)
-        }).dispose(in: self.bag)
+        self.filteredItems.observeNext(with: { shows in
+            self.shows.replace(with: shows, performDiff: true)
+        })
     }
 
     func loadDownloadedShows() {
         _ = self.downloadManager.downloadedShows.observeNext(with: { shows in
-            self.originalShows.value = shows
+            self.itemsToFilter.value = shows
         }).dispose(in: self.bag)
     }
 
     func loadOnThisDayShows() {
         _ = self.service.getShowsOnThisDay().then { shows in
-            self.originalShows.value = shows
+            self.itemsToFilter.value = shows
         }
     }
 
@@ -85,7 +75,7 @@ class ShowListViewModel: ShowListBindables, ServiceInjector, DownloadManagerInje
             return
         }
         _ = self.service.getShows(fromYear: year).then { shows in
-            self.originalShows.value = shows
+            self.itemsToFilter.value = shows
         }
     }
 }
@@ -103,10 +93,6 @@ extension ShowListViewModel: ShowListActions {
     func delete(showAtPath indexPath: IndexPath) {
         let show = self.shows.array[indexPath.row]
         self.downloadManager.delete(show: show)
-    }
-
-    func searchTextChanged(_ text: String) {
-        self.searchText.value = text
     }
 
     func isShowDownloaded(AtIndex indexPath: IndexPath) -> Bool {

@@ -14,7 +14,6 @@
 		2C4A6AA91F8AE50D00BEB58B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */; };
 		2C4A6AAB1F8AE50D00BEB58B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AAA1F8AE50D00BEB58B /* Assets.xcassets */; };
 		2C4A6AAE1F8AE50D00BEB58B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AAC1F8AE50D00BEB58B /* LaunchScreen.storyboard */; };
-		2C4A6AB91F8AE50D00BEB58B /* ChompersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AB81F8AE50D00BEB58B /* ChompersTests.swift */; };
 		2C4A6AC41F8AE50D00BEB58B /* ChompersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AC31F8AE50D00BEB58B /* ChompersUITests.swift */; };
 		2C4A6AD51F8AE65B00BEB58B /* PhishinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AD41F8AE65B00BEB58B /* PhishinService.swift */; };
 		2C4A6AD71F8AE74900BEB58B /* Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AD61F8AE74900BEB58B /* Years.swift */; };
@@ -60,9 +59,7 @@
 		2C706C151F978E89004BB615 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6ADC1F8AEA1C00BEB58B /* Show.swift */; };
 		2C706C171F978E89004BB615 /* PhishinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AD41F8AE65B00BEB58B /* PhishinService.swift */; };
 		2C706C181F978E89004BB615 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4A6AE81F8AF5CB00BEB58B /* AudioPlayerController.swift */; };
-		2C706C1C1F978E89004BB615 /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFE1F978DEC004BB615 /* fabric.buildsecret */; };
 		2C706C1D1F978E89004BB615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AAC1F8AE50D00BEB58B /* LaunchScreen.storyboard */; };
-		2C706C1E1F978E89004BB615 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 2C706BFC1F978DB5004BB615 /* fabric.apikey */; };
 		2C706C1F1F978E89004BB615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AAA1F8AE50D00BEB58B /* Assets.xcassets */; };
 		2C706C201F978E89004BB615 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C4A6AA71F8AE50D00BEB58B /* Main.storyboard */; };
 		2C7AD5561F91B59900FF06CE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7AD5551F91B59900FF06CE /* Colors.swift */; };
@@ -79,6 +76,10 @@
 		2CA15D111F98C34000230823 /* PhishTableViewBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D0A1F98479300230823 /* PhishTableViewBond.swift */; };
 		2CA15D1A1F98C51100230823 /* YearListTestSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15D181F98C50F00230823 /* YearListTestSetUp.swift */; };
 		2CA15D1B1F98CDA700230823 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */; };
+		2CD4BCC81F9BFB4A005A7C1A /* TrackListTestSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCC71F9BFB4A005A7C1A /* TrackListTestSetup.swift */; };
+		2CD4BCCA1F9BFFD9005A7C1A /* TrackListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCC91F9BFFD9005A7C1A /* TrackListTests.swift */; };
+		2CD4BCCE1F9CC223005A7C1A /* SearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */; };
+		2CD4BCCF1F9CC223005A7C1A /* SearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */; };
 		3256BE97DB8999A61E3B4501 /* Pods_Chompers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */; };
 		DCBFD1EE103F01CF4FE6A73B /* Pods_ChompersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991A61567DEA958B4672508 /* Pods_ChompersTests.framework */; };
 		E534D0B0E66933D7C3D3BFAE /* Pods_ChompersDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE09A81AEDD3C818000A577 /* Pods_ChompersDev.framework */; };
@@ -117,7 +118,6 @@
 		2C4A6AAD1F8AE50D00BEB58B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C4A6AAF1F8AE50D00BEB58B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C4A6AB41F8AE50D00BEB58B /* ChompersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChompersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C4A6AB81F8AE50D00BEB58B /* ChompersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChompersTests.swift; sourceTree = "<group>"; };
 		2C4A6ABA1F8AE50D00BEB58B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C4A6ABF1F8AE50D00BEB58B /* ChompersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChompersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4A6AC31F8AE50D00BEB58B /* ChompersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChompersUITests.swift; sourceTree = "<group>"; };
@@ -155,6 +155,9 @@
 		2CA15D0C1F98C22300230823 /* YearListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListTests.swift; sourceTree = "<group>"; };
 		2CA15D181F98C50F00230823 /* YearListTestSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListTestSetUp.swift; sourceTree = "<group>"; };
 		2CA15D1C1F98CDA700230823 /* Pods_Chompers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Chompers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD4BCC71F9BFB4A005A7C1A /* TrackListTestSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTestSetup.swift; sourceTree = "<group>"; };
+		2CD4BCC91F9BFFD9005A7C1A /* TrackListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListTests.swift; sourceTree = "<group>"; };
+		2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModels.swift; sourceTree = "<group>"; };
 		32A13A67F397CE45D59125BC /* Pods-ChompersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChompersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChompersTests/Pods-ChompersTests.release.xcconfig"; sourceTree = "<group>"; };
 		39A6FF6B37CD96C3DFA0B613 /* Pods-Chompers.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.test.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.test.xcconfig"; sourceTree = "<group>"; };
 		4F0E0B087325487F53884BCC /* Pods-Chompers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chompers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chompers/Pods-Chompers.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 		2C4A6AA21F8AE50D00BEB58B /* Chompers */ = {
 			isa = PBXGroup;
 			children = (
+				2CD4BCCC1F9CC208005A7C1A /* SearchViewProtocols */,
 				2C32DD741F8EBE980074CFE4 /* TrackList */,
 				2CCE97B51F8AFEAA00CF209F /* ShowList */,
 				2C4A6AEA1F8AF5E600BEB58B /* YearsList */,
@@ -271,8 +275,9 @@
 		2C4A6AB71F8AE50D00BEB58B /* ChompersTests */ = {
 			isa = PBXGroup;
 			children = (
+				2CD4BCCB1F9C05FB005A7C1A /* ShowList */,
+				2CD4BCC61F9BFB36005A7C1A /* TrackList */,
 				2CA15D171F98C4FD00230823 /* YearList */,
-				2C4A6AB81F8AE50D00BEB58B /* ChompersTests.swift */,
 				2C4A6ABA1F8AE50D00BEB58B /* Info.plist */,
 				2C4A6ADA1F8AE88000BEB58B /* ServiceTest.swift */,
 			);
@@ -381,6 +386,30 @@
 				2C6E73111F9BA79D00DE52F1 /* ShowCell.swift */,
 			);
 			path = ShowList;
+			sourceTree = "<group>";
+		};
+		2CD4BCC61F9BFB36005A7C1A /* TrackList */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4BCC71F9BFB4A005A7C1A /* TrackListTestSetup.swift */,
+				2CD4BCC91F9BFFD9005A7C1A /* TrackListTests.swift */,
+			);
+			path = TrackList;
+			sourceTree = "<group>";
+		};
+		2CD4BCCB1F9C05FB005A7C1A /* ShowList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShowList;
+			sourceTree = "<group>";
+		};
+		2CD4BCCC1F9CC208005A7C1A /* SearchViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4BCCD1F9CC223005A7C1A /* SearchViewModels.swift */,
+			);
+			path = SearchViewProtocols;
 			sourceTree = "<group>";
 		};
 		87BFB8BC4F68532480F72E0D /* Pods */ = {
@@ -582,9 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C706C1C1F978E89004BB615 /* fabric.buildsecret in Resources */,
 				2C706C1D1F978E89004BB615 /* LaunchScreen.storyboard in Resources */,
-				2C706C1E1F978E89004BB615 /* fabric.apikey in Resources */,
 				2C706C1F1F978E89004BB615 /* Assets.xcassets in Resources */,
 				2C706C201F978E89004BB615 /* Main.storyboard in Resources */,
 			);
@@ -830,6 +857,7 @@
 				2C32DD781F8ECA660074CFE4 /* DownloadManager.swift in Sources */,
 				2C4A6ADD1F8AEA1C00BEB58B /* Show.swift in Sources */,
 				2C5FECB21F9BBD9000F6569D /* ShowListViewModel.swift in Sources */,
+				2CD4BCCE1F9CC223005A7C1A /* SearchViewModels.swift in Sources */,
 				2C6E73191F9BAEBE00DE52F1 /* TrackListView.swift in Sources */,
 				2C4A6AD51F8AE65B00BEB58B /* PhishinService.swift in Sources */,
 				2C6E73171F9BAEBE00DE52F1 /* TrackListViewController.swift in Sources */,
@@ -842,8 +870,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CA15D0D1F98C22300230823 /* YearListTests.swift in Sources */,
-				2C4A6AB91F8AE50D00BEB58B /* ChompersTests.swift in Sources */,
 				2C4A6ADB1F8AE88000BEB58B /* ServiceTest.swift in Sources */,
+				2CD4BCCA1F9BFFD9005A7C1A /* TrackListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,6 +907,7 @@
 				2CA15D1A1F98C51100230823 /* YearListTestSetUp.swift in Sources */,
 				2C706C121F978E89004BB615 /* AppDelegate.swift in Sources */,
 				2C5FECB41F9BBF0400F6569D /* ShowListView.swift in Sources */,
+				2CD4BCCF1F9CC223005A7C1A /* SearchViewModels.swift in Sources */,
 				2C706C131F978E89004BB615 /* Years.swift in Sources */,
 				2C706C141F978E89004BB615 /* DownloadManager.swift in Sources */,
 				2C5FECAC1F9BB8E600F6569D /* QueueListController.swift in Sources */,
@@ -886,6 +915,7 @@
 				2C706C151F978E89004BB615 /* Show.swift in Sources */,
 				2CA15D0E1F98C31E00230823 /* YearListController.swift in Sources */,
 				2C706C171F978E89004BB615 /* PhishinService.swift in Sources */,
+				2CD4BCC81F9BFB4A005A7C1A /* TrackListTestSetup.swift in Sources */,
 				2C6E731C1F9BAEBE00DE52F1 /* TrackListViewModel.swift in Sources */,
 				2C706C181F978E89004BB615 /* AudioPlayerController.swift in Sources */,
 			);
@@ -1166,7 +1196,7 @@
 				INFOPLIST_FILE = "Chompers copy2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompersdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1201,7 +1231,7 @@
 				INFOPLIST_FILE = "Chompers copy2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompersdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1348,7 +1378,7 @@
 				INFOPLIST_FILE = "Chompers copy2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D TESTBUILD";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D TESTBUILD -D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexhartwell.chompersdev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG TESTBUILD";

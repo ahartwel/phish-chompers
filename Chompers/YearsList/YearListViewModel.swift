@@ -16,18 +16,20 @@ protocol YearsListBindables {
     var title: Observable<String> { get }
 }
 
-protocol YearListActions: class {
+protocol YearListActions: class, SearchableControllerActions {
     func selected(yearAtIndex index: IndexPath)
-    func searchTextChanged(_ text: String)
 }
 
 protocol YearListViewModelDelegate: class {
     func presentDetails(forYear year: Year)
 }
 
-class YearViewModel: YearsListBindables, ServiceInjector {
-    var searchText: Observable<String> = Observable<String>("")
-    var eraReturn: Observable<Eras> = Observable<Eras>([:])
+class YearViewModel: SearchControllerViewModel, YearsListBindables, ServiceInjector {
+    
+    typealias Items = (EraName, [Year])
+    var searchText: Property<String> = Observable<String>("")
+    var itemsToFilter: Property<[Items]> = Observable<[Items]>([])
+    
     var eras: MutableObservable2DArray<EraName, Year> = MutableObservable2DArray<EraName, Year>([])
     var title: Observable<String> = Observable<String>("Years")
     unowned var delegate: YearListViewModelDelegate
@@ -41,26 +43,14 @@ class YearViewModel: YearsListBindables, ServiceInjector {
     }
 
     func setUpCombines() {
-        let eraSorterSignal: Signal<Eras, NoError> = combineLatest(self.searchText, self.eraReturn) { text, oldEras in
-            let lowercasedString = text.lowercased()
-            let eras: [EraName] = oldEras.keys.map({ return $0 }).sorted()
-            var newEras: Eras = [:]
-            for era in eras {
-                newEras[era] = oldEras[era]?.filter({ year in
-                    return text == "" || year.lowercased().contains(lowercasedString)
-                })
-            }
-            return newEras
-        }
-        eraSorterSignal.observeNext(with: { eras in
+        self.filteredItems.observeNext(with: { eras in
             self.eras.batchUpdate({ array in
                 array.removeAllItemsAndSections()
-                //we have to sort the eranames so 1.0 is first
-                let eraNames: [EraName] = eras.keys.map({ return $0 }).sorted()
-                for eraName in eraNames {
-                    if let eras = eras[eraName], eras.count > 0 {
-                        array.appendSection(Observable2DArraySection(metadata: eraName, items: eras))
-                    }
+                let eraSections = eras.sorted(by: { one, two in
+                    return one.0 < two.0
+                })
+                for era in eraSections {
+                    array.appendSection(Observable2DArraySection(metadata: era.0, items: era.1))
                 }
             })
         }).dispose(in: self.bag)
@@ -68,8 +58,23 @@ class YearViewModel: YearsListBindables, ServiceInjector {
 
     func loadData() {
         _ = self.service.getEras().then(execute: { eras -> Void in
-            self.eraReturn.value = eras
+            self.itemsToFilter.value = eras.map({ key, value in
+                return (key, value)
+            })
         })
+    }
+    
+    func filterSearchItems(withSearchTerm search: String, items: [(EraName, [Year])]) -> [(EraName, [Year])] {
+        let lowercasedSearch = search.lowercased()
+        let mapped = items.map({
+            return ($0.0, $0.1.filter({ year in
+                return lowercasedSearch == "" || year.lowercased().contains(lowercasedSearch)
+            }))
+        })
+        let emptiesRemoved = mapped.flatMap({
+            return $0.1.count > 0 ? $0 : nil
+        })
+        return emptiesRemoved
     }
 }
 

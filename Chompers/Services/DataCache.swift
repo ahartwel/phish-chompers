@@ -19,15 +19,20 @@ extension DataCacheInjector {
 }
 
 class DataCache {
+    #if TESTBUILD
+    var defaults: UserDefaults {
+        let standard = UserDefaults(suiteName: "testSuite")
+        for key in standard!.dictionaryRepresentation().keys {
+            standard!.removeObject(forKey: key)
+        }
+        return standard!
+    }
+    
+    #else
     lazy var defaults: UserDefaults = {
-        #if TESTBUILD
-            let standard =  UserDefaults(suiteName: "testSuite")
-            standard!.removePersistentDomain(forName: "testSuite")
-            return standard!
-        #else
             return UserDefaults.standard
-        #endif
     }()
+    #endif
     func cacheResponse<T: Codable>(_ response: T, url: String) {
         let encoder = JSONEncoder()
         do {

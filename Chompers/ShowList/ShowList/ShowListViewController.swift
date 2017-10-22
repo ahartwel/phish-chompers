@@ -40,6 +40,7 @@ class ShowListController: UIViewController, UISearchResultsUpdating {
     override func loadView() {
         self.view = self.viewInstance
         self.viewInstance.bindTo(model: self.viewModel, withActions: self.viewModel)
+        self.edgesForExtendedLayout = []
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.setUpSearch()
     }
@@ -67,7 +68,7 @@ class ShowListController: UIViewController, UISearchResultsUpdating {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        self.viewModel.searchTextChanged(searchController.searchBar.text ?? "")
+        self.viewModel.updatedSearchText(searchController.searchBar.text ?? "")
     }
 }
 

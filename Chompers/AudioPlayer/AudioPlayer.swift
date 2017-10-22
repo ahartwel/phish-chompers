@@ -54,6 +54,11 @@ class AudioPlayer: NSObject, DownloadManagerInjector {
     var sendQueueChangeEventTimer: Timer?
     var timer: Timer?
 
+    var pendingQueue: [QueueItem] {
+        //swiftlint:disable:next force_cast
+        return self.audioPlayer.pendingQueue as! [QueueItem]
+    }
+    
     var pastQueue: [Track] = []
 
     lazy var audioPlayer: STKAudioPlayer = STKAudioPlayer()

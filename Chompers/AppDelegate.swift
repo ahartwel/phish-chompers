@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, DownloadManagerInjector {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        #if !DEV
         Fabric.with([Crashlytics.self])
+        #endif
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         self.window?.rootViewController = MainViewController()
         self.window?.makeKeyAndVisible()

@@ -23,7 +23,26 @@ class YearListTest: FBSnapshotTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
+    
+    func testThatYearsSortProperly() {
+        let exp = self.expectation(description: "list is filtered properly")
+        
+        let viewModel = YearViewModel(delegate: YearListController())
+        viewModel.loadData()
+        DispatchQueue.main.async {
+            XCTAssertGreaterThan(viewModel.eras.sections.count, 1)
+            viewModel.searchTextChanged("1999")
+            DispatchQueue.main.async {
+                XCTAssertEqual(viewModel.eras.sections.count, 1)
+                XCTAssertEqual(viewModel.eras.sections[0].items[0], "1999")
+                XCTAssertEqual(viewModel.eras.sections[0].items.count, 1)
+                exp.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: 0.3, handler: nil)
+    }
+    
+    //TEST NEED TO BE RUN IN A PLUS SIZE SIMIULATOR, otherwise the view tests will fail
     func testViewLaysOutProperly() {
         let exp = self.expectation(description: "view lays out")
         let controller: YearListController = YearListController()
@@ -32,7 +51,7 @@ class YearListTest: FBSnapshotTestCase {
         controller.viewWillAppear(false)
         controller.viewDidAppear(false)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.FBSnapshotVerifyView(controller.view)
+            self.FBSnapshotVerifyView(controller.view, tolerance: 0.05)
             exp.fulfill()
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
@@ -47,7 +66,7 @@ class YearListTest: FBSnapshotTestCase {
         controller.viewDidAppear(false)
         controller.viewModel.searchTextChanged("1999")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.FBSnapshotVerifyView(controller.view)
+            self.FBSnapshotVerifyView(controller.view, tolerance: 0.05)
             exp.fulfill()
         })
         self.waitForExpectations(timeout: 0.3, handler: nil)
